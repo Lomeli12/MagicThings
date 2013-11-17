@@ -129,11 +129,12 @@ public class Config {
         Ints.shaverExplodeChance = config.get(options, "shaverExplode", 30, shaverExplode).getInt(30);
 
         config.save();
-        
-        if(Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == 4 && Calendar.getInstance().get(Calendar.MONTH) == Calendar.NOVEMBER)
+
+        if(Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == 4
+                && Calendar.getInstance().get(Calendar.MONTH) == Calendar.NOVEMBER)
             date = true;
     }
-    
+
     public static boolean date;
 
     private void configureKeys() {

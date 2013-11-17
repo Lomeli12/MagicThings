@@ -98,23 +98,23 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
             TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
             if(tile == null)
                 return;
-            try{
-                if(Class.forName("factorization.common.TileEntityBarrel").isInstance(tile)){
+            try {
+                if(Class.forName("factorization.common.TileEntityBarrel").isInstance(tile)) {
                     for(int i = 0; i < ((ISidedInventory) tile).getSizeInventory(); i++) {
-                        if(((ISidedInventory)tile).canInsertItem(i, this.getStackInSlot(0), 1)){
-                            ItemStack stack = ((ISidedInventory)tile).getStackInSlot(i), newStack = this.getStackInSlot(0);
+                        if(((ISidedInventory) tile).canInsertItem(i, this.getStackInSlot(0), 1)) {
+                            ItemStack stack = ((ISidedInventory) tile).getStackInSlot(i), newStack = this.getStackInSlot(0);
                             if(stack != null)
                                 newStack.stackSize += stack.stackSize;
-                            ((ISidedInventory)tile).setInventorySlotContents(i, newStack);
+                            ((ISidedInventory) tile).setInventorySlotContents(i, newStack);
                             this.setInventorySlotContents(0, null);
                             return;
                         }
                     }
                     return;
                 }
-            }catch(Exception e){
+            }catch(Exception e) {
             }
-            
+
             if(tile instanceof ISidedInventory) {
                 for(int i = 0; i < ((ISidedInventory) tile).getSizeInventory(); i++) {
                     if(((ISidedInventory) tile).canInsertItem(InventoryUtil.getFirstEmptyStack((ISidedInventory) tile),

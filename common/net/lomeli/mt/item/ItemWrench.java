@@ -63,15 +63,13 @@ public class ItemWrench extends ItemMT implements IToolWrench {
     @Override
     public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX,
             float hitY, float hitZ) {
-        ItemStack bookManual = CustomBookUtil
-                .createNewBook(
-                        "Lomeli12",
-                        StatCollector.translateToLocal("book.magicthings:wrench"),
-                        new String[] {
-                                (StatCollector.translateToLocal(Strings.wrenchPage1ln1) + "\n\n" + StatCollector
-                                        .translateToLocal(Strings.wrenchPage1ln2)),
-                                StatCollector.translateToLocal(Strings.wrenchPage2),
-                                StatCollector.translateToLocal(Strings.wrenchPage3)});
+        ItemStack bookManual = CustomBookUtil.createNewBook(
+                "Lomeli12",
+                StatCollector.translateToLocal("book.magicthings:wrench"),
+                new String[] {
+                        (StatCollector.translateToLocal(Strings.wrenchPage1ln1) + "\n\n" + StatCollector
+                                .translateToLocal(Strings.wrenchPage1ln2)), StatCollector.translateToLocal(Strings.wrenchPage2),
+                        StatCollector.translateToLocal(Strings.wrenchPage3) });
         if(EntityUtil.transformEntityItem(world, x, y, z, player, book.itemID, bookManual, itemstack, true)) {
             double d3 = 0.2199999988079071D;
             double d4 = 0.27000001072883606D;

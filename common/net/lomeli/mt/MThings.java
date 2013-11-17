@@ -81,9 +81,9 @@ public class MThings {
 
         proxy.registerTickHandlers();
         proxy.registerIcons();
-        
+
         GameRegistry.registerWorldGenerator(new WorldMTGen());
-        
+
         Addons.initAddons();
     }
 

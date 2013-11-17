@@ -8,6 +8,6 @@ public class BlockInfo {
     public static int stamaticOreGen, aquaticOreGen, igniousOreGen, neoOreGen;
 
     public static int clearTankRenderID, fertileBushRange;
-    
+
     public static String woolText = "subtext.magicthings:wool";
 }

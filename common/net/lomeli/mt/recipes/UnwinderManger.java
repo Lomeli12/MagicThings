@@ -10,7 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class UnwinderManger implements IUnwinder{
+public class UnwinderManger implements IUnwinder {
     private HashMap<List<Integer>, ItemStack> recipes = new HashMap<List<Integer>, ItemStack>();
     private HashMap<List<Integer>, Integer> cranksRequired = new HashMap<List<Integer>, Integer>();
 

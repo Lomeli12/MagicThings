@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-public class MagmaFurnaceRecipe implements IMagmaFurnaceRecipes{
+public class MagmaFurnaceRecipe implements IMagmaFurnaceRecipes {
     private HashMap<List<Integer>, Integer> smeltingList = new HashMap<List<Integer>, Integer>();
 
     public MagmaFurnaceRecipe() {

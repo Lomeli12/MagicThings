@@ -17,8 +17,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModEntities {
 
-    private static Type[] typeList = { Type.FOREST, Type.HILLS, Type.SWAMP,
-            Type.JUNGLE, Type.WASTELAND, Type.MAGICAL };
+    private static Type[] typeList = { Type.FOREST, Type.HILLS, Type.SWAMP, Type.JUNGLE, Type.WASTELAND, Type.MAGICAL };
 
     public static void loadEntities() {
         MThings.proxy.registerRenders();
@@ -35,7 +34,8 @@ public class ModEntities {
 
     public static void addOverWorldSpawn(Class<? extends EntityLiving> entityClass, int spawnprob, int min, int max) {
         for(int i = 0; i < typeList.length; i++) {
-            EntityRegistry.addSpawn(entityClass, spawnprob, min, max, EnumCreatureType.creature, BiomeDictionary.getBiomesForType(typeList[i]));
+            EntityRegistry.addSpawn(entityClass, spawnprob, min, max, EnumCreatureType.creature,
+                    BiomeDictionary.getBiomesForType(typeList[i]));
         }
     }
 

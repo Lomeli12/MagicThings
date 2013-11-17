@@ -444,12 +444,13 @@ public class EntityClicker extends EntityMob {
                 this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
             }
             if(par1EntityLivingBase instanceof EntityPlayer) {
-                if(rand.nextInt(100) < 35 && !this.isBurning() && !par1EntityLivingBase.isBurning()){
+                if(rand.nextInt(100) < 35 && !this.isBurning() && !par1EntityLivingBase.isBurning()) {
                     EntityClicker newClicker = new EntityClicker(this.worldObj);
                     newClicker.copyLocationAndAnglesFrom(par1EntityLivingBase);
                     newClicker.onSpawnWithEgg((EntityLivingData) null);
                     this.worldObj.spawnEntityInWorld(newClicker);
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, (int) this.posX, (int) this.posY,
+                            (int) this.posZ, 0);
                 }
             }
         }

@@ -71,12 +71,9 @@ public class ItemFluidReader extends ItemMT {
                 try {
                     FluidTankInfo tankInfo = ((IFluidHandler) tile).getTankInfo(getDirection(stack))[i];
                     if(tankInfo != null && tankInfo.fluid.getFluid().getName() != null) {
-                        String name = tankInfo.fluid.getFluid().getLocalizedName();
-                        String fluidName = name.substring(11, 12).toUpperCase() + name.substring(12);
-                        int fluidAmount = tankInfo.fluid.amount;
-                        int capacity = tankInfo.capacity;
+                        int fluidAmount = tankInfo.fluid.amount, capacity = tankInfo.capacity;
 
-                        player.addChatMessage(fluidName + ": " + fluidAmount + "mB /" + capacity + "mB");
+                        player.addChatMessage(tankInfo.fluid.getFluid().getLocalizedName() + ": " + fluidAmount + "mB /" + capacity + "mB");
                     }
                 }catch(NullPointerException e) {
                 }

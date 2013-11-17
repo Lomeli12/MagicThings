@@ -18,7 +18,7 @@ public class ModBlocks {
             fertileBush, magicSand, aquaticManip, clearTank, machineFrame, magmaFurnace, advFrame, altar, treatedWool;
 
     public static ItemStack[] treatedWoolColors;
-    
+
     public static void loadBlocks() {
         initBlocks();
         registerBlocks();
@@ -72,10 +72,10 @@ public class ModBlocks {
         registerBlock(magmaFurnace, "Magma Furnace");
         registerBlock(advFrame, "Advanced Machine Frame");
         registerBlock(altar, "Altar");
-        
+
         GameRegistry.registerBlock(treatedWool, ItemTreatedWool.class, "Treated Wool");
-        
-        for(int i = 0; i < 16; i++){
+
+        for(int i = 0; i < 16; i++) {
             treatedWoolColors[i] = new ItemStack(treatedWool, 1, i);
         }
 

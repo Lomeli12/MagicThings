@@ -39,7 +39,7 @@ public class RechargeHelper {
                 for(int i = 0; i < player.inventory.getSizeInventory(); i++) {
                     ItemStack item = player.inventory.getStackInSlot(i);
                     if(item != null) {
-                        if(MTRecipeHandlers.flyingRingFuel.isFuelRegistered(item)){
+                        if(MTRecipeHandlers.flyingRingFuel.isFuelRegistered(item)) {
                             useFuel(item.itemID, player, stack, MTRecipeHandlers.flyingRingFuel.getFuelValue(item));
                             charged = true;
                         }

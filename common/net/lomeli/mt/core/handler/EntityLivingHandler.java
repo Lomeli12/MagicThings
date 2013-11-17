@@ -66,7 +66,7 @@ public class EntityLivingHandler {
 
         if(event.source.equals(PotionInfection.infection)) {
             if(event.entityLiving instanceof EntityPlayer) {
-                if(rand.nextInt(100) < 25 && event.entityLiving.isBurning()){
+                if(rand.nextInt(100) < 25 && event.entityLiving.isBurning()) {
                     EntityClicker newClicker = new EntityClicker(event.entityLiving.worldObj);
                     newClicker.copyLocationAndAnglesFrom(event.entityLiving);
                     newClicker.onSpawnWithEgg((EntityLivingData) null);
@@ -77,7 +77,7 @@ public class EntityLivingHandler {
 
         if(event.source.getSourceOfDamage() instanceof EntityClicker) {
             if(event.entityLiving instanceof EntityPlayer) {
-                if(rand.nextInt(100) < 35 && !event.source.getSourceOfDamage().isBurning() && !event.entityLiving.isBurning()){
+                if(rand.nextInt(100) < 35 && !event.source.getSourceOfDamage().isBurning() && !event.entityLiving.isBurning()) {
                     EntityClicker newClicker = new EntityClicker(event.entityLiving.worldObj);
                     newClicker.copyLocationAndAnglesFrom(event.entityLiving);
                     newClicker.onSpawnWithEgg((EntityLivingData) null);

@@ -35,7 +35,7 @@ public class ItemPeaceTreaty extends ItemMT {
                         if(ent instanceof EntityPigZombie) {
                             ((EntityPigZombie) ent).angerLevel = 0;
                             ((EntityPigZombie) ent).entityToAttack = null;
-                            
+
                         }
                     }
                     ((EntityPigZombie) entity).angerLevel = 0;

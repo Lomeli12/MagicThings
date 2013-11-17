@@ -9,12 +9,12 @@ import net.lomeli.mt.recipes.UnwinderManger;
 public class Addons {
     public static void initAddons() {
         MTRecipeHandlers.flyingRingFuel = new FlyingRingFuelRegistry();
-        
+
         MTRecipeHandlers.magmaFurnace = new MagmaFurnaceRecipe();
-        
+
         MTRecipeHandlers.unwinderManager = new UnwinderManger();
-        
+
         MTRecipeHandlers.infectedWhitelist = new InfectedBlockList();
-        
+
     }
 }

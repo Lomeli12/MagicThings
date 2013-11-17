@@ -15,7 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class InfectedBlockList implements IInfectedBlockWhitelist {
     private List<Integer> blockList = new ArrayList<Integer>();
     private Map<Integer, Integer> metaBlockList = new HashMap<Integer, Integer>();
-    
+
     public InfectedBlockList() {
         addBlock(Block.dirt.blockID);
         addBlock(Block.grass.blockID);

@@ -11,7 +11,7 @@ import net.lomeli.mt.api.interfaces.IFlyingRingFuel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class FlyingRingFuelRegistry implements IFlyingRingFuel{
+public class FlyingRingFuelRegistry implements IFlyingRingFuel {
     private HashMap<List<Integer>, Integer> itemList = new HashMap<List<Integer>, Integer>();
 
     public FlyingRingFuelRegistry() {

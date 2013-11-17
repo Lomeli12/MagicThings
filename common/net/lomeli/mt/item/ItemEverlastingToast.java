@@ -27,7 +27,7 @@ public class ItemEverlastingToast extends ItemMT {
         }
         return itemStack;
     }
-    
+
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List infoList, boolean bool) {

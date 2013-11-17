@@ -49,16 +49,16 @@ public class ModRecipes {
                 "ingotIgnious", 'N', "neoGem", 'I', Item.ingotIron, 'B', ModItems.conBag));
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.tankUpgrade, true, " I ", "IAI", " I ", 'I', Item.ingotIron, 'A',
                 "ingotAqua"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotAqua, 2), Item.ingotIron, Item.bucketWater));
+        
+        
+
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.liquidReader, true, " IS", "IBI", "AI ", 'S', ModItems.ironStick,
                 'I', Item.ingotIron, 'B', Block.woodenButton, 'A', "ingotAqua"));
 
-        if(!OreDictionary.getOres("dustIron").isEmpty()) {
+        if(!OreDictionary.getOres("dustIron").isEmpty())
             GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.dustStamatic), "dustIron", "cobblestone"));
-        }
-        if(!OreDictionary.getOres("ironDust").isEmpty()) {
+        if(!OreDictionary.getOres("ironDust").isEmpty())
             GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.dustStamatic), "ironDust", "cobblestone"));
-        }
 
         furnaceItems();
     }
@@ -109,9 +109,9 @@ public class ModRecipes {
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.fertileBush, true, "BMB", "IFI", "BPB", 'B', "treeLeaves", 'M',
                 new ItemStack(Item.dyePowder, 1, 15), 'I', Item.ingotIron, 'P', new ItemStack(Item.potion, 1, 8193), 'F',
                 ModBlocks.advFrame));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.altar, true, "SSS", "GBG", "OOO", 'S', "slabWood",
-                'G', Block.blockGold, 'B',Block.beacon, 'O',Block.obsidian));
-        
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.altar, true, "SSS", "GBG", "OOO", 'S', "slabWood", 'G',
+                Block.blockGold, 'B', Block.beacon, 'O', Block.obsidian));
+
         treatedWoolRecipes();
     }
 
