@@ -116,3 +116,12 @@ task Buildnumber {
         entry(key: 'buildNumber', type: 'int', operation: '+', value: 1)
     }
 }
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = "dev-$buildNumber"
+}
+
+artifacts {
+    archives deobfJar
+}
