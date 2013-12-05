@@ -1,0 +1,118 @@
+def loadProperties(String sourceFileName) {
+    def config = new Properties()
+        def propFile = new File(sourceFileName)
+            if (propFile.canRead()) {
+                config.load(new FileInputStream(propFile))
+                    for (Map.Entry property in config) {
+                        ext[property.key] = property.value;
+                    }
+            }
+}
+
+loadProperties 'build.properties'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+    }
+}
+
+repositories {
+//Some of these I had to host myself because gradle keep having a hissy fit >.< Sorry for anyone who doesn't want their mod rehosted, so an official deobfuscated jar would be nice for this
+    ivy {
+        name 'LomLib'
+        artifactPattern "http://anthony-lomeli.net/MinecraftMods/LomLib/dev/[module]-dev-[revision].[ext]"
+    }
+    ivy {
+        name 'IC2'
+        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-2-dev-deobf_2.0.[revision]-experimental.[ext]"
+    }
+    ivy {
+        name 'Forestry'
+        artifactPattern "https://dl.dropboxusercontent.com/u/8609213/Porcupine/[module]-A-[revision]_dev.[ext]"
+    }
+    ivy {
+        name 'Appeng'
+        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-rv[revision]-finale2-mc16x.[ext]"
+    }
+    ivy {
+        name 'ThaumCraft'
+        artifactPattern "https://dl.dropboxusercontent.com/u/47135879/[module][revision].[ext]"
+    }
+    ivy {
+        name 'BasicComp'
+        artifactPattern "http://calclavia.com/jenkins/jobs/Basic%20Components/builds/19/archive/output/[module]_v1.0.0.[revision].[ext]"
+    }
+    ivy {
+        name 'BuildCraft'
+        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-A-[revision].[ext]"
+    }
+    ivy {
+        name 'Morph'
+        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-Beta-[revision].[ext]"
+    }
+    ivy {
+        name 'COFH'
+        artifactPattern "http://addons.cursecdn.com/files/756/554/[module]-[revision].[ext]"
+    }
+    ivy {
+        name 'ThermalExpansion'
+        artifactPattern "http://addons.cursecdn.com/files/756/540/[module]-[revision].[ext]"
+    }
+}
+
+apply plugin: "forge"
+
+dependencies {
+    compile name: 'LomLib', version: '15-1.0.8', ext: 'jar'
+    compile name: 'industrialcraft', version: '307', ext: 'jar'
+    compile name: 'forestry', version: '2.3.0.5', ext: 'jar'
+    compile name: 'Thaumcraft', version: '4.0.5b', ext: 'zip'
+    compile name: 'appeng', version: '14', ext: 'jar'
+    compile name: 'Basic_Components', version: '19', ext: 'jar'
+    compile name: 'buildcraft', version: '1.6.4-4.2.0', ext: 'jar'
+    compile name: 'Morph', version: '0.4.0', ext: 'zip'
+    compile name: 'ThermalExpansion', version: '3.0.0.b8', ext: 'jar'
+    compile name: 'CoFHCore', version: '2.0.0.b8a', ext: 'jar'
+}
+
+group = 'net.lomeli.mt'
+archivesBaseName = 'MagicThings'
+version = "$releaseVersion"
+
+minecraft {
+    version = "$mcVersion-$forgeVersion" // grab latest forge
+    assetDir = "build/vanilla/assets"
+}
+
+processResources {
+    exclude '**/xcf/**'
+
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+jar {
+	appendix = 'universal'
+}
+
+task Buildnumber {
+    ant.propertyfile(file: "build.properties") {
+        entry(key: 'buildNumber', type: 'int', operation: '+', value: 1)
+    }
+}
