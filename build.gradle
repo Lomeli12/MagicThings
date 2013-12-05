@@ -71,7 +71,7 @@ repositories {
 apply plugin: "forge"
 
 dependencies {
-    compile name: 'LomLib', version: '15-1.0.8', ext: 'jar'
+    compile name: 'LomLib', version: '16-1.0.8', ext: 'jar'
     compile name: 'industrialcraft', version: '307', ext: 'jar'
     compile name: 'forestry', version: '2.3.0.5', ext: 'jar'
     compile name: 'Thaumcraft', version: '4.0.5b', ext: 'zip'
