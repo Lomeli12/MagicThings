@@ -66,12 +66,16 @@ repositories {
         name 'ThermalExpansion'
         artifactPattern "http://addons.cursecdn.com/files/756/540/[module]-[revision].[ext]"
     }
+    ivy {
+        name 'MultiPart'
+        artifactPattern "http://files.minecraftforge.net/ForgeMultipart/[module]-dev-[revision].[ext]"
+    }
 }
 
 apply plugin: "forge"
 
 dependencies {
-    compile name: 'LomLib', version: '16-1.0.8', ext: 'jar'
+    compile name: 'LomLib', version: '19-1.0.8', ext: 'jar'
     compile name: 'industrialcraft', version: '307', ext: 'jar'
     compile name: 'forestry', version: '2.3.0.5', ext: 'jar'
     compile name: 'Thaumcraft', version: '4.0.5b', ext: 'zip'
@@ -81,6 +85,7 @@ dependencies {
     compile name: 'Morph', version: '0.4.0', ext: 'zip'
     compile name: 'ThermalExpansion', version: '3.0.0.b8', ext: 'jar'
     compile name: 'CoFHCore', version: '2.0.0.b8a', ext: 'jar'
+    compile name: 'ForgeMultipart', version: '1.6.4-1.0.0.219', ext: 'jar'
 }
 
 group = 'net.lomeli.mt'
@@ -108,7 +113,7 @@ repositories {
 }
 
 jar {
-	appendix = 'universal'
+	appendix = "universal-$buildNumber"
 }
 
 task Buildnumber {

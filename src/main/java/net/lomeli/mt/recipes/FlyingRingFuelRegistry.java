@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import net.lomeli.mt.MThings;
-import net.lomeli.mt.api.interfaces.IFlyingRingFuel;
+import net.lomeli.mt.api.recipes.IFlyingRingFuel;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

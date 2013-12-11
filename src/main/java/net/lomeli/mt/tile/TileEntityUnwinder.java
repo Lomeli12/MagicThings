@@ -1,6 +1,6 @@
 package net.lomeli.mt.tile;
 
-import net.lomeli.mt.api.MTRecipeHandlers;
+import net.lomeli.mt.api.recipes.MTRecipeHandlers;
 import net.lomeli.mt.api.tile.ICrankable;
 import net.lomeli.mt.api.tile.IMTTile;
 

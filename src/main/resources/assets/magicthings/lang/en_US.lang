@@ -41,6 +41,9 @@ item.magicthings:HandCrank.name=Hand Crank [WIP]
 item.magicthings:TankUpgrade.name=Tank Upgrade
 item.magicthings:IBlade.name=Ikeno Blade [WIP] [Temp Texture]
 item.magicthings:FireStick.name=Fire Stick
+item.magicthings:SmokedBrick.name=Smoked Brick
+item.magicthings:cable.name=Cable
+item.magicthings:jwmeter.name=JW Meter
 
 # Block Localizations
 tile.magicthings:StamaticOre.name=Stamatic Ore
@@ -59,10 +62,21 @@ tile.magicthings:MagmaFurnace.name=Magma Furnace [Need Textures]
 tile.magicthings:AdvFrame.name=Adv. Machine Frame
 tile.magicthings:Altar.name=Altar
 tile.magicthings:treatedWool.name=Treated Wool
+tile.magicthings:decor.name=Smoked Brick
+tile.magicthings:CoalGen.name=Coal Generator
+tile.magicthings:cable.name=Cable
+tile.magicthings:BatTier1.name=Batbox
+
+# World Localizations
+string.magicthings:Basic=Basic
+string.magicthings:Adv=Adv.
+string.magicthings:Glass=Glass
+string.magicthings:Fiber=Fiber
 
 # GUI Localizations
 gui.magicthings:magmaFurnace=Magma Furnace
 gui.magicthings:unwind=Cloth Unwinder
+gui.magicthings:coalGen=Coal Generator
 
 # Book Localizations
 book.magicthings:wrench=How to use your Stamatic Wrench

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.lomeli.mt.api.interfaces.IInfectedBlockWhitelist;
+import net.lomeli.mt.api.recipes.IInfectedBlockWhitelist;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

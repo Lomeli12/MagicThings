@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.lomeli.lomlib.entity.EntityUtil;
 
-import net.lomeli.mt.api.MTRecipeHandlers;
+import net.lomeli.mt.api.recipes.MTRecipeHandlers;
 import net.lomeli.mt.potion.PotionInfection;
 
 import net.minecraft.block.material.Material;

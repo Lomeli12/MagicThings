@@ -1,4 +1,4 @@
-package net.lomeli.mt.api.interfaces;
+package net.lomeli.mt.api.recipes;
 
 import java.util.HashMap;
 import java.util.List;

@@ -17,13 +17,14 @@ import net.lomeli.lomlib.util.XMLConfiguration.ConfigEnum;
 public class Config {
 
     private File configFile;
+    private XMLConfiguration config;
 
     public Config(File configFile) {
         this.configFile = configFile;
     }
 
     public void configureMod() {
-        XMLConfiguration config = new XMLConfiguration(this.configFile);
+        config = new XMLConfiguration(this.configFile);
 
         config.loadXml();
 
@@ -69,6 +70,9 @@ public class Config {
         ItemInfo.crankID = config.getInt("handCrank", 7030, ConfigEnum.ITEM_ID);
         ItemInfo.tankUpgradeID = config.getInt("tankUpgrade", 7031, ConfigEnum.ITEM_ID);
         ItemInfo.ikenoID = config.getInt("IkenoBlade", 7032, ConfigEnum.ITEM_ID);
+        ItemInfo.smokedBrickID = config.getInt("SmokedBrick", 7033, ConfigEnum.ITEM_ID);
+        ItemInfo.cableItemID = config.getInt("cableItem", 7034, ConfigEnum.ITEM_ID);
+        ItemInfo.jwMeterID = config.getInt("jwMeter", 7035, ConfigEnum.ITEM_ID);
 
         ItemInfo.magnetDurability = config.getInt("magnetDurability", 576, ConfigEnum.OTHER);
     }
@@ -92,6 +96,12 @@ public class Config {
         BlockInfo.advFrameID = config.getInt("advFrame", 715, ConfigEnum.BLOCK_ID);
         BlockInfo.altarID = config.getInt("Altar", 716, ConfigEnum.BLOCK_ID);
         BlockInfo.treatedWoolID = config.getInt("treatedwool", 717, ConfigEnum.BLOCK_ID);
+        BlockInfo.decorID = config.getInt("decorativeBlock", 718, ConfigEnum.BLOCK_ID);
+        BlockInfo.coalGenID = config.getInt("coalGen", 719, ConfigEnum.BLOCK_ID);
+        BlockInfo.cableID = config.getInt("cable", 720, ConfigEnum.BLOCK_ID);
+        BlockInfo.bat1ID = config.getInt("batTier1", 721, ConfigEnum.BLOCK_ID);
+        BlockInfo.bat2ID = config.getInt("batTier2", 722, ConfigEnum.BLOCK_ID);
+        BlockInfo.bat3ID = config.getInt("batTier3", 723, ConfigEnum.BLOCK_ID);
 
         BlockInfo.stamaticOreGen = config.getInt("stamaticOreGenRate", 15, ConfigEnum.OTHER);
         BlockInfo.aquaticOreGen = config.getInt("aquaticOreGenRate", 2, ConfigEnum.OTHER);

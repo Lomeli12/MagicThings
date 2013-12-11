@@ -9,9 +9,13 @@ import java.util.Set;
 import net.lomeli.lomlib.block.BlockUtil;
 import net.lomeli.lomlib.entity.EntityUtil;
 import net.lomeli.lomlib.item.CustomBookUtil;
+
+import net.lomeli.mt.api.tile.IMTGenerator;
 import net.lomeli.mt.api.tile.IMTTile;
+import net.lomeli.mt.api.tile.ITileEnergy;
 import net.lomeli.mt.core.Config;
 import net.lomeli.mt.lib.Strings;
+import net.lomeli.mt.tile.energy.TileEntityCable;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -38,7 +42,6 @@ public class ItemWrench extends ItemMT implements IToolWrench {
     public ItemWrench(int id) {
         super(id, "wrench");
         this.setMaxStackSize(1);
-        this.setMaxDamage(450);
         if (Config.date)
             this.itemTexture = "x" + this.itemTexture;
     }
@@ -83,6 +86,7 @@ public class ItemWrench extends ItemMT implements IToolWrench {
         TileEntity tile = world.getBlockTileEntity(x, y, z);
         int id = world.getBlockId(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
+
         if (block == null)
             return false;
         world.markBlockForUpdate(x, y, z);
@@ -126,19 +130,21 @@ public class ItemWrench extends ItemMT implements IToolWrench {
                     if (tile instanceof IWrenchable) {
                         if (((IWrenchable) tile).wrenchCanSetFacing(player, side)) {
                             ((IWrenchable) tile).setFacing((short) side);
-                            stack.damageItem(1, player);
                             player.closeScreen();
                             player.swingItem();
                             world.markBlockForUpdate(x, y, z);
                             return true;
                         }
+                    } else if(tile instanceof ITileEnergy){
+                        player.closeScreen();
+                        player.swingItem();
+                        player.addChatMessage(((ITileEnergy)tile).getEnergy() + " / " + ((ITileEnergy)tile).getMaxEnergy() + " JW");
                     }
                 }
 
                 if (!player.isSneaking() != isShiftRotation(block.getClass()) && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
                     player.swingItem();
                     world.markBlockForUpdate(x, y, z);
-                    stack.damageItem(1, player);
                     player.swingItem();
                     world.markBlockForUpdate(x, y, z);
                     return !world.isRemote;
@@ -150,14 +156,17 @@ public class ItemWrench extends ItemMT implements IToolWrench {
                                 || Class.forName("buildcraft.core.IMachine").isInstance(tile) || Class.forName("buildcraft.factory.TileTank").isInstance(tile)) {
                             if (tile instanceof IWrenchable) {
                                 EntityItem item = null;
-                                if (Class.forName("ic2.core.block.wiring.TileEntityCable").isInstance(tile)) {
+                                if (Class.forName("ic2.core.block.wiring.TileEntityCable").isInstance(tile))
                                     item = new EntityItem(world, x, y, z, new ItemStack(Items.getItem("copperCableItem").itemID, 1, meta));
-                                } else
+                                else if(tile instanceof TileEntityCable)
+                                    item = new EntityItem(world, x, y, z, new ItemStack(ModItems.cable, 1, meta));
+                                else if(tile instanceof IMTGenerator)
+                                    item = new EntityItem(world, x, y, z, new ItemStack(id, 1, meta));
+                                else
                                     item = new EntityItem(world, x, y, z, ((IWrenchable) tile).getWrenchDrop(player));
                                 if (item != null) {
                                     world.spawnEntityInWorld(item);
                                     world.setBlockToAir(x, y, z);
-                                    stack.damageItem(1, player);
                                 }
                             } else {
                                 if (tile instanceof IPipe || tile instanceof IPipeTile)
@@ -166,7 +175,6 @@ public class ItemWrench extends ItemMT implements IToolWrench {
                                 EntityItem item = new EntityItem(world, x, y, z, itemBlock);
                                 world.spawnEntityInWorld(item);
                                 world.setBlockToAir(x, y, z);
-                                stack.damageItem(1, player);
                             }
                             player.swingItem();
                             return true;

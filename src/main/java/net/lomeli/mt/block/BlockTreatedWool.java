@@ -23,6 +23,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class BlockTreatedWool extends BlockMT {
 
+    @SideOnly(Side.CLIENT)
     public Icon[] iconArray;
 
     public BlockTreatedWool(int id) {

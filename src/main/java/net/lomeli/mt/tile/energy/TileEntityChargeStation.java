@@ -1,4 +1,4 @@
-package net.lomeli.mt.tile;
+package net.lomeli.mt.tile.energy;
 
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.item.ElectricItem;

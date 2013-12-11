@@ -2,7 +2,12 @@ package net.lomeli.mt.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import net.lomeli.mt.block.BlockDecor.ItemDecor;
 import net.lomeli.mt.block.BlockTreatedWool.ItemTreatedWool;
+import net.lomeli.mt.block.energy.BlockBatteryTier1;
+import net.lomeli.mt.block.energy.BlockCable;
+import net.lomeli.mt.block.energy.BlockCable.ItemCable;
+import net.lomeli.mt.block.energy.BlockCoalGenerator;
 import net.lomeli.mt.item.ModItems;
 import net.lomeli.mt.lib.BlockInfo;
 
@@ -15,9 +20,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ModBlocks {
     public static Block stamaticOre, aquaticOre, igniousOre, neoOre, chargeStation, unwinder, mobFarmer, infectedBlock, cobGen, fertileBush, magicSand, aquaticManip, clearTank,
-            machineFrame, magmaFurnace, advFrame, altar, treatedWool;
+            machineFrame, magmaFurnace, advFrame, altar, treatedWool, decor;
 
-    public static ItemStack[] treatedWoolColors;
+    public static Block coalGen, cable, batBox, conductiveBox, neoBox;
+
+    public static ItemStack[] treatedWoolColors, decorBlocks, cables;
 
     public static void loadBlocks() {
         initBlocks();
@@ -26,6 +33,9 @@ public class ModBlocks {
 
     private static void initBlocks() {
         treatedWoolColors = new ItemStack[16];
+        decorBlocks = new ItemStack[4];
+        cables = new ItemStack[4];
+
         stamaticOre = new BlockMT(BlockInfo.stamaticOreID, Material.rock, "orestamatic").setHardness(0.5F).setResistance(20F).setHardness(3.0F).setResistance(5.0F)
                 .setUnlocalizedName("StamaticOre").setStepSound(Block.soundStoneFootstep);
         aquaticOre = new BlockMT(BlockInfo.aquaticOreID, Material.rock, "oreaquatic").setHardness(0.5F).setResistance(20F).setHardness(3.0F).setResistance(5.0F)
@@ -47,6 +57,11 @@ public class ModBlocks {
         advFrame = new BlockItem(BlockInfo.advFrameID, "advFrame").setUnlocalizedName("AdvFrame");
         altar = new BlockAltar(BlockInfo.altarID).setUnlocalizedName("Altar");
         treatedWool = new BlockTreatedWool(BlockInfo.treatedWoolID);
+        decor = new BlockDecor(BlockInfo.decorID);
+        cable = new BlockCable(BlockInfo.cableID);
+        batBox = new BlockBatteryTier1(BlockInfo.bat1ID);
+
+        coalGen = new BlockCoalGenerator(BlockInfo.coalGenID);
     }
 
     private static void registerBlock(Block blk, String name) {
@@ -72,10 +87,21 @@ public class ModBlocks {
         registerBlock(advFrame, "Advanced Machine Frame");
         registerBlock(altar, "Altar");
 
+        registerBlock(coalGen, "Coal Generator");
+        registerBlock(batBox, "Batbox");
+
         GameRegistry.registerBlock(treatedWool, ItemTreatedWool.class, "Treated Wool");
+        GameRegistry.registerBlock(decor, ItemDecor.class, "DecorBlock");
+        GameRegistry.registerBlock(cable, ItemCable.class, "Cable");
 
         for (int i = 0; i < 16; i++) {
             treatedWoolColors[i] = new ItemStack(treatedWool, 1, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            decorBlocks[i] = new ItemStack(decor, 1, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            cables[i] = new ItemStack(cable, 1, i);
         }
 
         OreDictionary.registerOre("oreStamatic", stamaticOre);

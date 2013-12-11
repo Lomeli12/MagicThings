@@ -1,7 +1,7 @@
 package net.lomeli.mt.core.helper;
 
-import net.lomeli.mt.api.MTRecipeHandlers;
 import net.lomeli.mt.api.item.IChargeable;
+import net.lomeli.mt.api.recipes.MTRecipeHandlers;
 import net.lomeli.mt.item.ModItems;
 
 import net.minecraft.entity.player.EntityPlayer;

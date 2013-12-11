@@ -12,18 +12,22 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ModItems {
     public static Item ironStick, ironRing, baseMaterial, advMaterial, quantumMaterial, ingotStamatic, herb, ingotAqua, dustStamatic, dustAqua, emptyCase, neoGem, ingotIgnious,
-            dustIgnious, purifiedDust;
+            dustIgnious, purifiedDust, smokedBrick, cable;
 
     public static ItemStack stamatic, aquatic, ignious, stamaticOre, aquaticOre, igniousOre;
 
     public static ItemStack green, blue, red, yellow;
 
     public static Item flyingRing, medKit, shaver, error, energyTap, upgrades, magnet, peaceTreaty, portaCraft, mountTool, toast, liquidReader, condenseBag, record, wrench, crank,
-            wandCommand, ikenoBlade, tankUpgrade;
+            wandCommand, ikenoBlade, tankUpgrade, jwMeter;
 
     public static ItemStack conBag, exBag;
+    
+    public static ItemStack[] cables;
 
     public static void loadItems() {
+        cables = new ItemStack[4];
+        
         ironStick = new ItemMT(ItemInfo.ironStickID, "ironstick").setUnlocalizedName("IronStick");
         ironRing = new ItemMT(ItemInfo.ironRingID, "ironband").setUnlocalizedName("IronBand");
         baseMaterial = new ItemMT(ItemInfo.baseMaterialID, "basematerial").setUnlocalizedName("BaseMaterial");
@@ -58,6 +62,9 @@ public class ModItems {
         crank = new ItemCrank(ItemInfo.crankID, "handCrank").setUnlocalizedName("HandCrank");
         tankUpgrade = new ItemTankUpgrade(ItemInfo.tankUpgradeID).setUnlocalizedName("TankUpgrade");
         ikenoBlade = new ItemIkenoBlade(ItemInfo.ikenoID).setUnlocalizedName("IBlade");
+        smokedBrick = new ItemMT(ItemInfo.smokedBrickID, "smokedBrick").setUnlocalizedName("SmokedBrick");
+        cable = new ItemCable(ItemInfo.cableItemID);
+        jwMeter = new ItemJWMeter(ItemInfo.jwMeterID);
 
         green = new ItemStack(herb, 1, 0);
         blue = new ItemStack(herb, 1, 1);
@@ -70,6 +77,10 @@ public class ModItems {
         stamaticOre = new ItemStack(purifiedDust, 1, 3);
         aquaticOre = new ItemStack(purifiedDust, 1, 4);
         igniousOre = new ItemStack(purifiedDust, 1, 5);
+        
+        for(int i = 0; i < cables.length; i++){
+            cables[i] = new ItemStack(cable, 1, i);
+        }
 
         conBag = new ItemStack(condenseBag, 1, 0);
         exBag = new ItemStack(condenseBag, 1, 1);
@@ -77,11 +88,12 @@ public class ModItems {
         GameRegistry.registerItem(herb, "Herbs");
         GameRegistry.registerItem(purifiedDust, "Purified Dusts");
         GameRegistry.registerItem(condenseBag, "Condense Bag");
+        GameRegistry.registerItem(cable, "CableItem");
 
-        MinecraftForge.addGrassSeed(green, 10);
+        MinecraftForge.addGrassSeed(green, 15);
         MinecraftForge.addGrassSeed(blue, 10);
-        MinecraftForge.addGrassSeed(red, 10);
-        MinecraftForge.addGrassSeed(yellow, 30);
+        MinecraftForge.addGrassSeed(red, 5);
+        MinecraftForge.addGrassSeed(yellow, 3);
 
         OreDictionary.registerOre("ingotStamatic", ingotStamatic);
         OreDictionary.registerOre("ingotAqua", ingotAqua);

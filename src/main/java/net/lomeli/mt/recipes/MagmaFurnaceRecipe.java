@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import net.lomeli.mt.api.interfaces.IMagmaFurnaceRecipes;
+import net.lomeli.mt.api.recipes.IMagmaFurnaceRecipes;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

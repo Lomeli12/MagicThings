@@ -1,9 +1,4 @@
-package net.lomeli.mt.api;
-
-import net.lomeli.mt.api.interfaces.IFlyingRingFuel;
-import net.lomeli.mt.api.interfaces.IInfectedBlockWhitelist;
-import net.lomeli.mt.api.interfaces.IMagmaFurnaceRecipes;
-import net.lomeli.mt.api.interfaces.IUnwinder;
+package net.lomeli.mt.api.recipes;
 
 public class MTRecipeHandlers {
     public static IFlyingRingFuel flyingRingFuel;

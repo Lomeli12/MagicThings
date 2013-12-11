@@ -14,7 +14,9 @@ public class Gui {
     public static final ResourceLocation TELEPORTER = ResourceUtil.getGuiResource(Strings.MOD_ID.toLowerCase(), "teleport.png");
     public static final ResourceLocation UNWINDER = ResourceUtil.getGuiResource(Strings.MOD_ID.toLowerCase(), "unwinder.png");
     public static final ResourceLocation MAGMA_FURNACE = ResourceUtil.getGuiResource(Strings.MOD_ID.toLowerCase(), "magmaFurnace.png");
+    public static final ResourceLocation COAL_GEN = ResourceUtil.getGuiResource(Strings.MOD_ID.toLowerCase(), "coalGen.png");
 
     public static String magmaFurnaceTile = guiName + "magmaFurnace";
     public static String unwindTile = guiName + "unwind";
+    public static String coalGen = guiName + "coalGen";
 }

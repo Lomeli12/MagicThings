@@ -2,7 +2,7 @@ package net.lomeli.mt.client.render;
 
 import org.lwjgl.opengl.GL11;
 
-import net.lomeli.lomlib.fluid.FluidRender;
+import net.lomeli.lomlib.render.FluidRender;
 
 import net.lomeli.mt.tile.TileEntityClearTank;
 
