@@ -57,7 +57,7 @@ public class MultiPart {
 
         @Override
         public int getMetadata(){
-            return world().getBlockMetadata(x(), y(), z());
+            return meta;
         }
     }
 
@@ -82,6 +82,5 @@ public class MultiPart {
         public TMultiPart convert(World world, BlockCoord pos) {
             return canConvert(world.getBlockId(pos.x, pos.y, pos.z)) ? new CablePart(world.getBlockMetadata(pos.x, pos.y, pos.z)) : null;
         }
-
     }
 }
