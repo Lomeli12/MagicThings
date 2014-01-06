@@ -2,10 +2,12 @@ package net.lomeli.mt.core;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.lomeli.mt.core.handler.CraftingHandler;
 import net.lomeli.mt.core.handler.EntityLivingHandler;
+import net.lomeli.mt.core.handler.GuiHandler;
 import net.lomeli.mt.core.handler.PlayerEntityInteractionHandler;
 import net.lomeli.mt.core.handler.PlayerItemHandler;
 import net.lomeli.mt.tile.TileEntityAquaticManipulator;
@@ -48,5 +50,6 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(new EntityLivingHandler());
         
         GameRegistry.registerCraftingHandler(new CraftingHandler());
+        NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     }
 }

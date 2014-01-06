@@ -66,6 +66,7 @@ tile.magicthings:decor.name=Smoked Brick
 tile.magicthings:CoalGen.name=Coal Generator
 tile.magicthings:cable.name=Cable
 tile.magicthings:BatTier1.name=Batbox
+tile.magicthings:fancyGlass.name=Stamatic Glass
 
 # World Localizations
 string.magicthings:Basic=Basic

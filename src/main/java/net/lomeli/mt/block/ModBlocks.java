@@ -20,7 +20,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ModBlocks {
     public static Block stamaticOre, aquaticOre, igniousOre, neoOre, chargeStation, unwinder, mobFarmer, infectedBlock, cobGen, fertileBush, magicSand, aquaticManip, clearTank,
-            machineFrame, magmaFurnace, advFrame, altar, treatedWool, decor;
+            machineFrame, magmaFurnace, advFrame, altar, treatedWool, decor, glass;
 
     public static Block coalGen, cable, batBox, conductiveBox, neoBox;
 
@@ -60,6 +60,7 @@ public class ModBlocks {
         decor = new BlockDecor(BlockInfo.decorID);
         cable = new BlockCable(BlockInfo.cableID);
         batBox = new BlockBatteryTier1(BlockInfo.bat1ID);
+        glass = new BlockFancyGlass(BlockInfo.glassID);
 
         coalGen = new BlockCoalGenerator(BlockInfo.coalGenID);
     }
@@ -86,6 +87,7 @@ public class ModBlocks {
         registerBlock(magmaFurnace, "Magma Furnace");
         registerBlock(advFrame, "Advanced Machine Frame");
         registerBlock(altar, "Altar");
+        registerBlock(glass, "Fancy Glass");
 
         registerBlock(coalGen, "Coal Generator");
         registerBlock(batBox, "Batbox");

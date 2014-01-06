@@ -1,17 +1,17 @@
 package net.lomeli.mt.core;
 
+import net.lomeli.lomlib.render.RenderConnectedTextures;
+
 import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 import net.lomeli.mt.client.render.RenderCable;
 import net.lomeli.mt.client.render.RenderTank;
 import net.lomeli.mt.core.handler.FlyingTickHandler;
-import net.lomeli.mt.core.handler.GuiHandler;
 import net.lomeli.mt.core.handler.SoundHandler;
 import net.lomeli.mt.core.handler.VersionCheckTickHandler;
 import net.lomeli.mt.entity.EntityClicker;
@@ -39,9 +39,11 @@ public class ClientProxy extends CommonProxy {
     public void registerRenders() {
         BlockInfo.clearTankRenderID = RenderingRegistry.getNextAvailableRenderId();
         BlockInfo.decorRenderID = RenderingRegistry.getNextAvailableRenderId();
+        BlockInfo.glassRenderID = RenderingRegistry.getNextAvailableRenderId();
 
         RenderingRegistry.registerEntityRenderingHandler(EntityClicker.class, new RenderClicker());
         //RenderingRegistry.registerBlockHandler(BlockInfo.decorRenderID, new RenderDecor());
+        RenderingRegistry.registerBlockHandler(new RenderConnectedTextures().setRenderID(BlockInfo.glassRenderID));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityClearTank.class, new RenderTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
@@ -64,6 +66,5 @@ public class ClientProxy extends CommonProxy {
         
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
         
-        NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     }
 }

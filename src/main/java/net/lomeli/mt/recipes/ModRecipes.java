@@ -87,6 +87,7 @@ public class ModRecipes {
         addRecipe(ModBlocks.fertileBush, true, "BMB", "IFI", "BPB", 'B', "treeLeaves", 'M', new ItemStack(Item.dyePowder, 1, 15), 'I', Item.ingotIron, 'P', new ItemStack(
                 Item.potion, 1, 8193), 'F', ModBlocks.advFrame);
         addRecipe(ModBlocks.altar, true, "SSS", "GBG", "OOO", 'S', "slabWood", 'G', Block.blockGold, 'B', Block.beacon, 'O', Block.obsidian);
+        addRecipe(new ItemStack(ModBlocks.glass, 4), true, "RGR", "GSG", "RGR", 'R',Item.redstone, 'G',Block.glass, 'S', "ingotStamatic");
 
         treatedWoolRecipes();
         smokedBrickRecipes();
