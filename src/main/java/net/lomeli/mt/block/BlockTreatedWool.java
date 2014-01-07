@@ -5,9 +5,6 @@ import java.util.List;
 
 import net.lomeli.mt.lib.BlockInfo;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,6 +17,9 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import net.minecraftforge.oredict.OreDictionary;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTreatedWool extends BlockMT {
 
@@ -129,7 +129,7 @@ public class BlockTreatedWool extends BlockMT {
         @Override
         public String getItemDisplayName(ItemStack par1ItemStack) {
             ItemStack wool = new ItemStack(cloth, 1, par1ItemStack.getItemDamage());
-            String name = super.getItemDisplayName(par1ItemStack).substring(0, (super.getItemDisplayName(par1ItemStack).length() - 5));
+            String name = super.getItemDisplayName(par1ItemStack);
             return par1ItemStack.getItemDamage() == 0 ? name : wool.getDisplayName().substring(0, wool.getDisplayName().length() - 4) + name;
         }
 

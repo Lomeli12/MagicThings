@@ -1,22 +1,22 @@
 package net.lomeli.mt.recipes;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-
 import net.lomeli.mt.item.ModItems;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class MedKitRecipes {
     public static void medKits() {
-        recipe(0, ModItems.green);
-        recipe(1, ModItems.green, ModItems.blue);
-        recipe(2, ModItems.green, ModItems.yellow);
-        singleItem(3, ModItems.green);
-        recipe(4, ModItems.green, ModItems.red, ModItems.blue);
-        recipe(5, ModItems.green, ModItems.red, ModItems.yellow);
-        recipe(6, ModItems.green, ModItems.red);
-        recipe(6, ModItems.green, ModItems.green, ModItems.green);
+        recipe(0, ModItems.herbArray[0]);
+        recipe(1, ModItems.herbArray[0], ModItems.herbArray[1]);
+        recipe(2, ModItems.herbArray[0], ModItems.herbArray[3]);
+        singleItem(3, ModItems.herbArray[0]);
+        recipe(4, ModItems.herbArray[0], ModItems.herbArray[2], ModItems.herbArray[1]);
+        recipe(5, ModItems.herbArray[0], ModItems.herbArray[2], ModItems.herbArray[3]);
+        recipe(6, ModItems.herbArray[0], ModItems.herbArray[2]);
+        recipe(6, ModItems.herbArray[0], ModItems.herbArray[0], ModItems.herbArray[0]);
     }
 
     private static void recipe(int meta, ItemStack stack1, ItemStack stack2, ItemStack stack3) {

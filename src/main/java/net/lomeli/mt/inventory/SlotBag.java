@@ -1,6 +1,6 @@
 package net.lomeli.mt.inventory;
 
-import net.lomeli.mt.item.ItemCondenseBag;
+import net.lomeli.mt.item.special.ItemCondenseBag;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

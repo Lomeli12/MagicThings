@@ -2,9 +2,6 @@ package net.lomeli.mt.block;
 
 import net.lomeli.mt.lib.Strings;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -13,6 +10,9 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fluids.BlockFluidFinite;
 import net.minecraftforge.fluids.Fluid;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSimpleFluid extends BlockFluidFinite {
     public String liquidTexture;

@@ -1,6 +1,6 @@
 package net.lomeli.mt.ability;
 
-import net.lomeli.lomlib.util.ResourceUtil;
+import net.lomeli.lomlib.client.ResourceUtil;
 
 import net.lomeli.mt.lib.Strings;
 import net.lomeli.mt.potion.PotionInfection;

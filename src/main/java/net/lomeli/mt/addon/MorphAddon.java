@@ -2,11 +2,6 @@ package net.lomeli.mt.addon;
 
 import java.util.logging.Level;
 
-import morph.api.Ability;
-import morph.api.Api;
-import morph.common.ability.AbilityHandler;
-import morph.common.ability.AbilityHostile;
-
 import net.lomeli.lomlib.util.ModLoaded;
 
 import net.lomeli.mt.MThings;
@@ -15,6 +10,11 @@ import net.lomeli.mt.entity.EntityClicker;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+
+import morph.api.Ability;
+import morph.api.Api;
+import morph.common.ability.AbilityHandler;
+import morph.common.ability.AbilityHostile;
 
 public class MorphAddon {
     public static void registerAbilities() {

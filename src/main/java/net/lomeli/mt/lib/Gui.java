@@ -1,6 +1,6 @@
 package net.lomeli.mt.lib;
 
-import net.lomeli.lomlib.util.ResourceUtil;
+import net.lomeli.lomlib.client.ResourceUtil;
 
 import net.minecraft.util.ResourceLocation;
 

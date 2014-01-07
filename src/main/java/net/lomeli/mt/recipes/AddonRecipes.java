@@ -1,21 +1,8 @@
 package net.lomeli.mt.recipes;
 
-import forestry.api.core.ItemInterface;
-import forestry.api.recipes.RecipeManagers;
-
-import ic2.api.item.Items;
-import ic2.api.recipe.ICraftingRecipeManager;
-import ic2.api.recipe.RecipeInputItemStack;
-import ic2.api.recipe.Recipes;
-
-import appeng.api.IGrinderRecipeManager;
-import appeng.api.Materials;
-import appeng.api.Util;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-
 import net.lomeli.lomlib.block.BlockUtil;
 import net.lomeli.lomlib.util.ModLoaded;
+
 import net.lomeli.mt.block.ModBlocks;
 import net.lomeli.mt.item.ModItems;
 
@@ -29,8 +16,22 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
+import forestry.api.core.ItemInterface;
+import forestry.api.recipes.RecipeManagers;
+
+import appeng.api.IGrinderRecipeManager;
+import appeng.api.Materials;
+import appeng.api.Util;
+
 import thermalexpansion.item.TEItems;
 import thermalexpansion.util.crafting.PulverizerManager;
+
+import ic2.api.item.Items;
+import ic2.api.recipe.ICraftingRecipeManager;
+import ic2.api.recipe.RecipeInputItemStack;
+import ic2.api.recipe.Recipes;
 
 public class AddonRecipes {
     private static boolean[] useModRecipe;
@@ -59,41 +60,41 @@ public class AddonRecipes {
 
             useModRecipe[0] = true;
 
-            RecipeInputItemStack stamatic = new RecipeInputItemStack(new ItemStack(ModItems.ingotStamatic, 1, 0));
-            RecipeInputItemStack aquatic = new RecipeInputItemStack(new ItemStack(ModItems.ingotAqua, 1, 0));
-            RecipeInputItemStack ignious = new RecipeInputItemStack(new ItemStack(ModItems.ingotIgnious, 1, 0));
+            RecipeInputItemStack stamatic = new RecipeInputItemStack(ModItems.ingotArray[0]);
+            RecipeInputItemStack aquatic = new RecipeInputItemStack(ModItems.ingotArray[1]);
+            RecipeInputItemStack ignious = new RecipeInputItemStack(ModItems.ingotArray[2]);
 
-            RecipeInputItemStack stamaticDust = new RecipeInputItemStack(new ItemStack(ModItems.purifiedDust, 1, 3));
-            RecipeInputItemStack aquaticDust = new RecipeInputItemStack(new ItemStack(ModItems.purifiedDust, 1, 4));
-            RecipeInputItemStack igniousDust = new RecipeInputItemStack(new ItemStack(ModItems.purifiedDust, 1, 5));
+            RecipeInputItemStack stamaticDust = new RecipeInputItemStack(new ItemStack(ModItems.dusts, 1, 3));
+            RecipeInputItemStack aquaticDust = new RecipeInputItemStack(new ItemStack(ModItems.dusts, 1, 4));
+            RecipeInputItemStack igniousDust = new RecipeInputItemStack(new ItemStack(ModItems.dusts, 1, 5));
 
-            RecipeInputItemStack pureStamaticDust = new RecipeInputItemStack(new ItemStack(ModItems.purifiedDust, 1, 0));
-            RecipeInputItemStack pureAquaticDust = new RecipeInputItemStack(new ItemStack(ModItems.purifiedDust, 1, 1));
-            RecipeInputItemStack pureIgniousDust = new RecipeInputItemStack(new ItemStack(ModItems.purifiedDust, 1, 2));
+            RecipeInputItemStack pureStamaticDust = new RecipeInputItemStack(new ItemStack(ModItems.dusts, 1, 0));
+            RecipeInputItemStack pureAquaticDust = new RecipeInputItemStack(new ItemStack(ModItems.dusts, 1, 1));
+            RecipeInputItemStack pureIgniousDust = new RecipeInputItemStack(new ItemStack(ModItems.dusts, 1, 2));
 
-            RecipeInputItemStack stamaticOre = new RecipeInputItemStack(new ItemStack(ModBlocks.stamaticOre));
-            RecipeInputItemStack aquaticOre = new RecipeInputItemStack(new ItemStack(ModBlocks.aquaticOre));
-            RecipeInputItemStack igniousOre = new RecipeInputItemStack(new ItemStack(ModBlocks.igniousOre));
+            RecipeInputItemStack stamaticOre = new RecipeInputItemStack(ModBlocks.ingotBlocks[0]);
+            RecipeInputItemStack aquaticOre = new RecipeInputItemStack(ModBlocks.ingotBlocks[1]);
+            RecipeInputItemStack igniousOre = new RecipeInputItemStack(ModBlocks.ingotBlocks[2]);
 
-            Recipes.macerator.addRecipe(stamatic, metadata, new ItemStack(ModItems.dustStamatic));
-            Recipes.macerator.addRecipe(aquatic, metadata, new ItemStack(ModItems.dustAqua));
-            Recipes.macerator.addRecipe(ignious, metadata, new ItemStack(ModItems.dustIgnious));
+            Recipes.macerator.addRecipe(stamatic, metadata, ModItems.dustArray[6]);
+            Recipes.macerator.addRecipe(aquatic, metadata, ModItems.dustArray[7]);
+            Recipes.macerator.addRecipe(ignious, metadata, ModItems.dustArray[8]);
 
-            Recipes.macerator.addRecipe(stamaticOre, metadata, new ItemStack(ModItems.purifiedDust, 2, 3));
-            Recipes.macerator.addRecipe(aquaticOre, metadata, new ItemStack(ModItems.purifiedDust, 2, 4));
-            Recipes.macerator.addRecipe(igniousOre, metadata, new ItemStack(ModItems.purifiedDust, 2, 5));
+            Recipes.macerator.addRecipe(stamaticOre, metadata, new ItemStack(ModItems.dusts, 2, 3));
+            Recipes.macerator.addRecipe(aquaticOre, metadata, new ItemStack(ModItems.dusts, 2, 4));
+            Recipes.macerator.addRecipe(igniousOre, metadata, new ItemStack(ModItems.dusts, 2, 5));
 
             metadata.setInteger("amount", 1000);
 
-            Recipes.oreWashing.addRecipe(stamaticDust, metadata, new ItemStack(ModItems.purifiedDust, 1, 0));
-            Recipes.oreWashing.addRecipe(aquaticDust, metadata, new ItemStack(ModItems.purifiedDust, 1, 1));
-            Recipes.oreWashing.addRecipe(igniousDust, metadata, new ItemStack(ModItems.purifiedDust, 1, 2));
+            Recipes.oreWashing.addRecipe(stamaticDust, metadata, new ItemStack(ModItems.dusts, 1, 0));
+            Recipes.oreWashing.addRecipe(aquaticDust, metadata, new ItemStack(ModItems.dusts, 1, 1));
+            Recipes.oreWashing.addRecipe(igniousDust, metadata, new ItemStack(ModItems.dusts, 1, 2));
 
             metadata.setInteger("minHeat", 500);
 
-            Recipes.centrifuge.addRecipe(pureStamaticDust, metadata, new ItemStack(ModItems.dustStamatic, 1, 1));
-            Recipes.centrifuge.addRecipe(pureAquaticDust, metadata, new ItemStack(ModItems.dustAqua, 1, 1));
-            Recipes.centrifuge.addRecipe(pureIgniousDust, metadata, new ItemStack(ModItems.dustIgnious, 1, 1));
+            Recipes.centrifuge.addRecipe(pureStamaticDust, metadata, new ItemStack(ModItems.dusts, 2, 6));
+            Recipes.centrifuge.addRecipe(pureAquaticDust, metadata, new ItemStack(ModItems.dusts, 2, 7));
+            Recipes.centrifuge.addRecipe(pureIgniousDust, metadata, new ItemStack(ModItems.dusts, 2, 8));
         }
     }
 
@@ -101,9 +102,9 @@ public class AddonRecipes {
         if (ModLoaded.isModInstalled("Forestry", false)) {
             useModRecipe[1] = true;
 
-            RecipeManagers.carpenterManager.addRecipe(150, new FluidStack(FluidRegistry.WATER, 1000), null, new ItemStack(ModItems.ingotAqua, 2), new Object[] { "I  ", 'I',
+            RecipeManagers.carpenterManager.addRecipe(150, new FluidStack(FluidRegistry.WATER, 1000), null, new ItemStack(ModItems.ingots, 2, 1), new Object[] { "I  ", 'I',
                     Item.ingotIron });
-            RecipeManagers.carpenterManager.addRecipe(200, new FluidStack(FluidRegistry.LAVA, 1000), null, new ItemStack(ModItems.ingotIgnious, 2), new Object[] { "I  ", 'I',
+            RecipeManagers.carpenterManager.addRecipe(200, new FluidStack(FluidRegistry.LAVA, 1000), null, new ItemStack(ModItems.ingots, 2, 2), new Object[] { "I  ", 'I',
                     Item.ingotGold });
 
             for (int i = 0; i < 16; i++) {
@@ -118,9 +119,9 @@ public class AddonRecipes {
             useModRecipe[2] = true;
             IGrinderRecipeManager grinder = Util.getGrinderRecipeManage();
 
-            grinder.addRecipe(new ItemStack(ModBlocks.stamaticOre), new ItemStack(ModItems.dustStamatic, 2), 10);
-            grinder.addRecipe(new ItemStack(ModBlocks.aquaticOre), new ItemStack(ModItems.dustAqua, 2), 20);
-            grinder.addRecipe(new ItemStack(ModBlocks.igniousOre), new ItemStack(ModItems.dustIgnious, 2), 15);
+            grinder.addRecipe(ModBlocks.ingotBlocks[0], new ItemStack(ModItems.dusts, 2, 6), 10);
+            grinder.addRecipe(ModBlocks.ingotBlocks[1], new ItemStack(ModItems.dusts, 2, 7), 20);
+            grinder.addRecipe(ModBlocks.ingotBlocks[2], new ItemStack(ModItems.dusts, 2, 8), 15);
         }
     }
 
@@ -130,13 +131,13 @@ public class AddonRecipes {
             ItemStack iron = OreDictionary.getOres("dustIron").get(0);
             ItemStack gold = OreDictionary.getOres("dustGold").get(0);
 
-            PulverizerManager.addRecipe(4000, new ItemStack(ModBlocks.stamaticOre), new ItemStack(ModItems.dustStamatic, 2), null, 0);
-            PulverizerManager.addRecipe(4000, new ItemStack(ModBlocks.aquaticOre), new ItemStack(ModItems.dustAqua, 2), iron, 10);
-            PulverizerManager.addRecipe(4000, new ItemStack(ModBlocks.igniousOre), new ItemStack(ModItems.dustIgnious, 2), gold, 10);
+            PulverizerManager.addRecipe(4000, ModBlocks.ingotBlocks[0], new ItemStack(ModItems.dusts, 2, 6), null, 0);
+            PulverizerManager.addRecipe(4000, ModBlocks.ingotBlocks[1], new ItemStack(ModItems.dusts, 2, 7), iron, 10);
+            PulverizerManager.addRecipe(4000, ModBlocks.ingotBlocks[2], new ItemStack(ModItems.dusts, 2, 8), gold, 10);
 
-            PulverizerManager.addRecipe(2500, new ItemStack(ModItems.ingotStamatic), new ItemStack(ModItems.dustStamatic), null, 0);
-            PulverizerManager.addRecipe(2500, new ItemStack(ModItems.ingotAqua), new ItemStack(ModItems.dustAqua), null, 0);
-            PulverizerManager.addRecipe(2500, new ItemStack(ModItems.ingotIgnious), new ItemStack(ModItems.dustIgnious), null, 0);
+            PulverizerManager.addRecipe(2500, ModItems.ingotArray[0], new ItemStack(ModItems.dusts, 1, 6), null, 0);
+            PulverizerManager.addRecipe(2500, ModItems.ingotArray[1], new ItemStack(ModItems.dusts, 1, 7), null, 0);
+            PulverizerManager.addRecipe(2500, ModItems.ingotArray[2], new ItemStack(ModItems.dusts, 1, 8), null, 0);
         }
     }
 
@@ -157,7 +158,7 @@ public class AddonRecipes {
                 advRecipes.addRecipe(new ItemStack(ModItems.shaver), new Object[] { "IFI", "ISI", "IBI", 'I', "plateRefinedIron", 'F', Items.getItem("electronicCircuit"), 'S',
                         Item.shears, 'B', battery });
 
-                advRecipes.addRecipe(new ItemStack(ModItems.quantumMaterial), new Object[] { "MMM", "MDM", "MMM", 'M', matter, 'D', Item.diamond });
+                advRecipes.addRecipe(new ItemStack(ModItems.material, 1, 2), new Object[] { "M M", "MDM", "M M", 'M', matter, 'D', Item.diamond });
             }
             if (useModRecipe[1]) {
                 ItemStack circuitBoard = ItemInterface.getItem("circuitboards").copy();

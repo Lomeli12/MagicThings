@@ -1,7 +1,7 @@
 package net.lomeli.mt.tile;
 
 import net.lomeli.lomlib.entity.EntityUtil;
-import net.lomeli.lomlib.fluid.FluidUtil;
+import net.lomeli.lomlib.util.FluidUtil;
 import net.lomeli.lomlib.util.InventoryUtil;
 
 import net.lomeli.mt.api.tile.IMTTile;
@@ -20,7 +20,6 @@ import net.minecraft.tileentity.TileEntity;
 
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -160,8 +159,8 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
     }
 
     public void readNBT(NBTTagCompound data) {
-        FluidUtil.readFluidTankNBT(data, lava, FluidRegistry.LAVA, "Amount");
-        FluidUtil.readFluidTankNBT(data, water, FluidRegistry.WATER, "Amount");
+        lava.readFromNBT(data);
+        water.readFromNBT(data);
         NBTTagList tagList = data.getTagList("Inventory");
         for (int i = 0; i < tagList.tagCount(); ++i) {
             NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
@@ -178,8 +177,8 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
     }
 
     public void writeNBT(NBTTagCompound data) {
-        FluidUtil.writeFluidTankNBT(data, lava, "Amount");
-        FluidUtil.writeFluidTankNBT(data, water, "Amount");
+        lava.writeToNBT(data);
+        water.writeToNBT(data);
         NBTTagList tagList = new NBTTagList();
         for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex) {
             if (inventory[currentIndex] != null) {

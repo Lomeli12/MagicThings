@@ -6,9 +6,6 @@ import java.util.UUID;
 import net.lomeli.mt.block.ModBlocks;
 import net.lomeli.mt.item.ModItems;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -53,6 +50,9 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityClicker extends EntityMob {
 
@@ -358,7 +358,7 @@ public class EntityClicker extends EntityMob {
             this.dropItem(Block.mushroomRed.blockID, 1);
             break;
         case 1:
-            this.dropItem(ModItems.neoGem.itemID, 1);
+            this.entityDropItem(new ItemStack(ModItems.ingots, 1, 3), 0.5F);
             break;
         case 2:
             this.dropItem(Item.diamond.itemID, 1);

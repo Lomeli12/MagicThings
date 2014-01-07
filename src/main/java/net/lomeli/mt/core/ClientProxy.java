@@ -1,15 +1,6 @@
 package net.lomeli.mt.core;
 
-import net.lomeli.lomlib.render.RenderConnectedTextures;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
-
-import net.lomeli.mt.client.render.RenderCable;
+import net.lomeli.mt.client.render.RenderStamaticGlass;
 import net.lomeli.mt.client.render.RenderTank;
 import net.lomeli.mt.core.handler.FlyingTickHandler;
 import net.lomeli.mt.core.handler.SoundHandler;
@@ -18,7 +9,13 @@ import net.lomeli.mt.entity.EntityClicker;
 import net.lomeli.mt.entity.render.RenderClicker;
 import net.lomeli.mt.lib.BlockInfo;
 import net.lomeli.mt.tile.TileEntityClearTank;
-import net.lomeli.mt.tile.energy.TileEntityCable;
+
+import net.minecraftforge.common.MinecraftForge;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy {
 
@@ -42,13 +39,9 @@ public class ClientProxy extends CommonProxy {
         BlockInfo.glassRenderID = RenderingRegistry.getNextAvailableRenderId();
 
         RenderingRegistry.registerEntityRenderingHandler(EntityClicker.class, new RenderClicker());
-        //RenderingRegistry.registerBlockHandler(BlockInfo.decorRenderID, new RenderDecor());
-        RenderingRegistry.registerBlockHandler(new RenderConnectedTextures().setRenderID(BlockInfo.glassRenderID));
+        RenderingRegistry.registerBlockHandler(new RenderStamaticGlass().setRenderID(BlockInfo.glassRenderID));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityClearTank.class, new RenderTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
-        
-        //MinecraftForgeClient.registerItemRenderer(ModBlocks.decor.blockID, new RenderDecor());
     }
 
     @Override

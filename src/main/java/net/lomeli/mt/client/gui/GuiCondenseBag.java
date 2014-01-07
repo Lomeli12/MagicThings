@@ -4,9 +4,6 @@ import java.util.UUID;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.mt.inventory.ContainerCondenseBag;
 import net.lomeli.mt.inventory.InventoryCondenseBag;
 import net.lomeli.mt.lib.Gui;
@@ -16,6 +13,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiCondenseBag extends GuiContainer {

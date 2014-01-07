@@ -1,6 +1,6 @@
 package net.lomeli.mt.tile;
 
-import net.lomeli.lomlib.fluid.FluidUtil;
+import net.lomeli.lomlib.util.FluidUtil;
 
 import net.lomeli.mt.api.tile.IMTTile;
 
@@ -12,7 +12,6 @@ import net.minecraft.tileentity.TileEntity;
 
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -96,9 +95,7 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
     }
 
     public void readNBT(NBTTagCompound data) {
-        Fluid fluid = FluidRegistry.getFluid(data.getInteger("fluidID"));
-        if (fluid != null)
-            FluidUtil.readFluidTankNBT(data, tank, fluid);
+        tank.readFromNBT(data);
     }
 
     @Override
@@ -108,10 +105,7 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
     }
 
     public void writeNBT(NBTTagCompound data) {
-        if (tank != null && tank.getFluid() != null && tank.getFluid().getFluid() != null) {
-            FluidUtil.writeFluidTankNBT(data, tank);
-            data.setInteger("fluidID", tank.getFluid().fluidID);
-        }
+        tank.writeToNBT(data);
     }
 
     @Override

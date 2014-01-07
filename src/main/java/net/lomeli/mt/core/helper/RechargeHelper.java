@@ -2,7 +2,6 @@ package net.lomeli.mt.core.helper;
 
 import net.lomeli.mt.api.item.IChargeable;
 import net.lomeli.mt.api.recipes.MTRecipeHandlers;
-import net.lomeli.mt.item.ModItems;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -42,13 +41,6 @@ public class RechargeHelper {
                             useFuel(item.itemID, player, stack, MTRecipeHandlers.flyingRingFuel.getFuelValue(item));
                             charged = true;
                         }
-                        if (player.inventory.hasItem(ModItems.energyTap.itemID)) {
-                            if (item.getItem() instanceof IChargeable && ((IChargeable) item.getItem()).givesOffEnergy()) {
-                                ((IChargeable) item.getItem()).useCharge(1, item);
-                                ((IChargeable) stack.getItem()).chargeItem(1, stack);
-                                charged = true;
-                            }
-                        }
                     }
                 }
             }
@@ -57,9 +49,8 @@ public class RechargeHelper {
     }
 
     public static boolean autoRecharge(EntityPlayer player, ItemStack stack) {
-        if (player != null && stack != null && stack.getItem() instanceof IChargeable) {
+        if (player != null && stack != null && stack.getItem() instanceof IChargeable)
             return manualRecharge(player, stack);
-        }
         return false;
     }
 }

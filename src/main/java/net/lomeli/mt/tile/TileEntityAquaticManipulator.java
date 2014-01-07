@@ -1,7 +1,5 @@
 package net.lomeli.mt.tile;
 
-import net.lomeli.lomlib.fluid.FluidUtil;
-
 import net.lomeli.mt.api.tile.IMTTile;
 
 import net.minecraft.block.Block;
@@ -104,7 +102,7 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
     }
 
     public void readNBT(NBTTagCompound data) {
-        FluidUtil.readFluidTankNBT(data, water, FluidRegistry.WATER);
+        water.readFromNBT(data);
     }
 
     @Override
@@ -114,8 +112,7 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
     }
 
     public void writeNBT(NBTTagCompound data) {
-
-        FluidUtil.writeFluidTankNBT(data, water);
+        water.writeToNBT(data);
     }
 
     @Override

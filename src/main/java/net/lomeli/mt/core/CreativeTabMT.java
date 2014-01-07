@@ -13,7 +13,7 @@ public class CreativeTabMT extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(ModItems.ironStick);
+        return new ItemStack(ModItems.wrench);
     }
 
     @Override

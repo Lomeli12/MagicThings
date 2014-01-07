@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.lomeli.lomlib.fluid.GuiFluidTank;
+import net.lomeli.lomlib.client.gui.GuiFluidTank;
 
 import net.lomeli.mt.inventory.ContainerMagmaFurnace;
 import net.lomeli.mt.lib.Gui;
@@ -17,6 +14,9 @@ import net.lomeli.mt.tile.TileEntityMagmaFurnace;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiMagmaFurnace extends GuiFluidTank {
@@ -45,10 +45,8 @@ public class GuiMagmaFurnace extends GuiFluidTank {
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         int i1;
 
-        if (this.furnace.isActive()) {
-            i1 = this.furnace.getBurnTimeRemainingScaled(12);
-            this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
-        }
+        i1 = this.furnace.getBurnTimeRemainingScaled(12);
+        this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
 
         i1 = this.furnace.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);

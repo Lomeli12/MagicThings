@@ -1,6 +1,6 @@
 package net.lomeli.mt.entity.render;
 
-import net.lomeli.lomlib.util.ResourceUtil;
+import net.lomeli.lomlib.client.ResourceUtil;
 
 import net.lomeli.mt.entity.EntityClicker;
 import net.lomeli.mt.lib.Strings;

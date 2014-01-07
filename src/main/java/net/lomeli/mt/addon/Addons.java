@@ -22,8 +22,6 @@ public class Addons {
     public static void loadAddons() {
         if (ModLoaded.isModInstalled("Morph"))
             MorphAddon.registerAbilities();
-        if (ModLoaded.isModInstalled("ForgeMultipart"))
-            MultiPart.loadMultiPart();
         if (ModLoaded.isModInstalled("EE3"))
             EE3Addon.loadAddon();
     }

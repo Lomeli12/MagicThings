@@ -4,13 +4,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.logging.Level;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import net.lomeli.lomlib.client.ResourceUtil;
 import net.lomeli.lomlib.entity.CustomDamageSource;
 import net.lomeli.lomlib.entity.EntityUtil;
-import net.lomeli.lomlib.util.ResourceUtil;
 
 import net.lomeli.mt.MThings;
 import net.lomeli.mt.lib.Strings;
@@ -20,6 +16,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
+
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class PotionInfection extends Potion {
 

@@ -1,83 +1,72 @@
 # Item Localization
-item.magicthings:IronStick.name=Iron Stick
-item.magicthings:IronBand.name=Iron Band
-item.magicthings:BaseMaterial.name=Basic Material
-item.magicthings:AdvMaterial.name=Advance Material
-item.magicthings:QuantumMaterial.name=Quantum Material
-item.magicthings:IngotStamatic.name=Stamatic Ingot
+# Metadata Items
+item.magicthings:Items.0.name=Iron Stick
+item.magicthings:Items.1.name=Iron Band
+item.magicthings:Materials.0.name=Basic Material
+item.magicthings:Materials.1.name=Advance Material
+item.magicthings:Materials.2.name=Quantum Material
+item.magicthings:Ingots.0.name=Stamatic Ingot
+item.magicthings:Ingots.1.name=Aquatic Ingot
+item.magicthings:Ingots.2.name=Ignious Ingot
+item.magicthings:Ingots.3.name=Neo Gem
+item.magicthings:Ingots.4.name=Smoked Brick
 item.magicthings:Herb.0.name=Green Herb
 item.magicthings:Herb.1.name=Blue Herb
 item.magicthings:Herb.2.name=Red Herb
 item.magicthings:Herb.3.name=Yellow Herb
-item.magicthings:IngotAquatic.name=Aquatic Ingot
-item.magicthings:DustStamatic.name=Stamatic Dust
-item.magicthings:DustAquatic.name=Aquatic Dust
 item.magicthings:EmptyCase.name=Empty Case
-item.magicthings:NeoGem.name=Neo Gem
-item.magicthings:IngotIgnious.name=Ignious Ingot
-item.magicthings:DustIgnious.name=Ignious Dust
-item.magicthings:PurifiedDust.0.name=Purified Crushed Stamatic Ore
-item.magicthings:PurifiedDust.1.name=Purified Crushed Aquatic Ore
-item.magicthings:PurifiedDust.2.name=Purified Crushed Ignious Ore
-item.magicthings:PurifiedDust.3.name=Crushed Stamatic Ore
-item.magicthings:PurifiedDust.4.name=Crushed Aquatic Ore
-item.magicthings:PurifiedDust.5.name=Crushed Ignious Ore
+item.magicthings:Dusts.0.name=Purified Crushed Stamatic Ore
+item.magicthings:Dusts.1.name=Purified Crushed Aquatic Ore
+item.magicthings:Dusts.2.name=Purified Crushed Ignious Ore
+item.magicthings:Dusts.3.name=Crushed Stamatic Ore
+item.magicthings:Dusts.4.name=Crushed Aquatic Ore
+item.magicthings:Dusts.5.name=Crushed Ignious Ore
+item.magicthings:Dusts.6.name=Stamatic Dust
+item.magicthings:Dusts.7.name=Aquatic Dust
+item.magicthings:Dusts.8.name=Ignious Dust
+# The rest
 item.magicthings:FlyingRing.name=Flying Ring
 item.magicthings:MedKits.name=Med Kit
 item.magicthings:Shaver.name=Electric Shaver
 item.magicthings:Error.name=Error
-item.magicthings:EnergyTap.name=Energy Tap [WIP]
-item.magicthings:Magnet.name=Item Magnet [Buggy]
 item.magicthings:PeaceTreaty.name=Peace Treaty
 item.magicthings:PortaCraft.name=PortaCraft
-item.magicthings:MountTool.name=Super Saddle [WIP]
-item.magicthings:Toast.name=Everlasting Toast [WIP]
 item.magicthings:FluidReader.name=Fluid Scanner
 item.magicthings:CondenseBag.0.name=Condense Bag
 item.magicthings:CondenseBag.1.name=Expanded Bag
 item.magicthings:CavernDisc.name=Music Disc
 item.magicthings:Wrench.name=Stamatic Wrench
-item.magicthings:HandCrank.name=Hand Crank [WIP]
 item.magicthings:TankUpgrade.name=Tank Upgrade
-item.magicthings:IBlade.name=Ikeno Blade [WIP] [Temp Texture]
-item.magicthings:FireStick.name=Fire Stick
-item.magicthings:SmokedBrick.name=Smoked Brick
-item.magicthings:cable.name=Cable
-item.magicthings:jwmeter.name=JW Meter
 
 # Block Localizations
-tile.magicthings:StamaticOre.name=Stamatic Ore
-tile.magicthings:AquaticOre.name=Aquatic Ore
-tile.magicthings:IgniousOre.name=Ignious Ore
-tile.magicthings:NeoOre.name=Neo Ore
-tile.magicthings:UnWinder.name=Cloth Unwinder [Buggy]
+# Metadata Blocks
+tile.magicthings:ingotBlocks.0=Stamatic Ore
+tile.magicthings:ingotBlocks.1=Aquatic Ore
+tile.magicthings:ingotBlocks.2=Ignious Ore
+tile.magicthings:ingotBlocks.3=Neo Ore
+tile.magicthings:ingotBlocks.4=Nether Ignious Ore
+tile.magicthings:ingotBlocks.5=Stamatic Block
+tile.magicthings:ingotBlocks.6=Aquatic Block
+tile.magicthings:ingotBlocks.7=Ignious Block
+tile.magicthings:ingotBlocks.8=Neo Block
+tile.magicthings:machineFrame.0=Basic Machine Frame
+tile.magicthings:machineFrame.1=Adv. Machine Frame
+tile.magicthings:treatedWool.name=Treated Wool
+tile.magicthings:decor.name=Smoked Brick
+tile.magicthings:fancyGlass.0=Stamatic Glass
+tile.magicthings:fancyGlass.1=Shimmering Stamatic Glass
+# The rest
 tile.magicthings:InfectedBlock.name=Infected Block
 tile.magicthings:CobGen.name=Compact CobbleGen [Need Textures]
 tile.magicthings:FertileBush.name=Fertile Bush
 tile.magicthings:MagicSand.name=Magic Sand
 tile.magicthings:AquaticManipulator.name=AquaticManipulator
 tile.magicthings:ClearTank.name=Clear Tank
-tile.magicthings:MachineFrame.name=Basic Machine Frame
 tile.magicthings:MagmaFurnace.name=Magma Furnace [Need Textures]
-tile.magicthings:AdvFrame.name=Adv. Machine Frame
-tile.magicthings:Altar.name=Altar
-tile.magicthings:treatedWool.name=Treated Wool
-tile.magicthings:decor.name=Smoked Brick
-tile.magicthings:CoalGen.name=Coal Generator
-tile.magicthings:cable.name=Cable
-tile.magicthings:BatTier1.name=Batbox
 tile.magicthings:fancyGlass.name=Stamatic Glass
-
-# World Localizations
-string.magicthings:Basic=Basic
-string.magicthings:Adv=Adv.
-string.magicthings:Glass=Glass
-string.magicthings:Fiber=Fiber
 
 # GUI Localizations
 gui.magicthings:magmaFurnace=Magma Furnace
-gui.magicthings:unwind=Cloth Unwinder
-gui.magicthings:coalGen=Coal Generator
 
 # Book Localizations
 book.magicthings:wrench=How to use your Stamatic Wrench
@@ -85,10 +74,6 @@ book.magicthings:wrenchpg1ln1=Right click on chests, levers, BuildCraft or IC2 m
 book.magicthings:wrenchpg1ln2=Shift-Right click on Pipes, IC2/Buildcraft/MagicThings Machines, cables, tanks, Hoppers, Droppers, or Dispenser to pick up the block.
 book.magicthings:wrenchpg2=Right Clicking on Wooden/Iron pipes will also change the direction it will output to.
 book.magicthings:wrenchpg3=You can also get info on some blocks by placing a book on top of it then right clicking the block itself with the wrench to get a "How-to" book.
-book.magicthings:altar=How to use an Altar
-book.magicthings:altarpg1=An altar can be use to create new items. All that one needs is to drop items onto the Altar then give it a swing of a stamatic wrench.
-book.magicthings:altarpg2=An Ikeno Blade can be created in such a way using a with a Block of Diamond, a Block of Quartz, a Nether Star, Neo Gem, and a Diamond Sword during a Thunder Storm.
-book.magicthings:altarpg3=It also appears to like sticks during a clear day, though no one knows why...
 
 # Potion Localizations
 potion.magicthings:CordycepsDeath=succumbed to Cordyceps Infection.
@@ -97,3 +82,5 @@ potion.magicthings:CordycepsDeath=succumbed to Cordyceps Infection.
 subtext.magicthings:wool1="Fire proof and blast resistant,
 subtext.magicthings:wool2=what more could you ask for?"
 subtext.magicthings:toast="BUTTER TOAST!" ~Ed
+
+mod.magicthings:name=Magic Things

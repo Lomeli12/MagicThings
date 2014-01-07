@@ -2,14 +2,14 @@ package net.lomeli.mt.core.handler;
 
 import java.util.EnumSet;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
-
 import net.lomeli.lomlib.util.ToolTipUtil;
 
 import net.lomeli.mt.MThings;
 import net.lomeli.mt.lib.Strings;
+
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.TickType;
 
 public class VersionCheckTickHandler implements ITickHandler {
 

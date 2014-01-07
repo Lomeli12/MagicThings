@@ -3,10 +3,10 @@ package net.lomeli.mt.block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 
-public class BlockItem extends BlockMT {
+public class BlockItem extends BlockMetaData {
 
-    public BlockItem(int id, String texture) {
-        super(id, Material.air, texture);
+    public BlockItem(int id, String texture, int i) {
+        super(id, Material.air, texture, i);
     }
 
     @Override

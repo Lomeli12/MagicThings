@@ -4,16 +4,16 @@ import java.util.EnumSet;
 
 import net.lomeli.lomlib.util.ModLoaded;
 
+import net.lomeli.mt.addon.GraviSuiteAddon;
+import net.lomeli.mt.addon.MorphAddon;
+import net.lomeli.mt.item.ModItems;
+import net.lomeli.mt.lib.Strings;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import net.lomeli.mt.addon.GraviSuiteAddon;
-import net.lomeli.mt.addon.MorphAddon;
-import net.lomeli.mt.item.ModItems;
-import net.lomeli.mt.lib.Strings;
 
 @SideOnly(Side.CLIENT)
 public class FlyingTickHandler implements ITickHandler {

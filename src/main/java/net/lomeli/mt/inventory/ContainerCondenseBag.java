@@ -2,7 +2,7 @@ package net.lomeli.mt.inventory;
 
 import java.util.UUID;
 
-import net.lomeli.mt.item.ItemCondenseBag;
+import net.lomeli.mt.item.special.ItemCondenseBag;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

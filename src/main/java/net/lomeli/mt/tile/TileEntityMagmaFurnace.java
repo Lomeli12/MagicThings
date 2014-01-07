@@ -1,13 +1,7 @@
 package net.lomeli.mt.tile;
 
-import net.lomeli.lomlib.fluid.FluidUtil;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.mt.api.recipes.MTRecipeHandlers;
 import net.lomeli.mt.api.tile.ITanks;
-import net.lomeli.mt.api.tile.ITileEnergy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -28,8 +22,10 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, ITanks, ISidedInventory, IFluidHandler {
-    private float maxEnergy, energy;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISidedInventory, IFluidHandler {
     public int furnaceBurnTime, currentBurnTime, cookTime;
     private FluidTank lavaTank;
     private ItemStack[] inventory;
@@ -37,7 +33,6 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, I
     public TileEntityMagmaFurnace() {
         inventory = new ItemStack[2];
         lavaTank = new FluidTank(new FluidStack(FluidRegistry.LAVA, 0), 40000);
-        this.setMaxEnergy(5000);
     }
 
     @SideOnly(Side.CLIENT)
@@ -61,7 +56,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, I
                     }
                 }
             }
-            if (isActive() && canSmelt()) {
+            if (canSmelt()) {
                 ++cookTime;
                 if (cookTime >= 800) {
                     cookTime = 0;
@@ -82,7 +77,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, I
         this.cookTime = data.getInteger("cookTime");
         this.currentBurnTime = data.getInteger("currentCookTime");
         this.furnaceBurnTime = data.getInteger("burnTime");
-        FluidUtil.readFluidTankNBT(data, lavaTank, FluidRegistry.LAVA);
+        this.lavaTank.readFromNBT(data);
         NBTTagList tagList = data.getTagList("Inventory");
         for (int i = 0; i < tagList.tagCount(); ++i) {
             NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
@@ -102,7 +97,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, I
         data.setInteger("cookTime", cookTime);
         data.setInteger("currentCookTime", currentBurnTime);
         data.setInteger("burnTime", furnaceBurnTime);
-        FluidUtil.writeFluidTankNBT(data, lavaTank);
+        lavaTank.writeToNBT(data);
         NBTTagList tagList = new NBTTagList();
         for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex) {
             if (inventory[currentIndex] != null) {
@@ -264,62 +259,6 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, I
     }
 
     @Override
-    public float getMaxEnergy() {
-        return maxEnergy;
-    }
-
-    @Override
-    public float getEnergy() {
-        return energy;
-    }
-
-    @Override
-    public float getAmountNeeded() {
-        return maxEnergy - energy;
-    }
-
-    @Override
-    public boolean isActive() {
-        return furnaceBurnTime > 0;
-    }
-
-    @Override
-    public void setMaxEnergy(float max) {
-        maxEnergy = max;
-    }
-
-    @Override
-    public void setEnergy(float energy) {
-        this.energy = energy;
-    }
-
-    @Override
-    public float addEnergy(float energy, boolean simulated) {
-        if (!simulated && !worldObj.isRemote) {
-            this.energy += energy;
-            if (this.energy > this.maxEnergy)
-                this.energy = this.maxEnergy;
-            return this.energy;
-        } else {
-            float j = this.energy;
-            return (j + energy);
-        }
-    }
-
-    @Override
-    public boolean useEnergy(float energy, boolean simulated) {
-        if (!simulated && !worldObj.isRemote) {
-            if (useEnergy(energy, false)) {
-                this.energy -= energy;
-                return true;
-            } else
-                return false;
-        } else {
-            return (this.energy > 0 && this.energy >= energy);
-        }
-    }
-
-    @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         return 0;
     }
@@ -332,7 +271,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, I
             return null;
         return drain(from, resource.amount, doDrain);
     }
-
+    
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
         return lavaTank.drain(maxDrain, doDrain);
@@ -351,12 +290,6 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITileEnergy, I
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
         return new FluidTankInfo[] { lavaTank.getInfo() };
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getEnergyScaled(int i) {
-        return ((this.getEnergy() / this.getMaxEnergy()) * i);
     }
 
 }

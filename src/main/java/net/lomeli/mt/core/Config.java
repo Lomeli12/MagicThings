@@ -5,14 +5,14 @@ import java.util.Calendar;
 
 import org.lwjgl.input.Keyboard;
 
+import net.lomeli.lomlib.util.XMLConfiguration;
+import net.lomeli.lomlib.util.XMLConfiguration.ConfigEnum;
+
 import net.lomeli.mt.MThings;
 import net.lomeli.mt.lib.BlockInfo;
 import net.lomeli.mt.lib.Ints;
 import net.lomeli.mt.lib.Ints.KeyConfigs;
 import net.lomeli.mt.lib.ItemInfo;
-
-import net.lomeli.lomlib.util.XMLConfiguration;
-import net.lomeli.lomlib.util.XMLConfiguration.ConfigEnum;
 
 public class Config {
 
@@ -37,72 +37,40 @@ public class Config {
     }
 
     private void configItemIDs(XMLConfiguration config) {
-        ItemInfo.ironStickID = config.getItemID("ironStick", 7000);
-        ItemInfo.ironRingID = config.getItemID("ironRing", 7001);
-        ItemInfo.flyingRingID = config.getItemID("flyingRing", 7002);
-        ItemInfo.baseMaterialID = config.getItemID("baseMaterial", 7003);
-        ItemInfo.advMaterialID = config.getItemID("advMaterial", 7004);
-        ItemInfo.quantumMaterialID = config.getItemID("quantumMaterial", 7005);
-        ItemInfo.medKitID = config.getItemID("medKit", 7006);
-        ItemInfo.ingotStamaticID = config.getItemID("ingotStamatic", 7007);
-        ItemInfo.herbID = config.getItemID("herb", 7008);
-        ItemInfo.shaverID = config.getItemID("shaver", 7009);
-        ItemInfo.errorID = config.getItemID("error", 7010);
-        ItemInfo.ingotAquaID = config.getItemID("ingotAqua", 7011);
-        ItemInfo.dustStamaticID = config.getItemID("dustStamatic", 7012);
-        ItemInfo.dustAquaID = config.getItemID("dustAqua", 7013);
-        ItemInfo.emptyCaseID = config.getItemID("emptyCase", 7014);
-        ItemInfo.energyTapID = config.getItemID("energyTap", 7015);
-        ItemInfo.neoGemID = config.getItemID("neoGem", 7016);
-        ItemInfo.ingotIgniousID = config.getItemID("ingotIgnious", 7017);
-        ItemInfo.dustIgniousID = config.getItemID("dustIgnious", 7018);
-        ItemInfo.upgradesID = config.getItemID("upgrades", 7019);
-        ItemInfo.purifiedDustID = config.getItemID("purifiedDust", 7020);
-        ItemInfo.magnetID = config.getItemID("magnet", 7021);
-        ItemInfo.peaceTreatyID = config.getItemID("peaceTreaty", 7022);
-        ItemInfo.portaCraftID = config.getItemID("portaCraft", 7023);
-        ItemInfo.mountToolID = config.getItemID("mountTool", 7024);
-        ItemInfo.toastID = config.getItemID("toast", 7025);
-        ItemInfo.liquidReaderID = config.getItemID("liquidReader", 7026);
-        ItemInfo.condenseBagID = config.getItemID("condenseBags", 7027);
-        ItemInfo.recordID = config.getItemID("record", 7028);
-        ItemInfo.wrenchID = config.getItemID("wrench", 7029);
-        ItemInfo.crankID = config.getItemID("handCrank", 7030);
-        ItemInfo.tankUpgradeID = config.getItemID("tankUpgrade", 7031);
-        ItemInfo.ikenoID = config.getItemID("IkenoBlade", 7032);
-        ItemInfo.smokedBrickID = config.getItemID("SmokedBrick", 7033);
-        ItemInfo.cableItemID = config.getItemID("cableItem", 7034);
-        ItemInfo.jwMeterID = config.getItemID("jwMeter", 7035);
-
-        ItemInfo.magnetDurability = config.getInt("magnetDurability", 576, ConfigEnum.OTHER);
+        ItemInfo.standardItemsID = config.getItemID("standardItems", 7000);
+        ItemInfo.flyingRingID = config.getItemID("flyingRing", 7001);
+        ItemInfo.materialID = config.getItemID("material", 7002);
+        ItemInfo.medKitID = config.getItemID("medKit", 7003);
+        ItemInfo.ingotsID = config.getItemID("ingots", 7004);
+        ItemInfo.herbID = config.getItemID("herb", 7005);
+        ItemInfo.shaverID = config.getItemID("shaver", 7006);
+        ItemInfo.errorID = config.getItemID("error", 7007);
+        ItemInfo.emptyCaseID = config.getItemID("emptyCase", 7008);
+        ItemInfo.dustID = config.getItemID("dusts", 7009);
+        ItemInfo.upgradesID = config.getItemID("upgrades", 7010);
+        ItemInfo.peaceTreatyID = config.getItemID("peaceTreaty", 7011);
+        ItemInfo.portaCraftID = config.getItemID("portaCraft", 7012);
+        ItemInfo.liquidReaderID = config.getItemID("liquidReader", 7013);
+        ItemInfo.condenseBagID = config.getItemID("condenseBags", 7014);
+        ItemInfo.recordID = config.getItemID("record", 7015);
+        ItemInfo.wrenchID = config.getItemID("wrench", 7016);
+        ItemInfo.tankUpgradeID = config.getItemID("tankUpgrade", 7017);
     }
 
     private void configBlockIDs(XMLConfiguration config) {
-        BlockInfo.stamaticOreID = config.getBlockID("stamaticOre", 700);
-        BlockInfo.aquaticOreID = config.getBlockID("aquaticOre", 701);
-        BlockInfo.igniousOreID = config.getBlockID("igniousOre", 702);
-        BlockInfo.neoOreID = config.getBlockID("neoOre", 703);
-        BlockInfo.chargeStationID = config.getBlockID("chargeStation", 704);
-        BlockInfo.unwindID = config.getBlockID("unwinder", 705);
-        BlockInfo.mobFarmerID = config.getBlockID("mobFarmer", 706);
-        BlockInfo.infectedBlockID = config.getBlockID("infectedBlock", 707);
-        BlockInfo.compactGenID = config.getBlockID("compackCobGen", 708);
-        BlockInfo.fertileBushID = config.getBlockID("fertileBush", 709);
-        BlockInfo.magicSandID = config.getBlockID("magicSand", 710);
-        BlockInfo.aquaticManipID = config.getBlockID("aquaticManip", 711);
-        BlockInfo.clearTankID = config.getBlockID("clearTank", 712);
-        BlockInfo.machineFrameID = config.getBlockID("machineFrame", 713);
-        BlockInfo.magmaFurnaceID = config.getBlockID("magmaFurnace", 714);
-        BlockInfo.advFrameID = config.getBlockID("advFrame", 715);
-        BlockInfo.altarID = config.getBlockID("Altar", 716);
-        BlockInfo.treatedWoolID = config.getBlockID("treatedwool", 717);
-        BlockInfo.decorID = config.getBlockID("decorativeBlock", 718);
-        BlockInfo.coalGenID = config.getBlockID("coalGen", 719);
-        BlockInfo.cableID = config.getBlockID("cable", 720);
-        BlockInfo.bat1ID = config.getBlockID("batTier1", 721);
-        BlockInfo.bat2ID = config.getBlockID("batTier2", 722);
-        BlockInfo.bat3ID = config.getBlockID("batTier3", 723);
-        BlockInfo.glassID = config.getBlockID("glass", 724);
+        BlockInfo.ingotBlockID = config.getBlockID("IngotBlocks", 700);
+        BlockInfo.infectedBlockID = config.getBlockID("infectedBlock", 701);
+        BlockInfo.compactGenID = config.getBlockID("compackCobGen", 702);
+        BlockInfo.fertileBushID = config.getBlockID("fertileBush", 703);
+        BlockInfo.magicSandID = config.getBlockID("magicSand", 704);
+        BlockInfo.aquaticManipID = config.getBlockID("aquaticManip", 705);
+        BlockInfo.clearTankID = config.getBlockID("clearTank", 706);
+        BlockInfo.machineFrameID = config.getBlockID("machineFrame", 707);
+        BlockInfo.magmaFurnaceID = config.getBlockID("magmaFurnace", 708);
+        BlockInfo.treatedWoolID = config.getBlockID("treatedwool", 709);
+        BlockInfo.decorID = config.getBlockID("decorativeBlock", 710);
+        BlockInfo.glassID = config.getBlockID("glass", 711);
+        BlockInfo.airID = config.getBlockID("airBlock", 712);
 
         BlockInfo.stamaticOreGen = config.getInt("stamaticOreGenRate", 15, ConfigEnum.OTHER);
         BlockInfo.aquaticOreGen = config.getInt("aquaticOreGenRate", 2, ConfigEnum.OTHER);

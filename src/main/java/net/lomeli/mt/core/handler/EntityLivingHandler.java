@@ -5,7 +5,6 @@ import java.util.Random;
 import net.lomeli.lomlib.entity.EntityUtil;
 
 import net.lomeli.mt.entity.EntityClicker;
-import net.lomeli.mt.item.ItemIkenoBlade;
 import net.lomeli.mt.item.ModItems;
 import net.lomeli.mt.potion.PotionInfection;
 
@@ -51,17 +50,8 @@ public class EntityLivingHandler {
     @ForgeSubscribe
     public void onEntityLivingDeath(LivingDeathEvent event) {
         Random rand = new Random();
-        if (EntityUtil.wasEntityKilledByPlayer(event.source)) {
+        if (EntityUtil.wasEntityKilledByPlayer(event.source))
             EntityUtil.entityDropItem(event.entityLiving, new ItemStack(ModItems.error, 1), 0.01d, true);
-            if (event.source.getSourceOfDamage() instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-                if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemIkenoBlade)) {
-                    // ((ItemIkenoBlade)
-                    // player.getCurrentEquippedItem().getItem()).addExp(player.getCurrentEquippedItem(),
-                    // event.entityLiving, player);
-                }
-            }
-        }
 
         if (event.source.equals(PotionInfection.infection)) {
             if (event.entityLiving instanceof EntityPlayer) {
