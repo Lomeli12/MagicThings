@@ -119,7 +119,7 @@ public class BlockClearTank extends BlockMT implements ITileEntityProvider {
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
         TileEntity tile = world.getBlockTileEntity(x, y, z);
         if (tile != null && tile instanceof TileEntityClearTank) {
-            FluidTankInfo tank = ((TileEntityClearTank)tile).getTankInfo(null)[0];
+            FluidTankInfo tank = ((TileEntityClearTank) tile).getTankInfo(null)[0];
             if (tank != null && tank.fluid != null && tank.fluid.getFluid() != null)
                 return tank.fluid.getFluid().getLuminosity();
         }

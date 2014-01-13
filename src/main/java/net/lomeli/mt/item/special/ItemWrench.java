@@ -1,9 +1,5 @@
 package net.lomeli.mt.item.special;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import net.lomeli.lomlib.block.BlockUtil;
 import net.lomeli.lomlib.entity.EntityUtil;
 import net.lomeli.lomlib.item.CustomBookUtil;
 
@@ -35,21 +31,11 @@ import ic2.api.tile.IWrenchable;
 
 public class ItemWrench extends ItemMT implements IToolWrench {
 
-    private final Set<Class<? extends Block>> shiftRotations = new HashSet<Class<? extends Block>>();
-
     public ItemWrench(int id) {
         super(id, "wrench");
         this.setMaxStackSize(1);
         if (Config.date)
             this.itemTexture = "x" + this.itemTexture;
-    }
-
-    private boolean isShiftRotation(Class<? extends Block> cls) {
-        for (Class<? extends Block> shift : shiftRotations) {
-            if (shift.isAssignableFrom(cls))
-                return true;
-        }
-        return false;
     }
 
     @Override
@@ -78,12 +64,12 @@ public class ItemWrench extends ItemMT implements IToolWrench {
 
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        int blockId = world.getBlockId(x, y, z);
-        Block block = Block.blocksList[blockId];
-
         TileEntity tile = world.getBlockTileEntity(x, y, z);
+
         int id = world.getBlockId(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
+
+        Block block = Block.blocksList[id];
 
         if (block == null)
             return false;
@@ -93,32 +79,11 @@ public class ItemWrench extends ItemMT implements IToolWrench {
                 try {
                     if (tile != null) {
                         if (block.blockID == Block.chest.blockID || block.blockID == Block.chestTrapped.blockID
-                                || Class.forName("com.pahimar.ee3.block.BlockAlchemicalChest").isInstance(block) || tile instanceof TileEntityFurnace) {
-                            if (side != meta) {
-                                if ((block.blockID == Block.chest.blockID || block.blockID == Block.chestTrapped.blockID) || !BlockUtil.isThereANeighborChest(world, x, y, z)) {
-                                    if (meta == 2)
-                                        world.setBlockMetadataWithNotify(x, y, z, 3, 3);
-                                    if (meta == 3)
-                                        world.setBlockMetadataWithNotify(x, y, z, 2, 3);
-                                    if (meta == 5)
-                                        world.setBlockMetadataWithNotify(x, y, z, 4, 3);
-                                    if (meta == 4)
-                                        world.setBlockMetadataWithNotify(x, y, z, 5, 3);
-                                    player.closeScreen();
-                                    player.swingItem();
-                                    return true;
-                                }
-                                world.setBlockMetadataWithNotify(x, y, z, side, 3);
-                                player.closeScreen();
-                                player.swingItem();
-                                world.markBlockForUpdate(x, y, z);
-                                return true;
-                            }
-                        } else if (Class.forName("cpw.mods.ironchest.BlockIronChest").isInstance(block)) {
+                                || Class.forName("com.pahimar.ee3.block.BlockAlchemicalChest").isInstance(block)
+                                || Class.forName("cpw.mods.ironchest.BlockIronChest").isInstance(block) || tile instanceof TileEntityFurnace) {
                             block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side).getOpposite());
                             player.closeScreen();
                             player.swingItem();
-                            world.markBlockForUpdate(x, y, z);
                             return true;
                         }
                     }
@@ -134,14 +99,6 @@ public class ItemWrench extends ItemMT implements IToolWrench {
                             return true;
                         }
                     }
-                }
-
-                if (!player.isSneaking() != isShiftRotation(block.getClass()) && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
-                    player.swingItem();
-                    world.markBlockForUpdate(x, y, z);
-                    player.swingItem();
-                    world.markBlockForUpdate(x, y, z);
-                    return !world.isRemote;
                 }
             } else {
                 if (tile != null) {

@@ -31,8 +31,8 @@ public class ModRecipes {
                 Item.appleGold, 'P', Item.paper);
         addShapelessRecipe(new ItemStack(ModItems.portaCraft), Item.ingotIron, Block.workbench, Block.pressurePlatePlanks);
         addShapelessRecipe(ModItems.materialArray[0], "logWood", "cobblestone", Block.sand, Block.dirt);
-        addRecipe(ModItems.materialArray[1], true, "RDR", "IBI", "GOG", 'O', "dyeBlue", 'R', Item.redstone, 'D', Item.enderPearl, 'I', Item.ingotIron, 'G', Item.ingotGold,
-                'B', ModItems.materialArray[0]);
+        addRecipe(ModItems.materialArray[1], true, "RDR", "IBI", "GOG", 'O', "dyeBlue", 'R', Item.redstone, 'D', Item.enderPearl, 'I', Item.ingotIron, 'G', Item.ingotGold, 'B',
+                ModItems.materialArray[0]);
         addRecipe(new ItemStack(ModItems.material, 2, 2), true, "ARA", "RNR", "ADA", 'A', ModItems.materialArray[1], 'R', Block.blockRedstone, 'N', Item.diamond, 'D', "neoGem");
         addRecipe(ModItems.flyingRing, true, "EQF", "QIP", "FPQ", 'F', Item.feather, 'Q', ModItems.materialArray[2], 'E', Item.emerald, 'P', Item.eyeOfEnder, 'I',
                 ModItems.itemArray[1]);
@@ -81,7 +81,7 @@ public class ModRecipes {
                 Item.potion, 1, 8193), 'F', ModBlocks.frames[1]);
         addRecipe(new ItemStack(ModBlocks.glass, 4), true, "RGR", "GSG", "RGR", 'R', Item.redstone, 'G', Block.glass, 'S', "ingotStamatic");
         addShapelessRecipe(new ItemStack(ModBlocks.glass, 1, 1), new ItemStack(ModBlocks.glass, 1, 0), Item.glowstone);
-        
+
         treatedWoolRecipes();
         smokedBrickRecipes();
     }

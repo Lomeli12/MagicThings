@@ -1,8 +1,10 @@
 package net.lomeli.mt.core.handler;
 
 import net.lomeli.mt.item.ModItems;
+import net.lomeli.mt.item.special.ItemRunningShoes;
 
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -28,23 +30,39 @@ public class PlayerItemHandler {
 
     @ForgeSubscribe
     public void onItemTossEvent(ItemTossEvent event) {
-        if (event.entityItem.getEntityItem() != null && event.entityItem.getEntityItem().itemID == ModItems.flyingRing.itemID) {
-            if (event.player != null && !event.player.capabilities.isCreativeMode) {
-                event.player.stepHeight = 0.5F;
-                event.player.capabilities.allowFlying = false;
-                event.player.capabilities.isFlying = false;
+        if (event.player instanceof EntityPlayer) {
+            EntityPlayer player = event.player;
+            boolean flag = (player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem().getUnlocalizedName()
+                    .equals(ModItems.runningShoes.getUnlocalizedName()));
+            ItemRunningShoes.applyModifier(player, flag);
+        }
+        if (event.entityItem.getEntityItem() != null) {
+            if (event.entityItem.getEntityItem().itemID == ModItems.flyingRing.itemID) {
+                if (event.player != null && !event.player.capabilities.isCreativeMode) {
+                    event.player.stepHeight = 0.5F;
+                    event.player.capabilities.allowFlying = false;
+                    event.player.capabilities.isFlying = false;
+                }
             }
         }
     }
 
     @ForgeSubscribe
     public void onPlayerDrop(PlayerDropsEvent event) {
+        if (event.entityPlayer instanceof EntityPlayer) {
+            EntityPlayer player = event.entityPlayer;
+            boolean flag = (player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem().getUnlocalizedName()
+                    .equals(ModItems.runningShoes.getUnlocalizedName()));
+            ItemRunningShoes.applyModifier(player, flag);
+        }
         if (event.entityPlayer != null && !event.entityPlayer.capabilities.isCreativeMode) {
             for (EntityItem drops : event.drops) {
-                if (drops.getEntityItem() != null && drops.getEntityItem().itemID == ModItems.flyingRing.itemID) {
-                    event.entityPlayer.stepHeight = 0.5F;
-                    event.entityPlayer.capabilities.allowFlying = false;
-                    event.entityPlayer.capabilities.isFlying = false;
+                if (drops.getEntityItem() != null) {
+                    if (drops.getEntityItem().itemID == ModItems.flyingRing.itemID) {
+                        event.entityPlayer.stepHeight = 0.5F;
+                        event.entityPlayer.capabilities.allowFlying = false;
+                        event.entityPlayer.capabilities.isFlying = false;
+                    }
                 }
             }
         }

@@ -10,10 +10,10 @@ import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemMetaData extends ItemMT{
+public class ItemMetaData extends ItemMT {
     @SideOnly(Side.CLIENT)
     protected Icon[] iconArray;
-    
+
     protected int n;
 
     public ItemMetaData(int id, String Texture, int itemNumber) {

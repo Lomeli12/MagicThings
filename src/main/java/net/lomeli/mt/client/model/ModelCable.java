@@ -62,6 +62,7 @@ public class ModelCable extends ModelBase {
         setRotation(Right, 0F, 0F, 0F);
     }
 
+    @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -73,8 +74,8 @@ public class ModelCable extends ModelBase {
         Center.render(f5);
         Right.render(f5);
     }
-    
-    public void render(float f5){
+
+    public void render(float f5) {
         Bottom.render(f5);
         Top.render(f5);
         Left.render(f5);
@@ -90,6 +91,7 @@ public class ModelCable extends ModelBase {
         model.rotateAngleZ = z;
     }
 
+    @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }

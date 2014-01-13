@@ -37,20 +37,17 @@ public class RenderDecor implements ISimpleBlockRenderingHandler, IItemRenderer 
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-        //int meta = world.getBlockMetadata(x, y, z);
-        /*int glowColour = 8;
-        switch(meta){
-            case 1: glowColour = 14;
-            case 2: glowColour = 13;
-            case 3: glowColour = 11;
-            default: glowColour = 8;
-        }*/
-        
+        // int meta = world.getBlockMetadata(x, y, z);
+        /*
+         * int glowColour = 8; switch(meta){ case 1: glowColour = 14; case 2:
+         * glowColour = 13; case 3: glowColour = 11; default: glowColour = 8; }
+         */
+
         Tessellator.instance.setBrightness(0x00F000F0);
         renderer.renderStandardBlock(block, x, y, z);
-        
-        //RenderUtil.addGlow(x, y, z, glowColour, Cuboid6.full.expand(0.05D));
-        
+
+        // RenderUtil.addGlow(x, y, z, glowColour, Cuboid6.full.expand(0.05D));
+
         return true;
     }
 
@@ -58,7 +55,7 @@ public class RenderDecor implements ISimpleBlockRenderingHandler, IItemRenderer 
     public boolean shouldRender3DInInventory() {
         return true;
     }
-    
+
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
         return true;
@@ -88,7 +85,7 @@ public class RenderDecor implements ISimpleBlockRenderingHandler, IItemRenderer 
             return;
         }
     }
-    
+
     private void renderInventory(int meta, double x, double y, double z, double scale) {
         Icon icon = ModBlocks.decor.getIcon(0, meta);
         GL11.glPushMatrix();
@@ -101,18 +98,15 @@ public class RenderDecor implements ISimpleBlockRenderingHandler, IItemRenderer 
         CCRenderState.startDrawing(7);
         RenderUtils.renderBlock(Cuboid6.full, 0, new Translation(x, y, z), new IconTransformation(icon), null);
         CCRenderState.draw();
-        /*RenderUtil.prepareRenderState();
-        int glowColour = 8;
-        switch(meta){
-            case 1: glowColour = 14;
-            case 2: glowColour = 13;
-            case 3: glowColour = 11;
-            default: glowColour = 8;
-        }*/
-        //RenderUtil.renderGlow(Tessellator.instance, Cuboid6.full.expand(0.05D), glowColour, new Translation(x, y, z));
-        //RenderUtil.restoreRenderState();
+        /*
+         * RenderUtil.prepareRenderState(); int glowColour = 8; switch(meta){
+         * case 1: glowColour = 14; case 2: glowColour = 13; case 3: glowColour
+         * = 11; default: glowColour = 8; }
+         */
+        // RenderUtil.renderGlow(Tessellator.instance,
+        // Cuboid6.full.expand(0.05D), glowColour, new Translation(x, y, z));
+        // RenderUtil.restoreRenderState();
         GL11.glPopMatrix();
     }
-
 
 }

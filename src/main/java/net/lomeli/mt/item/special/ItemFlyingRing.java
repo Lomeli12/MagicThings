@@ -7,6 +7,7 @@ import net.lomeli.lomlib.util.ModLoaded;
 
 import net.lomeli.mt.addon.GraviSuiteAddon;
 import net.lomeli.mt.api.item.IChargeable;
+import net.lomeli.mt.core.handler.PacketHandler;
 import net.lomeli.mt.core.helper.RechargeHelper;
 import net.lomeli.mt.item.ItemMT;
 
@@ -59,6 +60,8 @@ public class ItemFlyingRing extends ItemMT implements IChargeable {
                     player.stepHeight = 1F;
                 else
                     player.stepHeight = 0.5F;
+
+                PacketHandler.sendStepPacket(player.username, player.stepHeight);
             } else
                 RechargeHelper.manualRecharge(player, itemStack);
         }
@@ -82,6 +85,7 @@ public class ItemFlyingRing extends ItemMT implements IChargeable {
             if (entity instanceof EntityPlayer && itemStack.getItem() instanceof IChargeable) {
                 EntityPlayer player = (EntityPlayer) entity;
                 if (player.capabilities.isCreativeMode == false) {
+                    boolean canFlyNow = player.capabilities.allowFlying;
                     if (this.canCompleteTask(1, itemStack)) {
                         if (player.capabilities.allowFlying == false)
                             player.capabilities.allowFlying = true;
@@ -96,11 +100,14 @@ public class ItemFlyingRing extends ItemMT implements IChargeable {
                                 player.capabilities.allowFlying = false;
 
                             player.stepHeight = 0.5F;
+                            PacketHandler.sendStepPacket(player.username, player.stepHeight);
 
                             if (player.capabilities.isFlying == true)
                                 player.capabilities.isFlying = false;
                         }
                     }
+                    if (canFlyNow != player.capabilities.allowFlying)
+                        PacketHandler.sendFlyingPlayerPacket(player.username, player.capabilities.allowFlying);
                 }
             }
         }

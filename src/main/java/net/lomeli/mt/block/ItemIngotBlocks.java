@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
 
-public class ItemIngotBlocks extends ItemBlock{
+public class ItemIngotBlocks extends ItemBlock {
 
     public ItemIngotBlocks(int par1) {
         super(par1);

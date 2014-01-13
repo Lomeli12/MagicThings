@@ -18,7 +18,7 @@ public class Addons {
 
         MTRecipeHandlers.infectedWhitelist = new InfectedBlockList();
     }
-    
+
     public static void loadAddons() {
         if (ModLoaded.isModInstalled("Morph"))
             MorphAddon.registerAbilities();

@@ -50,7 +50,7 @@ public class BlockBrightAir extends BlockMT {
     public boolean isAirBlock(World world, int x, int y, int z) {
         return true;
     }
-    
+
     @Override
     public boolean isOpaqueCube() {
         return false;

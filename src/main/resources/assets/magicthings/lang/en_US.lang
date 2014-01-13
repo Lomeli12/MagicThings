@@ -37,6 +37,8 @@ item.magicthings:CondenseBag.1.name=Expanded Bag
 item.magicthings:CavernDisc.name=Music Disc
 item.magicthings:Wrench.name=Stamatic Wrench
 item.magicthings:TankUpgrade.name=Tank Upgrade
+item.magicthings:runningShoes.name=Running Shoes
+item.magicthings:tileCapsule.name=Tile Capsule
 
 # Block Localizations
 # Metadata Blocks
@@ -82,5 +84,8 @@ potion.magicthings:CordycepsDeath=succumbed to Cordyceps Infection.
 subtext.magicthings:wool1="Fire proof and blast resistant,
 subtext.magicthings:wool2=what more could you ask for?"
 subtext.magicthings:toast="BUTTER TOAST!" ~Ed
+
+# Tab Localizations
+tab.magicthings:magmaFurnace=Can smelt down stone and various metals into lava.
 
 mod.magicthings:name=Magic Things

@@ -47,9 +47,7 @@ public class GuiCondenseBag extends GuiContainer {
 
         mc.renderEngine.bindTexture(guiTexture);
 
-        int var5 = (width - xSize) / 2;
-        int var6 = (height - ySize) / 2;
-        this.drawTexturedModalRect(var5, var6, 0, 0, xSize, ySize);
+        this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 
 }

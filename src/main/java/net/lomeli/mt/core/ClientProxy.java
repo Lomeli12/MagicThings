@@ -26,7 +26,7 @@ public class ClientProxy extends CommonProxy {
         TickRegistry.registerTickHandler(new FlyingTickHandler(), Side.CLIENT);
         TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
     }
-    
+
     @Override
     public void registerTileEntites() {
         super.registerTileEntites();
@@ -52,12 +52,12 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerIcons() {
     }
-    
+
     @Override
     public void registerEvents() {
         super.registerEvents();
-        
+
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
-        
+
     }
 }

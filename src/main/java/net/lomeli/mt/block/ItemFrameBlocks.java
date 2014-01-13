@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
 
-public class ItemFrameBlocks extends ItemBlock{
+public class ItemFrameBlocks extends ItemBlock {
 
     public ItemFrameBlocks(int par1) {
         super(par1);

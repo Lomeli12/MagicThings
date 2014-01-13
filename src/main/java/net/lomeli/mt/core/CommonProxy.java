@@ -35,12 +35,12 @@ public class CommonProxy {
 
     public void registerIcons() {
     }
-    
+
     public void registerEvents() {
         MinecraftForge.EVENT_BUS.register(new PlayerItemHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerEntityInteractionHandler());
         MinecraftForge.EVENT_BUS.register(new EntityLivingHandler());
-        
+
         GameRegistry.registerCraftingHandler(new CraftingHandler());
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     }

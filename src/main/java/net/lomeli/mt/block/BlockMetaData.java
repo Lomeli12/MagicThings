@@ -47,6 +47,7 @@ public class BlockMetaData extends BlockMT {
         return par1;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int getRenderBlockPass() {
         return 0;

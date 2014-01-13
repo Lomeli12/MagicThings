@@ -26,7 +26,7 @@ public class BlockDecor extends BlockMT {
         this.setStepSound(soundStoneFootstep);
         this.setUnlocalizedName("decor");
     }
-    
+
     @Override
     public void registerIcons(IconRegister iconRegister) {
         iconArray = new Icon[4];

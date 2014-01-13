@@ -32,7 +32,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISided
 
     public TileEntityMagmaFurnace() {
         inventory = new ItemStack[2];
-        lavaTank = new FluidTank(new FluidStack(FluidRegistry.LAVA, 0), 40000);
+        lavaTank = new FluidTank(new FluidStack(FluidRegistry.LAVA, 0), 16000);
     }
 
     @SideOnly(Side.CLIENT)
@@ -271,7 +271,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISided
             return null;
         return drain(from, resource.amount, doDrain);
     }
-    
+
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
         return lavaTank.drain(maxDrain, doDrain);

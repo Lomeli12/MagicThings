@@ -3,9 +3,12 @@ package net.lomeli.mt.core.handler;
 import java.util.Random;
 
 import net.lomeli.lomlib.entity.EntityUtil;
+import net.lomeli.lomlib.util.ModLoaded;
 
+import net.lomeli.mt.addon.ThaumCraftAddon;
 import net.lomeli.mt.entity.EntityClicker;
 import net.lomeli.mt.item.ModItems;
+import net.lomeli.mt.item.special.ItemRunningShoes;
 import net.lomeli.mt.potion.PotionInfection;
 
 import net.minecraft.entity.EntityLivingData;
@@ -35,6 +38,13 @@ public class EntityLivingHandler {
                     clicker.setAttackTarget(player);
                 }
             }
+        }
+
+        if (event.entityLiving instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.entityLiving;
+            boolean flag = (player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem().getUnlocalizedName()
+                    .equals(ModItems.runningShoes.getUnlocalizedName()));
+            ItemRunningShoes.applyModifier(player, flag);
         }
 
         if (event.entityLiving.isPotionActive(PotionInfection.infect)) {
@@ -74,6 +84,12 @@ public class EntityLivingHandler {
                 }
             }
         }
+    }
+
+    public boolean isThaumcraftInstalled(EntityPlayer player) {
+        if (ModLoaded.isModInstalled("Thaumcraft"))
+            return ThaumCraftAddon.doesPlayerHaveBoTAndEnchant(player);
+        return false;
     }
 
 }

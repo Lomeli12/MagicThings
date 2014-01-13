@@ -36,7 +36,7 @@ public class BlockFancyGlass extends BlockMetaData {
         this.setResistance(500F);
         this.setLightOpacity(0);
     }
-    
+
     @Override
     public int quantityDropped(Random par1Random) {
         return 1;
@@ -80,9 +80,9 @@ public class BlockFancyGlass extends BlockMetaData {
         basicIcon = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":Connected/fancyGlass_corners");
         connectedIcon = new IconConnected(iconRegister, "Connected/fancyGlass", Strings.MOD_ID.toLowerCase());
     }
-    
+
     @Override
-    public boolean canPlaceTorchOnTop(World world, int x, int y, int z){
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
         return true;
     }
 

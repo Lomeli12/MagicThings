@@ -30,9 +30,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.VERSION, dependencies = "required-after:LomLib@[1.0.8,)")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(channels = { Strings.MOD_ID }, clientSideRequired = true, serverSideRequired = false)
 public class MThings {
-    
+
     @Mod.Instance(Strings.MOD_ID)
     public static MThings instance;
 
@@ -60,7 +60,7 @@ public class MThings {
         } catch (Exception e) {
             logger.log(Level.WARNING, "Could not connect to update server!");
         }
-        
+
         PotionInfection.setUp();
 
         ModItems.loadItems();
@@ -68,7 +68,7 @@ public class MThings {
 
         proxy.registerTickHandlers();
         proxy.registerIcons();
-        
+
         Addons.initAddons();
     }
 
@@ -76,9 +76,9 @@ public class MThings {
     public void Init(FMLInitializationEvent event) {
         proxy.registerTileEntites();
         proxy.registerEvents();
-        
+
         GameRegistry.registerWorldGenerator(new WorldMTGen());
-        
+
         ModEntities.loadEntities();
     }
 
