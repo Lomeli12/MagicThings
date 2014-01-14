@@ -10,6 +10,7 @@ import net.lomeli.mt.block.ModBlocks;
 import net.lomeli.mt.core.CommonProxy;
 import net.lomeli.mt.core.Config;
 import net.lomeli.mt.core.CreativeTabMT;
+import net.lomeli.mt.core.handler.PacketHandler;
 import net.lomeli.mt.core.helper.DeofHelper;
 import net.lomeli.mt.core.world.WorldMTGen;
 import net.lomeli.mt.entity.ModEntities;
@@ -30,7 +31,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.VERSION, dependencies = "required-after:LomLib@[1.0.8,)")
-@NetworkMod(channels = { Strings.MOD_ID }, clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(channels = { Strings.MOD_ID }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class MThings {
 
     @Mod.Instance(Strings.MOD_ID)

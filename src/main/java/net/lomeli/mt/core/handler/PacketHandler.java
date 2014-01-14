@@ -7,6 +7,7 @@ import java.io.IOException;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
+import net.lomeli.mt.item.special.ItemRunningShoes;
 import net.lomeli.mt.lib.Strings;
 
 import net.minecraft.client.Minecraft;
@@ -36,9 +37,6 @@ public class PacketHandler implements IPacketHandler {
         case flyingPacket:
             recieveFlyingPlayerPacket(data);
             break;
-        case stepPacket:
-            recieveStepPacket(data);
-            break;
         case speedPacket:
             recieveSpeedPacket(data);
             break;
@@ -47,25 +45,23 @@ public class PacketHandler implements IPacketHandler {
 
     private void recieveSpeedPacket(ByteArrayDataInput data) {
         if (Minecraft.getMinecraft().theWorld.playerEntities.size() > 0) {
-            EntityPlayer player = null;
             for (int i = 0; i < Minecraft.getMinecraft().theWorld.playerEntities.size(); i++) {
                 EntityPlayer tempPlayer = (EntityPlayer) Minecraft.getMinecraft().theWorld.playerEntities.get(i);
-                if (tempPlayer.username.equalsIgnoreCase(data.readUTF()))
-                    player = tempPlayer;
+                if (tempPlayer.username.equalsIgnoreCase(data.readUTF())) {
+                    ItemRunningShoes.applyModifier(tempPlayer, data.readBoolean());
+                }
             }
-            if (player != null)
-                player.capabilities.setPlayerWalkSpeed(data.readFloat());
         }
     }
 
-    public static void sendSpeedPacket(String player, float speed) {
+    public static void sendSpeedPacket(String player, boolean speed) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
             Packet250CustomPayload packet = new Packet250CustomPayload();
             dos.writeByte(stepPacket);
             dos.writeUTF(player);
-            dos.writeFloat(speed);
+            dos.writeBoolean(speed);
             dos.close();
             packet.channel = Strings.MOD_ID;
             packet.data = baos.toByteArray();
@@ -76,13 +72,16 @@ public class PacketHandler implements IPacketHandler {
         }
     }
 
+    // This one is incredibly broken.
     private void recieveStepPacket(ByteArrayDataInput data) {
         if (Minecraft.getMinecraft().theWorld.playerEntities.size() > 0) {
             EntityPlayer player = null;
             for (int i = 0; i < Minecraft.getMinecraft().theWorld.playerEntities.size(); i++) {
                 EntityPlayer tempPlayer = (EntityPlayer) Minecraft.getMinecraft().theWorld.playerEntities.get(i);
-                if (tempPlayer.username.equalsIgnoreCase(data.readUTF()))
+                if (tempPlayer.username.equalsIgnoreCase(data.readUTF())) {
                     player = tempPlayer;
+                    break;
+                }
             }
             if (player != null)
                 player.stepHeight = data.readFloat();

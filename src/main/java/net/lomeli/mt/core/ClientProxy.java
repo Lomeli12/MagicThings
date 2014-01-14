@@ -2,7 +2,7 @@ package net.lomeli.mt.core;
 
 import net.lomeli.mt.client.render.RenderStamaticGlass;
 import net.lomeli.mt.client.render.RenderTank;
-import net.lomeli.mt.core.handler.FlyingTickHandler;
+import net.lomeli.mt.core.handler.ItemTickHandler;
 import net.lomeli.mt.core.handler.SoundHandler;
 import net.lomeli.mt.core.handler.VersionCheckTickHandler;
 import net.lomeli.mt.entity.EntityClicker;
@@ -23,7 +23,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerTickHandlers() {
-        TickRegistry.registerTickHandler(new FlyingTickHandler(), Side.CLIENT);
+        TickRegistry.registerTickHandler(new ItemTickHandler(), Side.CLIENT);
         TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
     }
 

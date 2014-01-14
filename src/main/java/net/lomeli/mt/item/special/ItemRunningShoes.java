@@ -25,7 +25,7 @@ public class ItemRunningShoes extends ItemArmor {
     public static AttributeModifier speedBoost = (new AttributeModifier(speedID, "Running Shoe Speed boost", 0.2, 2));
 
     public ItemRunningShoes(int par1) {
-        super(par1, EnumHelper.addArmorMaterial(Strings.MOD_ID.toLowerCase() + ":runnningShoes", -1, new int[] { 0, 0, 0, 0 }, 0), 0, 3);
+        super(par1, EnumHelper.addArmorMaterial(Strings.MOD_ID.toLowerCase() + ":runningShoes", -1, new int[] { 0, 0, 0, 0 }, 0), 0, 3);
         this.setCreativeTab(MThings.modtab);
         this.setUnlocalizedName(Strings.MOD_ID.toLowerCase() + ":runningShoes");
     }
@@ -49,7 +49,7 @@ public class ItemRunningShoes extends ItemArmor {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
-        return (Strings.MOD_ID.toLowerCase() + ":textures/model/runningShoes.png");
+        return (Strings.MOD_ID.toLowerCase() + ":textures/models/runningShoes.png");
     }
 
     public static void applyModifier(EntityLivingBase entity, boolean par1) {

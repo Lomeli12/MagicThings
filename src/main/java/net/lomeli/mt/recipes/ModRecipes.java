@@ -16,6 +16,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModRecipes {
+
     public static void loadRecipes() {
         itemRecipes();
         blockRecipes();
@@ -36,8 +37,8 @@ public class ModRecipes {
         addRecipe(new ItemStack(ModItems.material, 2, 2), true, "ARA", "RNR", "ADA", 'A', ModItems.materialArray[1], 'R', Block.blockRedstone, 'N', Item.diamond, 'D', "neoGem");
         addRecipe(ModItems.flyingRing, true, "EQF", "QIP", "FPQ", 'F', Item.feather, 'Q', ModItems.materialArray[2], 'E', Item.emerald, 'P', Item.eyeOfEnder, 'I',
                 ModItems.itemArray[1]);
-        addRecipe(new ItemStack(ModItems.wrench), true, "I I", "IMI", " I ", 'I', "ingotStamatic", 'M', ModItems.materialArray[0]);
-
+        addRecipe(new ItemStack(ModItems.wrench, 1, 0), true, "I I", "IMI", " I ", 'I', "ingotStamatic", 'M', ModItems.materialArray[0]);
+        addRecipe(new ItemStack(ModItems.wrench, 1, 1), true, "  I", " S ", "B  ", 'I', Item.ingotIron, 'S', ModItems.itemArray[0], 'B', ModItems.ingotArray[4]);
         addRecipe(ModItems.conBag, true, "S S", "IGI", "WIW", 'S', Item.silk, 'I', "ingotStamatic", 'G', Item.ingotGold, 'W', ModBlocks.treatedWool);
         addRecipe(ModItems.exBag, true, "ANA", "IBI", "SNS", 'S', "ingotStamatic", 'A', "ingotIgnious", 'N', "neoGem", 'I', Item.ingotIron, 'B', ModItems.conBag);
         addRecipe(ModItems.tankUpgrade, true, " I ", "IAI", " I ", 'I', Item.ingotIron, 'A', "ingotAqua");

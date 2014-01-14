@@ -4,9 +4,12 @@ import java.util.EnumSet;
 
 import net.lomeli.lomlib.util.ModLoaded;
 
+import net.minecraft.entity.player.EntityPlayer;
+
 import net.lomeli.mt.addon.GraviSuiteAddon;
 import net.lomeli.mt.addon.MorphAddon;
 import net.lomeli.mt.item.ModItems;
+import net.lomeli.mt.item.special.ItemRunningShoes;
 import net.lomeli.mt.lib.Strings;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -16,7 +19,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FlyingTickHandler implements ITickHandler {
+public class ItemTickHandler implements ITickHandler {
 
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
@@ -26,19 +29,23 @@ public class FlyingTickHandler implements ITickHandler {
     public void tickEnd(EnumSet<TickType> type, Object... tickData) {
         for (TickType tickType : type) {
             if (tickType == TickType.PLAYER) {
-                if (!FMLClientHandler.instance().getClient().thePlayer.inventory.hasItem(ModItems.flyingRing.itemID)) {
-                    if (!FMLClientHandler.instance().getClient().thePlayer.capabilities.isCreativeMode) {
+                EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
+                if (!player.inventory.hasItem(ModItems.flyingRing.itemID)) {
+                    if (!player.capabilities.isCreativeMode) {
                         if (ModLoaded.isModInstalled("Morph")) {
-                            MorphAddon.flying(FMLClientHandler.instance().getClient().thePlayer);
+                            MorphAddon.flying(player);
                         } else if (ModLoaded.isModInstalled("GraviSuite")) {
-                            GraviSuiteAddon.flying(FMLClientHandler.instance().getClient().thePlayer);
+                            GraviSuiteAddon.flying(player);
                         } else {
-                            FMLClientHandler.instance().getClient().thePlayer.capabilities.isFlying = false;
-                            FMLClientHandler.instance().getClient().thePlayer.capabilities.allowFlying = false;
-                            FMLClientHandler.instance().getClient().thePlayer.stepHeight = 0.5F;
+                            player.capabilities.isFlying = false;
+                            player.capabilities.allowFlying = false;
+                            player.stepHeight = 0.5F;
                         }
                     }
                 }
+                boolean flag = (player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem().getUnlocalizedName()
+                        .equals(ModItems.runningShoes.getUnlocalizedName()));
+                ItemRunningShoes.applyModifier(player, flag);
             }
         }
     }

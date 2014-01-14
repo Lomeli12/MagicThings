@@ -11,11 +11,13 @@ import net.lomeli.mt.item.ModItems;
 import net.lomeli.mt.item.special.ItemRunningShoes;
 import net.lomeli.mt.potion.PotionInfection;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
@@ -84,6 +86,12 @@ public class EntityLivingHandler {
                 }
             }
         }
+    }
+    
+    @ForgeSubscribe
+    public void onEntityJoinWorld(EntityJoinWorldEvent event){
+        if(event.entity instanceof EntityPlayer)
+            ItemRunningShoes.applyModifier((EntityLivingBase) event.entity, false);
     }
 
     public boolean isThaumcraftInstalled(EntityPlayer player) {

@@ -24,6 +24,8 @@ item.magicthings:Dusts.5.name=Crushed Ignious Ore
 item.magicthings:Dusts.6.name=Stamatic Dust
 item.magicthings:Dusts.7.name=Aquatic Dust
 item.magicthings:Dusts.8.name=Ignious Dust
+item.magicthings:Wrench.0.name=Stamatic Wrench
+item.magicthings:Wrench.1.name=Screwdriver
 # The rest
 item.magicthings:FlyingRing.name=Flying Ring
 item.magicthings:MedKits.name=Med Kit
@@ -35,7 +37,6 @@ item.magicthings:FluidReader.name=Fluid Scanner
 item.magicthings:CondenseBag.0.name=Condense Bag
 item.magicthings:CondenseBag.1.name=Expanded Bag
 item.magicthings:CavernDisc.name=Music Disc
-item.magicthings:Wrench.name=Stamatic Wrench
 item.magicthings:TankUpgrade.name=Tank Upgrade
 item.magicthings:runningShoes.name=Running Shoes
 item.magicthings:tileCapsule.name=Tile Capsule
