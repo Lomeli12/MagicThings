@@ -4,9 +4,12 @@ import net.lomeli.mt.block.BlockMT;
 import net.lomeli.mt.lib.Strings;
 import net.lomeli.mt.tile.TileEntityAquaticManipulator;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -20,6 +23,23 @@ public class BlockAquaticManipulator extends BlockMT implements ITileEntityProvi
         this.setHardness(0.5F);
         this.setResistance(20F);
         this.setStepSound(soundMetalFootstep);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
+        if (!world.isRemote) {
+            TileEntityAquaticManipulator tile = (TileEntityAquaticManipulator) world.getBlockTileEntity(x, y, z);
+            if (tile != null && player != null) {
+                ItemStack current = player.getCurrentEquippedItem();
+                if (!player.isSneaking()) {
+                    if(current != null && current.getUnlocalizedName().equals(Block.lever.getUnlocalizedName())){
+                        tile.flipRedstoneSettings();
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override

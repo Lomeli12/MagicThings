@@ -183,11 +183,15 @@ public class ItemWrench extends ItemMT implements IToolWrench {
                     }
                 }
             } else {
-                if (block.blockMaterial.equals(Material.glass)) {
-                    ItemStack itemBlock = new ItemStack(id, 1, meta);
-                    EntityItem item = new EntityItem(world, x, y, z, itemBlock);
-                    world.spawnEntityInWorld(item);
-                    world.setBlockToAir(x, y, z);
+                try {
+                    if (block.blockMaterial.equals(Material.glass) && !Class.forName("net.lomeli.cb.tile.ICrystal").isInstance(tile)) {
+                        ItemStack itemBlock = new ItemStack(id, 1, meta);
+                        EntityItem item = new EntityItem(world, x, y, z, itemBlock);
+                        world.spawnEntityInWorld(item);
+                        world.setBlockToAir(x, y, z);
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
 
                 if (block instanceof BlockDoor) {

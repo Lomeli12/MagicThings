@@ -6,7 +6,6 @@ import net.lomeli.lomlib.item.ItemUtil;
 
 import net.lomeli.mt.MThings;
 import net.lomeli.mt.block.BlockMT;
-import net.lomeli.mt.item.ModItems;
 import net.lomeli.mt.lib.Strings;
 import net.lomeli.mt.tile.TileEntityCompactCobGen;
 
@@ -33,19 +32,13 @@ import net.minecraftforge.fluids.FluidStack;
 public class BlockCobbleGen extends BlockMT implements ITileEntityProvider {
 
     private Icon[] iconArray;
-    public boolean isActive;
 
     public BlockCobbleGen(int id) {
-        super(id, Material.glass, "cobGen/cobGen_");
+        super(id, Material.iron, "cobGen/cobGen_");
         this.setHardness(0.5F);
         this.setResistance(20F);
-        this.setStepSound(soundGlassFootstep);
+        this.setStepSound(soundMetalFootstep);
         this.setCreativeTab(MThings.modtab);
-        this.isActive = false;
-    }
-
-    public void setActive(boolean bool) {
-        this.isActive = bool;
     }
 
     @Override
@@ -58,52 +51,53 @@ public class BlockCobbleGen extends BlockMT implements ITileEntityProvider {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        if (meta > 5) {
-            int trueMeta = meta / 2;
-            if (side == trueMeta)
-                return iconArray[4];
-        }
-        if (side == meta)
-            return iconArray[3];
-        if (side == 0)
-            return iconArray[2];
+        int active = meta & 0b0011;
         if (side == 1)
-            return iconArray[1];
-        return iconArray[0];
+            return iconArray[4];
+        else if (side == 0)
+            return iconArray[3];
+        else {
+            side -= 2;
+            int frontSide = (meta & 0b1100) >> 2;
+            if (frontSide == side)
+                return iconArray[active];
+        }
+        return iconArray[2];
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
         if (!world.isRemote) {
             TileEntityCompactCobGen tile = (TileEntityCompactCobGen) world.getBlockTileEntity(x, y, z);
-            if (tile == null)
-                return false;
-            if (player != null) {
-                ItemStack current = player.inventory.getCurrentItem();
-                if (!player.isSneaking()) {
-                    if (current != null) {
-                        if (current.itemID == ModItems.liquidReader.itemID) {
-
-                        } else if (current.itemID == Item.bucketEmpty.itemID)
-                            tile.produceObsidian(player);
-                        else if (current.itemID == Item.stick.itemID)
-                            tile.giveCobble(player, 1);
-                        else {
-                            FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(current);
-                            if (liquid != null) {
-                                if (liquid.getFluid().equals(FluidRegistry.LAVA) || liquid.getFluid().equals(FluidRegistry.WATER)) {
-                                    int qty = tile.fill(null, liquid, true);
-                                    if (qty != 0 && !player.capabilities.isCreativeMode) {
-                                        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemUtil.consumeItem(current));
+            if (tile != null) {
+                if (player != null) {
+                    ItemStack current = player.inventory.getCurrentItem();
+                    if (!player.isSneaking()) {
+                        if (current != null) {
+                            if (current.getUnlocalizedName().equals(Block.lever.getUnlocalizedName()))
+                                tile.flipRedstoneSettings();
+                            else if (current.getUnlocalizedName().equals(Item.bucketEmpty.getUnlocalizedName()))
+                                tile.produceObsidian(player);
+                            else if (current.getUnlocalizedName().equals(Item.stick.getUnlocalizedName()))
+                                tile.giveCobble(player, 1);
+                            else {
+                                FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(current);
+                                if (liquid != null) {
+                                    if (liquid.getFluid().equals(FluidRegistry.LAVA) || liquid.getFluid().equals(FluidRegistry.WATER)) {
+                                        int qty = tile.fill(null, liquid, true);
+                                        if (qty != 0 && !player.capabilities.isCreativeMode)
+                                            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemUtil.consumeItem(current));
                                     }
-                                }
+                                } else
+                                    return false;
                             }
-                        }
-                    } else
-                        tile.giveCobble(player, 64);
-                } else {
-                    tile.produceStone(player);
-                    return true;
+                        } else
+                            tile.giveCobble(player, 64);
+                        return true;
+                    } else {
+                        tile.produceStone(player);
+                        return true;
+                    }
                 }
             }
         }
@@ -141,7 +135,10 @@ public class BlockCobbleGen extends BlockMT implements ITileEntityProvider {
             if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1])
                 b0 = 4;
 
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
+            int meta = par1World.getBlockMetadata(par2, par3, par4);
+            meta &= ~0b1100;
+            meta |= (b0 - 2) << 2;
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 2);
         }
     }
 
@@ -149,17 +146,21 @@ public class BlockCobbleGen extends BlockMT implements ITileEntityProvider {
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
         int l = MathHelper.floor_double(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
+        meta &= ~0b1100;
         if (l == 0)
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+            meta |= (2 - 2) << 2;
 
         if (l == 1)
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+            meta |= (5 - 2) << 2;
 
         if (l == 2)
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+            meta |= (3 - 2) << 2;
 
         if (l == 3)
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
+            meta |= (4 - 2) << 2;
+
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 2);
     }
 
     @Override

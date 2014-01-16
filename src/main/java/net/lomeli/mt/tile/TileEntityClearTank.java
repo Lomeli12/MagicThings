@@ -1,7 +1,5 @@
 package net.lomeli.mt.tile;
 
-import net.lomeli.lomlib.util.FluidUtil;
-
 import net.lomeli.mt.api.tile.IMTTile;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,8 +23,6 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
         tank = new FluidTank(32000);
     }
 
-    private int tick;
-
     public void updateRender() {
         int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
         if (worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == id) {
@@ -49,43 +45,26 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
     public void updateEntity() {
         if (!worldObj.isRemote) {
             updateRender();
-            tick++;
-            if (tick > 20) {
-                if (worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == worldObj.getBlockId(xCoord, yCoord, zCoord))
-                    this.pullLiquid();
-
-                tick = 0;
-            }
+            pullLiquid();
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
         }
     }
 
     public void pullLiquid() {
-        TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
-        if (tile != null && tile instanceof IFluidHandler) {
-            if (((IFluidHandler) tile).canDrain(ForgeDirection.DOWN, null)) {
-                FluidStack fluid = ((IFluidHandler) tile).drain(ForgeDirection.DOWN, 1000, true);
-                if (fluid != null) {
-                    if (tank.getFluid() != null) {
-                        if (tank.getFluidAmount() < tank.getCapacity() && fluid.isFluidEqual(tank.getFluid())) {
-                            tank.fill(fluid, true);
-                        } else {
-                            ((IFluidHandler) tile).fill(ForgeDirection.UP, fluid, true);
-                        }
-                    } else {
-                        tank.fill(fluid, true);
-                    }
+        TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
+        if (tile != null && tile instanceof TileEntityClearTank) {
+            TileEntityClearTank clearTank = (TileEntityClearTank) tile;
+            if (clearTank.getTankInfo(null)[0] != null && clearTank.getTankInfo(null)[0].fluid != null) {
+                if (clearTank.getTankInfo(null)[0].fluid.amount < 32000) {
+                    clearTank.fill(null, tank.drain(tank.getFluidAmount(), true), true);
                 }
             }
-            if (tile instanceof TileEntityClearTank)
-                ((TileEntityClearTank) tile).updateRender();
         }
-
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
-        worldObj.markBlockForUpdate(xCoord, yCoord + 1, zCoord);
-        worldObj.markBlockForRenderUpdate(xCoord, yCoord + 1, zCoord);
+        worldObj.markBlockForUpdate(xCoord, yCoord - 1, zCoord);
+        worldObj.markBlockForRenderUpdate(xCoord, yCoord - 1, zCoord);
     }
 
     @Override
@@ -125,35 +104,12 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        if (resource != null) {
-            if (tank.getFluid() != null) {
-                if (FluidUtil.areFluidsEqual(tank.getFluid(), resource)) {
-                    if (tank.getFluidAmount() < tank.getCapacity()) {
-                        tank.fill(resource, true);
-                        return resource.amount;
-                    } else {
-                        if (worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == worldObj.getBlockId(xCoord, yCoord, zCoord)) {
-                            TileEntityClearTank tile = (TileEntityClearTank) worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
-                            if (tile != null && tile.canFill(null, resource.getFluid())) {
-                                tile.fill(null, resource, true);
-                                return resource.amount;
-                            }
-                        }
-                    }
-                }
-            } else {
-                tank.fill(resource, true);
-                return resource.amount;
-            }
-        }
-        return 0;
+        return tank.fill(resource, doFill);
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (resource == null)
-            return null;
-        if (!resource.isFluidEqual(tank.getFluid()))
+        if (resource == null || !resource.isFluidEqual(tank.getFluid()))
             return null;
         return drain(from, resource.amount, doDrain);
     }

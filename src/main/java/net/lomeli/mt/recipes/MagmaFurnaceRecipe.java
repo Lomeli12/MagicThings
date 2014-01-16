@@ -17,7 +17,7 @@ public class MagmaFurnaceRecipe implements IMagmaFurnaceRecipes {
 
     public MagmaFurnaceRecipe() {
         for (int i = 0; i < OreDictionary.getOres("stone").size(); i++) {
-            addSmelting(OreDictionary.getOres("stone").get(i), 10);
+            addSmelting(OreDictionary.getOres("stone").get(i), 5);
         }
         for (int i = 0; i < OreDictionary.getOres("cobblestone").size(); i++) {
             addSmelting(OreDictionary.getOres("cobblestone").get(i), 8);
@@ -26,10 +26,10 @@ public class MagmaFurnaceRecipe implements IMagmaFurnaceRecipes {
         addSmelting(Block.obsidian.blockID, 25);
         addSmelting(Item.ingotIron.itemID, 15);
         addSmelting(Item.ingotGold.itemID, 16);
-        addSmelting(Item.diamond.itemID, 20);
+        addSmelting(Item.diamond.itemID, 40);
         addSmelting(Block.blockIron.blockID, 140);
         addSmelting(Block.blockGold.blockID, 145);
-        addSmelting(Block.blockDiamond.blockID, 185);
+        addSmelting(Block.blockDiamond.blockID, 385);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package net.lomeli.mt.entity.render;
+package net.lomeli.mt.client.render;
 
 import net.lomeli.lomlib.client.ResourceUtil;
 

@@ -1,8 +1,9 @@
 package net.lomeli.mt.tile;
 
+import net.lomeli.lomlib.block.BlockUtil;
+
 import net.lomeli.mt.api.tile.IMTTile;
 
-import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -21,9 +22,18 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
 
     private FluidTank water;
     private int rate;
+    private boolean redstone;
 
     public TileEntityAquaticManipulator() {
         water = new FluidTank(40000);
+    }
+
+    public void flipRedstoneSettings() {
+        redstone = !redstone;
+    }
+
+    public boolean respondsToRedStone() {
+        return redstone ? !worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) : true;
     }
 
     protected int tick;
@@ -34,12 +44,15 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
             tick++;
             if (tick > 8) {
                 if (hasTwoSources()) {
-                    worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 2);
-                    if (requiresMoreWater() && !worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
-                        water.fill(new FluidStack(FluidRegistry.WATER, (1000 * rate)), true);
-                    }
+                    if (respondsToRedStone()) {
+                        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 2);
+                        if (requiresMoreWater())
+                            water.fill(new FluidStack(FluidRegistry.WATER, (1000 * rate)), true);
+                    } else
+                        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
                 } else
                     worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
+                
                 outputWater();
                 tick = 0;
 
@@ -77,22 +90,7 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
     }
 
     public boolean hasTwoSources() {
-        int i = 0;
-        if (this.worldObj.getBlockId(this.xCoord + 1, this.yCoord, this.zCoord) == Block.waterStill.blockID
-                && this.worldObj.getBlockId(this.xCoord + 1, this.yCoord, this.zCoord) != Block.waterMoving.blockID)
-            i++;
-        if (this.worldObj.getBlockId(this.xCoord - 1, this.yCoord, this.zCoord) == Block.waterStill.blockID
-                && this.worldObj.getBlockId(this.xCoord - 1, this.yCoord, this.zCoord) != Block.waterMoving.blockID)
-            i++;
-        if (this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord + 1) == Block.waterStill.blockID
-                && this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord + 1) != Block.waterMoving.blockID)
-            i++;
-        if (this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord - 1) == Block.waterStill.blockID
-                && this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord - 1) != Block.waterMoving.blockID)
-            i++;
-
-        rate = i / 2;
-        return i > 1;
+        return BlockUtil.isBlockAdjacentToWaterSource(worldObj, xCoord, yCoord, zCoord) > 1;
     }
 
     @Override
@@ -103,6 +101,7 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
 
     public void readNBT(NBTTagCompound data) {
         water.readFromNBT(data);
+        redstone = data.getBoolean("redStone");
     }
 
     @Override
@@ -113,6 +112,7 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
 
     public void writeNBT(NBTTagCompound data) {
         water.writeToNBT(data);
+        data.setBoolean("redStone", redstone);
     }
 
     @Override

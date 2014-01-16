@@ -30,13 +30,23 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
     private FluidTank water;
     private ItemStack[] inventory;
     private int updateTicks;
+    private boolean active, redstone;
 
     public TileEntityCompactCobGen() {
         lava = new FluidTank(40000);
         water = new FluidTank(40000);
         inventory = new ItemStack[2];
+        redstone = true;
     }
 
+    public void flipRedstoneSettings() {
+        redstone = !redstone;
+    }
+
+    public boolean respondsToRedStone() {
+        return redstone ? !worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) : true;
+    }
+    
     public void genCobble() {
         if (inventory[0] == null)
             inventory[0] = new ItemStack(Block.cobblestone, 1);
@@ -47,23 +57,32 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
     @Override
     public void updateEntity() {
         if (!this.worldObj.isRemote) {
-            int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
             if (lava.getFluidAmount() >= 1000 && water.getFluidAmount() >= 1000) {
-                if (meta <= 5)
-                    worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, (meta * 2), 2);
-                if (!worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
+                if (respondsToRedStone()) {
+                    active = true;
                     updateTicks++;
                     if (updateTicks > this.getProductionSpeed()) {
                         genCobble();
                         updateTicks = 0;
                     }
-                }
+                } else
+                    active = false;
             } else {
-                if (meta > 5)
-                    worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, (meta / 2), 2);
+                active = false;
             }
+            updateMeta();
             injectItems();
         }
+    }
+
+    public void updateMeta() {
+        int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        meta &= ~0b0011;
+        if (active)
+            meta |= 1;
+        else
+            meta |= 0;
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, meta, 2);
     }
 
     public int getProductionSpeed() {
@@ -106,6 +125,7 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
                                 newStack.stackSize += stack.stackSize;
                             ((ISidedInventory) tile).setInventorySlotContents(i, newStack);
                             this.setInventorySlotContents(0, null);
+                            worldObj.markBlockForRenderUpdate(xCoord, yCoord - 1, zCoord);
                             return;
                         }
                     }
@@ -168,6 +188,7 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
             if (slot >= 0 && slot < inventory.length)
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
         }
+        redstone = data.getBoolean("redStone");
     }
 
     @Override
@@ -190,6 +211,7 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
             }
         }
         data.setTag("Inventory", tagList);
+        data.setBoolean("redStone", redstone);
     }
 
     @Override
@@ -209,17 +231,10 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        if (FluidUtil.isFluidWater(resource)) {
-            if (water.getFluidAmount() < water.getCapacity()) {
-                water.fill(resource, true);
-                return resource.amount;
-            }
-        } else if (FluidUtil.isFluidLava(resource)) {
-            if (lava.getFluidAmount() < lava.getCapacity()) {
-                lava.fill(resource, true);
-                return resource.amount;
-            }
-        }
+        if (FluidUtil.isFluidWater(resource))
+            return water.fill(resource, true);
+        else if (FluidUtil.isFluidLava(resource))
+            return lava.fill(resource, true);
         return 0;
     }
 
@@ -241,14 +256,7 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
 
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
-        if (FluidUtil.isFluidLava(fluid)) {
-            if (lava.getFluidAmount() < lava.getCapacity())
-                return true;
-        } else if (FluidUtil.isFluidLava(fluid)) {
-            if (water.getFluidAmount() < water.getCapacity())
-                return true;
-        }
-        return false;
+        return FluidUtil.isFluidLava(fluid) || FluidUtil.isFluidLava(fluid);
     }
 
     @Override
@@ -300,12 +308,12 @@ public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler
 
     @Override
     public String getInvName() {
-        return null;
+        return "tile.magicthings:CobGen.name";
     }
 
     @Override
     public boolean isInvNameLocalized() {
-        return false;
+        return true;
     }
 
     @Override

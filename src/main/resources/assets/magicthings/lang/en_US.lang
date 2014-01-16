@@ -60,10 +60,10 @@ tile.magicthings:fancyGlass.0=Stamatic Glass
 tile.magicthings:fancyGlass.1=Shimmering Stamatic Glass
 # The rest
 tile.magicthings:InfectedBlock.name=Infected Block
-tile.magicthings:CobGen.name=Compact CobbleGen [Need Textures]
+tile.magicthings:CobGen.name=Compact CobbleGen
 tile.magicthings:FertileBush.name=Fertile Bush
 tile.magicthings:MagicSand.name=Magic Sand
-tile.magicthings:AquaticManipulator.name=AquaticManipulator
+tile.magicthings:AquaticManipulator.name=Aquatic Manipulator
 tile.magicthings:ClearTank.name=Clear Tank
 tile.magicthings:MagmaFurnace.name=Magma Furnace [Need Textures]
 tile.magicthings:fancyGlass.name=Stamatic Glass

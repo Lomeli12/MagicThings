@@ -2,6 +2,7 @@ package net.lomeli.mt.tile;
 
 import net.lomeli.mt.api.recipes.MTRecipeHandlers;
 import net.lomeli.mt.api.tile.ITanks;
+import net.lomeli.mt.lib.GuiInfo;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -196,12 +197,12 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISided
 
     @Override
     public String getInvName() {
-        return null;
+        return GuiInfo.magmaFurnaceTile;
     }
 
     @Override
     public boolean isInvNameLocalized() {
-        return false;
+        return true;
     }
 
     @Override
@@ -265,9 +266,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISided
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (resource == null)
-            return null;
-        if (!resource.isFluidEqual(lavaTank.getFluid()))
+        if (resource == null || !resource.isFluidEqual(lavaTank.getFluid()))
             return null;
         return drain(from, resource.amount, doDrain);
     }

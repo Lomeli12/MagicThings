@@ -61,7 +61,7 @@ public class ItemFlyingRing extends ItemMT implements IChargeable {
                 else
                     player.stepHeight = 0.5F;
 
-                PacketHandler.sendStepPacket(player.username, player.stepHeight);
+                //PacketHandler.sendStepPacket(player.username, player.stepHeight);
             } else
                 RechargeHelper.manualRecharge(player, itemStack);
         }
@@ -100,7 +100,7 @@ public class ItemFlyingRing extends ItemMT implements IChargeable {
                                 player.capabilities.allowFlying = false;
 
                             player.stepHeight = 0.5F;
-                            PacketHandler.sendStepPacket(player.username, player.stepHeight);
+                            //PacketHandler.sendStepPacket(player.username, player.stepHeight);
 
                             if (player.capabilities.isFlying == true)
                                 player.capabilities.isFlying = false;

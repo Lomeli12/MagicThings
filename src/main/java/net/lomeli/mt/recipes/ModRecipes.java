@@ -42,7 +42,7 @@ public class ModRecipes {
         addRecipe(ModItems.conBag, true, "S S", "IGI", "WIW", 'S', Item.silk, 'I', "ingotStamatic", 'G', Item.ingotGold, 'W', ModBlocks.treatedWool);
         addRecipe(ModItems.exBag, true, "ANA", "IBI", "SNS", 'S', "ingotStamatic", 'A', "ingotIgnious", 'N', "neoGem", 'I', Item.ingotIron, 'B', ModItems.conBag);
         addRecipe(ModItems.tankUpgrade, true, " I ", "IAI", " I ", 'I', Item.ingotIron, 'A', "ingotAqua");
-
+        addRecipe(ModItems.tileCapsule, true, " S ", "IEI", "IRI", 'S', "ingotStamatic", 'I', Item.ingotIron, 'E', Item.eyeOfEnder, 'R', ModItems.itemArray[1]);
         addRecipe(ModItems.liquidReader, true, " IS", "IBI", "AI ", 'S', ModItems.itemArray[0], 'I', Item.ingotIron, 'B', Block.woodenButton, 'A', "ingotAqua");
 
         furnaceItems();

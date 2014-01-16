@@ -6,7 +6,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.lomeli.mt.inventory.ContainerCondenseBag;
 import net.lomeli.mt.inventory.InventoryCondenseBag;
-import net.lomeli.mt.lib.Gui;
+import net.lomeli.mt.lib.GuiInfo;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -34,9 +34,9 @@ public class GuiCondenseBag extends GuiContainer {
 
     public ResourceLocation getTextures() {
         if (itemStack.getItemDamage() != 0)
-            return Gui.LARGE_SACK;
+            return GuiInfo.LARGE_SACK;
         else
-            return Gui.SMALL_SACK;
+            return GuiInfo.SMALL_SACK;
     }
 
     @Override

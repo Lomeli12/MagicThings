@@ -10,7 +10,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
 
 import net.lomeli.mt.item.ItemMT;
@@ -33,7 +32,7 @@ public class ItemTileCapsule extends ItemMT {
         int meta = world.getBlockMetadata(x, y, z);
         if (!world.isRemote) {
             if (stack.getItemDamage() == 0) {
-                if (tile != null && !(tile instanceof TileEntityMobSpawner)) {
+                if (tile != null) {
                     player.closeScreen();
                     player.swingItem();
                     if (stack.getTagCompound() == null)

@@ -2,9 +2,7 @@ package net.lomeli.mt.block.func;
 
 import java.util.Random;
 
-import net.lomeli.mt.MThings;
 import net.lomeli.mt.block.BlockMT;
-import net.lomeli.mt.tile.TileEntityMagmaFurnace;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -16,29 +14,25 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMagmaFurnace extends BlockMT implements ITileEntityProvider {
+public class BlockNurse extends BlockMT implements ITileEntityProvider {
 
-    public BlockMagmaFurnace(int id) {
-        super(id, Material.rock, "magmaFurnace/magmaFurnace_");
-        this.setHardness(3.0F);
-        this.setResistance(5.0F);
+    public BlockNurse(int id) {
+        super(id, Material.ground, "nurse");
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
         if (!player.isSneaking()) {
             if (!world.isRemote) {
-                TileEntityMagmaFurnace tile = (TileEntityMagmaFurnace) world.getBlockTileEntity(x, y, z);
-                if (tile != null)
-                    player.openGui(MThings.instance, 99, world, x, y, z);
+
             }
         }
-        return true;
+        return false;
     }
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityMagmaFurnace();
+        return null;
     }
 
     @Override
@@ -87,4 +81,5 @@ public class BlockMagmaFurnace extends BlockMT implements ITileEntityProvider {
             }
         }
     }
+
 }

@@ -73,7 +73,7 @@ public class PacketHandler implements IPacketHandler {
     }
 
     // This one is incredibly broken.
-    private void recieveStepPacket(ByteArrayDataInput data) {
+    /*private void recieveStepPacket(ByteArrayDataInput data) {
         if (Minecraft.getMinecraft().theWorld.playerEntities.size() > 0) {
             EntityPlayer player = null;
             for (int i = 0; i < Minecraft.getMinecraft().theWorld.playerEntities.size(); i++) {
@@ -105,7 +105,7 @@ public class PacketHandler implements IPacketHandler {
             PacketDispatcher.sendPacketToServer(packet);
         } catch (IOException e) {
         }
-    }
+    }*/
 
     private void recieveFlyingPlayerPacket(ByteArrayDataInput data) {
         if (Minecraft.getMinecraft().theWorld.playerEntities.size() > 0) {

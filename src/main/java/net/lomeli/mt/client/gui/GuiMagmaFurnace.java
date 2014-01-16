@@ -6,7 +6,7 @@ import net.lomeli.lomlib.client.gui.tab.TabInfo;
 
 import net.lomeli.mt.inventory.ContainerMagmaFurnace;
 import net.lomeli.mt.lib.BlockInfo;
-import net.lomeli.mt.lib.Gui;
+import net.lomeli.mt.lib.GuiInfo;
 import net.lomeli.mt.tile.TileEntityMagmaFurnace;
 
 import net.minecraft.client.resources.I18n;
@@ -24,7 +24,7 @@ public class GuiMagmaFurnace extends GuiContainerPlus {
     public GuiMagmaFurnace(InventoryPlayer inventoryPlayer, TileEntityMagmaFurnace tile) {
         super(new ContainerMagmaFurnace(inventoryPlayer, tile));
         this.furnace = tile;
-        this.texture = Gui.MAGMA_FURNACE;
+        this.texture = GuiInfo.MAGMA_FURNACE;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class GuiMagmaFurnace extends GuiContainerPlus {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        String s = StatCollector.translateToLocal(Gui.magmaFurnaceTile);
+        String s = StatCollector.translateToLocal(furnace.getInvName());
         this.fontRenderer.drawString(s, (this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2) - 40, 6, 4210752);
         this.fontRenderer.drawString(I18n.getString("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
         super.drawGuiContainerForegroundLayer(x, y);

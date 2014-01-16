@@ -1,12 +1,12 @@
 package net.lomeli.mt.core;
 
+import net.lomeli.mt.client.render.RenderClicker;
 import net.lomeli.mt.client.render.RenderStamaticGlass;
 import net.lomeli.mt.client.render.RenderTank;
 import net.lomeli.mt.core.handler.ItemTickHandler;
 import net.lomeli.mt.core.handler.SoundHandler;
 import net.lomeli.mt.core.handler.VersionCheckTickHandler;
 import net.lomeli.mt.entity.EntityClicker;
-import net.lomeli.mt.entity.render.RenderClicker;
 import net.lomeli.mt.lib.BlockInfo;
 import net.lomeli.mt.tile.TileEntityClearTank;
 
