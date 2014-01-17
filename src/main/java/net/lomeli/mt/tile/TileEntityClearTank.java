@@ -104,7 +104,8 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        return tank.fill(resource, doFill);
+        TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
+        return tank.getFluidAmount() < tank.getCapacity() ? tank.fill(resource, doFill) : (tile != null && tile instanceof TileEntityClearTank)? ((TileEntityClearTank)tile).fill(from, resource, doFill) : 0;
     }
 
     @Override

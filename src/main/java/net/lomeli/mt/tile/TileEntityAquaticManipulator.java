@@ -90,6 +90,7 @@ public class TileEntityAquaticManipulator extends TileEntity implements IFluidHa
     }
 
     public boolean hasTwoSources() {
+        rate = BlockUtil.isBlockAdjacentToWaterSource(worldObj, xCoord, yCoord, zCoord) / 2;
         return BlockUtil.isBlockAdjacentToWaterSource(worldObj, xCoord, yCoord, zCoord) > 1;
     }
 
