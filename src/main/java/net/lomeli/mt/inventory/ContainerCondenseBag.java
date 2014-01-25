@@ -82,18 +82,15 @@ public class ContainerCondenseBag extends Container {
             }
 
             if (par2 < rows * 11) {
-                if (!this.mergeItemStack(itemstack1, rows * 12, this.inventorySlots.size(), true)) {
+                if (!this.mergeItemStack(itemstack1, rows * 11, this.inventorySlots.size(), true))
                     return null;
-                }
-            } else if (!this.mergeItemStack(itemstack1, 0, rows * 12, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 0, rows * 11, false))
                 return null;
-            }
 
-            if (itemstack1.stackSize == 0) {
+            if (itemstack1.stackSize == 0)
                 slot.putStack((ItemStack) null);
-            } else {
+            else
                 slot.onSlotChanged();
-            }
         }
 
         return itemstack;

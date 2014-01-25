@@ -1,5 +1,6 @@
 package net.lomeli.mt.inventory;
 
+import net.lomeli.mt.api.recipes.MTRecipeHandlers;
 import net.lomeli.mt.tile.TileEntityMagmaFurnace;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,6 +9,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -97,8 +99,34 @@ public class ContainerMagmaFurnace extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
-        return null;
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
+        ItemStack itemStack = null;
+        Slot slot = (Slot) inventorySlots.get(slotIndex);
+
+        if (slot != null && slot.getHasStack()) {
+            ItemStack slotItemStack = slot.getStack();
+            itemStack = slotItemStack.copy();
+            
+            if (slotIndex < furnace.getSizeInventory()){
+                if (!this.mergeItemStack(slotItemStack, furnace.getSizeInventory(), inventorySlots.size(), false))
+                    return null;
+            }else {
+                if (TileEntityFurnace.isItemFuel(slotItemStack)) {
+                    if (!this.mergeItemStack(slotItemStack, 1, 1, false))
+                        return null;
+                } else if(MTRecipeHandlers.magmaFurnace.isItemValid(slotItemStack)) {
+                    if (!this.mergeItemStack(slotItemStack, 0, 1, false))
+                        return null;
+                } else
+                    return null;
+            }
+            
+            if (slotItemStack.stackSize == 0)
+                slot.putStack(null);
+            else
+                slot.onSlotChanged();
+        }
+        return itemStack;
     }
 
 }

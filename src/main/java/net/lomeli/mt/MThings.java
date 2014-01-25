@@ -12,7 +12,6 @@ import net.lomeli.mt.core.Config;
 import net.lomeli.mt.core.CreativeTabMT;
 import net.lomeli.mt.core.handler.PacketHandler;
 import net.lomeli.mt.core.helper.DeofHelper;
-import net.lomeli.mt.core.world.WorldMTGen;
 import net.lomeli.mt.entity.ModEntities;
 import net.lomeli.mt.item.ModItems;
 import net.lomeli.mt.lib.Ints;
@@ -28,7 +27,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.VERSION, dependencies = "required-after:LomLib@[1.0.8,)")
 @NetworkMod(channels = { Strings.MOD_ID }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
@@ -70,7 +68,9 @@ public class MThings {
         proxy.registerTickHandlers();
         proxy.registerIcons();
 
-        Addons.initAddons();
+        Addons.initApi();
+
+        ModRecipes.loadRecipes();
     }
 
     @Mod.EventHandler
@@ -78,14 +78,12 @@ public class MThings {
         proxy.registerTileEntites();
         proxy.registerEvents();
 
-        GameRegistry.registerWorldGenerator(new WorldMTGen());
-
         ModEntities.loadEntities();
+        Addons.loadAddons();
     }
 
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
-        ModRecipes.loadRecipes();
-        Addons.loadAddons();
+
     }
 }

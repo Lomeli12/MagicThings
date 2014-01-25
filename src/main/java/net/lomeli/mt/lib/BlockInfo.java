@@ -8,7 +8,7 @@ public class BlockInfo {
 
     public static int fertileBushRange;
 
-    public static int clearTankRenderID, decorRenderID, glassRenderID;
+    public static int clearTankRenderID, decorRenderID, glassRenderID, machineRenderID;
 
     public static String woolText = "subtext.magicthings:wool";
     public static String tabText = "tab.magicthings:";

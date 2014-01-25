@@ -4,12 +4,13 @@ import net.lomeli.lomlib.util.ModLoaded;
 
 import net.lomeli.mt.api.recipes.MTRecipeHandlers;
 import net.lomeli.mt.block.InfectedBlockList;
+import net.lomeli.mt.recipes.AddonRecipes;
 import net.lomeli.mt.recipes.FlyingRingFuelRegistry;
 import net.lomeli.mt.recipes.MagmaFurnaceRecipe;
 import net.lomeli.mt.recipes.UnwinderManger;
 
 public class Addons {
-    public static void initAddons() {
+    public static void initApi() {
         MTRecipeHandlers.flyingRingFuel = new FlyingRingFuelRegistry();
 
         MTRecipeHandlers.magmaFurnace = new MagmaFurnaceRecipe();
@@ -24,5 +25,7 @@ public class Addons {
             MorphAddon.registerAbilities();
         if (ModLoaded.isModInstalled("EE3"))
             EE3Addon.loadAddon();
+
+        AddonRecipes.loadAddons();
     }
 }

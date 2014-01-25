@@ -34,8 +34,8 @@ public class ItemCondenseBag extends ItemMT {
     }
 
     @Override
-    public Icon getIconFromDamage(int i) {
-        return iconArray[i];
+    public Icon getIconFromDamage(int meta) {
+        return meta <  iconArray.length ? iconArray[meta] : iconArray[0];
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

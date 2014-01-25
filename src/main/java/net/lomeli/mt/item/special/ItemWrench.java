@@ -69,8 +69,8 @@ public class ItemWrench extends ItemMT implements IToolWrench {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int i) {
-        return iconArray[i];
+    public Icon getIconFromDamage(int meta) {
+        return meta <  iconArray.length ? iconArray[meta] : iconArray[0];
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

@@ -61,11 +61,12 @@ public class ModBlocks {
 
     private static void registerBlocks() {
         registerBlock(infectedBlock, "Infected Block");
-        registerBlock(cobGen, "Compact CobGen");
         registerBlock(fertileBush, "Fertile Bush");
         registerBlock(magicSand, "Magic Sand");
         registerBlock(aquaticManip, "Aquatic Manipulator");
         registerBlock(clearTank, "Clear Tank");
+        
+        registerBlock(cobGen, "Compact CobGen");
         registerBlock(magmaFurnace, "Magma Furnace");
 
         GameRegistry.registerBlock(treatedWool, ItemTreatedWool.class, "Treated Wool");

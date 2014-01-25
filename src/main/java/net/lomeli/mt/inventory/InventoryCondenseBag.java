@@ -103,7 +103,12 @@ public class InventoryCondenseBag implements IInventory {
 
     @Override
     public ItemStack getStackInSlotOnClosing(int i) {
-        return inventory[i];
+        if(inventory[i] != null){
+            ItemStack returnStack = inventory[i].copy();
+            inventory[i] = null;
+            return returnStack;
+        }
+        return null;
     }
 
     @Override

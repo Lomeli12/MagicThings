@@ -1,3 +1,10 @@
+apply plugin: "forge"
+
+compileJava {
+    sourceCompatability = 1.7
+    targetCompatability = 1.7
+}
+
 def loadProperties(String sourceFileName) {
     def config = new Properties()
         def propFile = new File(sourceFileName)
@@ -31,32 +38,8 @@ repositories {
         artifactPattern "http://anthony-lomeli.net/MinecraftMods/LomLib/dev/[module]-dev-[revision].[ext]"
     }
     ivy {
-        name 'IC2'
-        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-2-dev-deobf_2.0.[revision]-experimental.[ext]"
-    }
-    ivy {
-        name 'Forestry'
-        artifactPattern "https://dl.dropboxusercontent.com/u/8609213/Porcupine/[module]-A-[revision]_dev.[ext]"
-    }
-    ivy {
-        name 'Appeng'
-        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-rv[revision]-finale2-mc16x.[ext]"
-    }
-    ivy {
         name 'ThaumCraft'
         artifactPattern "https://dl.dropboxusercontent.com/u/47135879/[module][revision].[ext]"
-    }
-    ivy {
-        name 'BasicComp'
-        artifactPattern "http://calclavia.com/jenkins/jobs/Basic%20Components/builds/19/archive/output/[module]_v1.0.0.[revision].[ext]"
-    }
-    ivy {
-        name 'BuildCraft'
-        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-A-[revision].[ext]"
-    }
-    ivy {
-        name 'Morph'
-        artifactPattern "http://anthony-lomeli.net/ProjectFiles/DevLibraries/[module]-Beta-[revision].[ext]"
     }
     ivy {
         name 'COFH'
@@ -70,22 +53,21 @@ repositories {
         name 'MultiPart'
         artifactPattern "http://files.minecraftforge.net/ForgeMultipart/[module]-dev-[revision].[ext]"
     }
+    ivy { 
+        name 'UniversalElectricity'
+        artifactPattern "http://calclavia.com/jenkins/jobs/Universal%20Electricity/builds/[revision]/archive/output/[module]-3.0.1.[revision]-dev.[ext]"
+    }
 }
 
-apply plugin: "forge"
-
 dependencies {
-    compile name: 'LomLib', version: '19-1.0.8', ext: 'jar'
-    compile name: 'industrialcraft', version: '307', ext: 'jar'
-    compile name: 'forestry', version: '2.3.0.5', ext: 'jar'
+    runtime fileTree(dir: 'libs', include: '*.jar')
+    
+    compile name: 'LomLib', version: '9-1.1.0', ext: 'jar'
     compile name: 'Thaumcraft', version: '4.0.5b', ext: 'zip'
-    compile name: 'appeng', version: '14', ext: 'jar'
-    compile name: 'Basic_Components', version: '19', ext: 'jar'
-    compile name: 'buildcraft', version: '1.6.4-4.2.0', ext: 'jar'
-    compile name: 'Morph', version: '0.4.0', ext: 'zip'
     compile name: 'ThermalExpansion', version: '3.0.0.b11b', ext: 'jar'
     compile name: 'CoFHCore', version: '2.0.0.b11b', ext: 'jar'
     compile name: 'ForgeMultipart', version: '1.6.4-1.0.0.219', ext: 'jar'
+    compile name: 'Universal-Electricity', version: '22', ext: 'jar'
 }
 
 group = 'net.lomeli.mt'

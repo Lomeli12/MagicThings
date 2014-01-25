@@ -57,7 +57,7 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISided
                     }
                 }
             }
-            if (canSmelt()) {
+            if (canSmelt() && furnaceBurnTime != 0) {
                 ++cookTime;
                 if (cookTime >= 800) {
                     cookTime = 0;
@@ -187,7 +187,12 @@ public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISided
 
     @Override
     public ItemStack getStackInSlotOnClosing(int i) {
-        return inventory[i];
+        if(inventory[i] != null){
+            ItemStack returnStack = inventory[i].copy();
+            inventory[i] = null;
+            return returnStack;
+        }
+        return null;
     }
 
     @Override

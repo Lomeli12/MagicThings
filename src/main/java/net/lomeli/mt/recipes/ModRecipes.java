@@ -1,6 +1,5 @@
 package net.lomeli.mt.recipes;
 
-import net.lomeli.lomlib.recipes.ShapedFluidRecipe;
 import net.lomeli.lomlib.recipes.ShapelessFluidRecipe;
 
 import net.lomeli.mt.block.ModBlocks;
@@ -12,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -21,7 +22,6 @@ public class ModRecipes {
         itemRecipes();
         blockRecipes();
         MedKitRecipes.medKits();
-        AddonRecipes.loadAddons();
     }
 
     private static void itemRecipes() {
@@ -89,7 +89,7 @@ public class ModRecipes {
 
     private static void treatedWoolRecipes() {
         for (int i = 0; i < 16; i++) {
-            addShapelessRecipe(ModBlocks.treatedWoolColors[i], new ItemStack(Block.cloth, 1, i), Item.slimeBall, Item.flint, Item.potion);
+            GameRegistry.addRecipe(new ShapelessFluidRecipe(ModBlocks.treatedWoolColors[i], new ItemStack(Block.cloth, 1, i), Item.slimeBall, Item.flint, Item.potion));
         }
     }
 
@@ -114,26 +114,26 @@ public class ModRecipes {
     }
 
     public static void addRecipe(ItemStack result, Object... input) {
-        GameRegistry.addRecipe(new ShapedFluidRecipe(result, input));
+        GameRegistry.addRecipe(new ShapedOreRecipe(result, input));
     }
 
     public static void addRecipe(Block result, Object... input) {
-        GameRegistry.addRecipe(new ShapedFluidRecipe(result, input));
+        GameRegistry.addRecipe(new ShapedOreRecipe(result, input));
     }
 
     public static void addRecipe(Item result, Object... input) {
-        GameRegistry.addRecipe(new ShapedFluidRecipe(result, input));
+        GameRegistry.addRecipe(new ShapedOreRecipe(result, input));
     }
 
     public static void addShapelessRecipe(ItemStack result, Object... input) {
-        GameRegistry.addRecipe(new ShapelessFluidRecipe(result, input));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(result, input));
     }
 
     public static void addShapelessRecipe(Block result, Object... input) {
-        GameRegistry.addRecipe(new ShapelessFluidRecipe(result, input));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(result, input));
     }
 
     public static void addShapelessRecipe(Item result, Object... input) {
-        GameRegistry.addRecipe(new ShapelessFluidRecipe(result, input));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(result, input));
     }
 }
