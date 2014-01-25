@@ -1,0 +1,10 @@
+Before compiling, download these mods and place them here
+
+Applied Energisters rv14
+Buildcraft 4.2.0
+CodeChickenLib 1.0.0.43
+Forestry 2.3.1.1
+IC2 2.0.307
+Morph 0.4.0
+
+These mods are not required to play with LomLib

@@ -2,7 +2,7 @@
 .gradle
 build
 .settings
-lib
+libs/Morph-Beta-0.4.0.zip
 
 # Package Files #
 *.jar
