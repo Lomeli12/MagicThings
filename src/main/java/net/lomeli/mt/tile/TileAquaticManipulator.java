@@ -18,13 +18,13 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileEntityAquaticManipulator extends TileEntity implements IFluidHandler, IMTTile {
+public class TileAquaticManipulator extends TileEntity implements IFluidHandler, IMTTile {
 
     private FluidTank water;
     private int rate;
     private boolean redstone;
 
-    public TileEntityAquaticManipulator() {
+    public TileAquaticManipulator() {
         water = new FluidTank(40000);
     }
 

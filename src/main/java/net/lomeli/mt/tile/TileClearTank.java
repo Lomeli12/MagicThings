@@ -15,11 +15,11 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileEntityClearTank extends TileEntity implements IFluidHandler, IMTTile {
+public class TileClearTank extends TileEntity implements IFluidHandler, IMTTile {
 
     public FluidTank tank;
 
-    public TileEntityClearTank() {
+    public TileClearTank() {
         tank = new FluidTank(32000);
     }
 
@@ -53,8 +53,8 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
 
     public void pullLiquid() {
         TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
-        if (tile != null && tile instanceof TileEntityClearTank) {
-            TileEntityClearTank clearTank = (TileEntityClearTank) tile;
+        if (tile != null && tile instanceof TileClearTank) {
+            TileClearTank clearTank = (TileClearTank) tile;
             if (clearTank.getTankInfo(null)[0] != null && clearTank.getTankInfo(null)[0].fluid != null) {
                 if (clearTank.getTankInfo(null)[0].fluid.amount < 32000) {
                     clearTank.fill(null, tank.drain(tank.getFluidAmount(), true), true);
@@ -105,7 +105,7 @@ public class TileEntityClearTank extends TileEntity implements IFluidHandler, IM
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
-        return tank.getFluidAmount() < tank.getCapacity() ? tank.fill(resource, doFill) : (tile != null && tile instanceof TileEntityClearTank)? ((TileEntityClearTank)tile).fill(from, resource, doFill) : 0;
+        return tank.getFluidAmount() < tank.getCapacity() ? tank.fill(resource, doFill) : (tile != null && tile instanceof TileClearTank)? ((TileClearTank)tile).fill(from, resource, doFill) : 0;
     }
 
     @Override

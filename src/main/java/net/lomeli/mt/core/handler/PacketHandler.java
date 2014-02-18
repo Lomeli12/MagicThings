@@ -7,7 +7,6 @@ import java.io.IOException;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import net.lomeli.mt.item.special.ItemRunningShoes;
 import net.lomeli.mt.lib.Strings;
 
 import net.minecraft.client.Minecraft;
@@ -26,7 +25,7 @@ import cpw.mods.fml.common.network.Player;
  * 
  */
 public class PacketHandler implements IPacketHandler {
-    private static final byte flyingPacket = 102, stepPacket = 103, speedPacket = 104;
+    private static final byte flyingPacket = 102;
 
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
@@ -37,38 +36,6 @@ public class PacketHandler implements IPacketHandler {
         case flyingPacket:
             recieveFlyingPlayerPacket(data);
             break;
-        case speedPacket:
-            recieveSpeedPacket(data);
-            break;
-        }
-    }
-
-    private void recieveSpeedPacket(ByteArrayDataInput data) {
-        if (Minecraft.getMinecraft().theWorld.playerEntities.size() > 0) {
-            for (int i = 0; i < Minecraft.getMinecraft().theWorld.playerEntities.size(); i++) {
-                EntityPlayer tempPlayer = (EntityPlayer) Minecraft.getMinecraft().theWorld.playerEntities.get(i);
-                if (tempPlayer.username.equalsIgnoreCase(data.readUTF())) {
-                    ItemRunningShoes.applyModifier(tempPlayer, data.readBoolean());
-                }
-            }
-        }
-    }
-
-    public static void sendSpeedPacket(String player, boolean speed) {
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            DataOutputStream dos = new DataOutputStream(baos);
-            Packet250CustomPayload packet = new Packet250CustomPayload();
-            dos.writeByte(stepPacket);
-            dos.writeUTF(player);
-            dos.writeBoolean(speed);
-            dos.close();
-            packet.channel = Strings.MOD_ID;
-            packet.data = baos.toByteArray();
-            packet.length = baos.size();
-            packet.isChunkDataPacket = false;
-            PacketDispatcher.sendPacketToServer(packet);
-        } catch (IOException e) {
         }
     }
 

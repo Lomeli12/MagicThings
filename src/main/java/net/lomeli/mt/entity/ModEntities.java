@@ -25,7 +25,7 @@ public class ModEntities {
     }
 
     private static void loadHostiles() {
-        registerEntity(EntityClicker.class, "Clicker", 30, 0x4F881E, 0xC99A6D);
+        registerEntity(EntityClicker.class, "Clicker", 0x4F881E, 0xC99A6D);
         addOverWorldSpawn(EntityClicker.class, 15, 1, 2);
         LanguageRegistry.instance().addStringLocalization("entity.Clicker.name", "Clicker");
 
@@ -39,9 +39,9 @@ public class ModEntities {
     }
 
     @SuppressWarnings("unchecked")
-    private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int j, int bkEggColor, int fgEggColor) {
+    private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int bkEggColor, int fgEggColor) {
         EntityRegistry.instance();
-        int id = EntityRegistry.findGlobalUniqueEntityId() + j;
+        int id = EntityRegistry.findGlobalUniqueEntityId();
 
         EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
         EntityList.entityEggs.put(Integer.valueOf(id), new EntityEggInfo(id, bkEggColor, fgEggColor));

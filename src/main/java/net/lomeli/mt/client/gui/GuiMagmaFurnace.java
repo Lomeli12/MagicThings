@@ -7,7 +7,7 @@ import net.lomeli.lomlib.client.gui.tab.TabInfo;
 import net.lomeli.mt.inventory.ContainerMagmaFurnace;
 import net.lomeli.mt.lib.BlockInfo;
 import net.lomeli.mt.lib.GuiInfo;
-import net.lomeli.mt.tile.TileEntityMagmaFurnace;
+import net.lomeli.mt.tile.TileMagmaFurnace;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -19,9 +19,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiMagmaFurnace extends GuiContainerPlus {
 
-    private TileEntityMagmaFurnace furnace;
+    private TileMagmaFurnace furnace;
 
-    public GuiMagmaFurnace(InventoryPlayer inventoryPlayer, TileEntityMagmaFurnace tile) {
+    public GuiMagmaFurnace(InventoryPlayer inventoryPlayer, TileMagmaFurnace tile) {
         super(new ContainerMagmaFurnace(inventoryPlayer, tile));
         this.furnace = tile;
         this.texture = GuiInfo.MAGMA_FURNACE;

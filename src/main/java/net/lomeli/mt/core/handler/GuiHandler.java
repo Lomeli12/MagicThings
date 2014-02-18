@@ -6,7 +6,7 @@ import net.lomeli.mt.inventory.ContainerCondenseBag;
 import net.lomeli.mt.inventory.ContainerMagmaFurnace;
 import net.lomeli.mt.inventory.ContainerPortaCraft;
 import net.lomeli.mt.inventory.InventoryCondenseBag;
-import net.lomeli.mt.tile.TileEntityMagmaFurnace;
+import net.lomeli.mt.tile.TileMagmaFurnace;
 
 import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,8 +22,8 @@ public class GuiHandler implements IGuiHandler {
         if (ID == 99) {
             TileEntity tile = world.getBlockTileEntity(x, y, z);
             if (tile != null) {
-                if (tile instanceof TileEntityMagmaFurnace)
-                    return new ContainerMagmaFurnace(player.inventory, (TileEntityMagmaFurnace) tile);
+                if (tile instanceof TileMagmaFurnace)
+                    return new ContainerMagmaFurnace(player.inventory, (TileMagmaFurnace) tile);
             }
         } else if (ID == 1)
             return new ContainerPortaCraft(player.inventory, world, x, y, z);
@@ -39,8 +39,8 @@ public class GuiHandler implements IGuiHandler {
         if (ID == 99) {
             TileEntity tile = world.getBlockTileEntity(x, y, z);
             if (tile != null) {
-                if (tile instanceof TileEntityMagmaFurnace)
-                    return new GuiMagmaFurnace(player.inventory, (TileEntityMagmaFurnace) tile);
+                if (tile instanceof TileMagmaFurnace)
+                    return new GuiMagmaFurnace(player.inventory, (TileMagmaFurnace) tile);
             }
         } else if (ID == 1)
             return new GuiCrafting(player.inventory, world, x, y, z);

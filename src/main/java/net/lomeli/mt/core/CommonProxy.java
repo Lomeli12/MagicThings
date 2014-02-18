@@ -5,10 +5,10 @@ import net.lomeli.mt.core.handler.GuiHandler;
 import net.lomeli.mt.core.handler.PlayerEntityInteractionHandler;
 import net.lomeli.mt.core.handler.PlayerItemHandler;
 import net.lomeli.mt.core.world.WorldMTGen;
-import net.lomeli.mt.tile.TileEntityAquaticManipulator;
-import net.lomeli.mt.tile.TileEntityClearTank;
-import net.lomeli.mt.tile.TileEntityCompactCobGen;
-import net.lomeli.mt.tile.TileEntityMagmaFurnace;
+import net.lomeli.mt.tile.TileAquaticManipulator;
+import net.lomeli.mt.tile.TileClearTank;
+import net.lomeli.mt.tile.TileCompactCobGen;
+import net.lomeli.mt.tile.TileMagmaFurnace;
 
 import net.minecraftforge.common.MinecraftForge;
 
@@ -21,10 +21,10 @@ public class CommonProxy {
 
     public void registerTileEntites() {
         String tile = "net.lomeli.mt.tile.";
-        GameRegistry.registerTileEntity(TileEntityCompactCobGen.class, tile + "CobGenCompact");
-        GameRegistry.registerTileEntity(TileEntityAquaticManipulator.class, tile + "AquaManip");
-        GameRegistry.registerTileEntity(TileEntityClearTank.class, tile + "ClearTank");
-        GameRegistry.registerTileEntity(TileEntityMagmaFurnace.class, tile + "MagmaFurnace");
+        GameRegistry.registerTileEntity(TileCompactCobGen.class, tile + "CobGenCompact");
+        GameRegistry.registerTileEntity(TileAquaticManipulator.class, tile + "AquaManip");
+        GameRegistry.registerTileEntity(TileClearTank.class, tile + "ClearTank");
+        GameRegistry.registerTileEntity(TileMagmaFurnace.class, tile + "MagmaFurnace");
     }
 
     public void registerRenders() {

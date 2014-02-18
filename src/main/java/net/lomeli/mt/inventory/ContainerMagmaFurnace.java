@@ -1,7 +1,7 @@
 package net.lomeli.mt.inventory;
 
 import net.lomeli.mt.api.recipes.MTRecipeHandlers;
-import net.lomeli.mt.tile.TileEntityMagmaFurnace;
+import net.lomeli.mt.tile.TileMagmaFurnace;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -16,13 +16,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerMagmaFurnace extends Container {
 
-    private TileEntityMagmaFurnace furnace;
+    private TileMagmaFurnace furnace;
     private int lastCookTime;
     private int lastBurnTime;
     private int lastItemBurnTime;
     private int lastFluidAmount;
 
-    public ContainerMagmaFurnace(InventoryPlayer inventoryPlayer, TileEntityMagmaFurnace tile) {
+    public ContainerMagmaFurnace(InventoryPlayer inventoryPlayer, TileMagmaFurnace tile) {
         this.furnace = tile;
         this.addSlotToContainer(new Slot(this.furnace, 0, 56, 17));
         this.addSlotToContainer(new Slot(this.furnace, 1, 56, 53));

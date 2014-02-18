@@ -2,7 +2,7 @@ package net.lomeli.mt.block.func;
 
 import net.lomeli.mt.block.BlockMT;
 import net.lomeli.mt.lib.Strings;
-import net.lomeli.mt.tile.TileEntityAquaticManipulator;
+import net.lomeli.mt.tile.TileAquaticManipulator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -28,7 +28,7 @@ public class BlockAquaticManipulator extends BlockMT implements ITileEntityProvi
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
         if (!world.isRemote) {
-            TileEntityAquaticManipulator tile = (TileEntityAquaticManipulator) world.getBlockTileEntity(x, y, z);
+            TileAquaticManipulator tile = (TileAquaticManipulator) world.getBlockTileEntity(x, y, z);
             if (tile != null && player != null) {
                 ItemStack current = player.getCurrentEquippedItem();
                 if (!player.isSneaking()) {
@@ -57,7 +57,7 @@ public class BlockAquaticManipulator extends BlockMT implements ITileEntityProvi
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityAquaticManipulator();
+        return new TileAquaticManipulator();
     }
 
     @Override

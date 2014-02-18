@@ -1,6 +1,7 @@
 package net.lomeli.mt.core;
 
 import net.lomeli.mt.client.render.RenderClicker;
+import net.lomeli.mt.client.render.RenderDecor;
 import net.lomeli.mt.client.render.RenderStamaticGlass;
 import net.lomeli.mt.client.render.RenderTank;
 import net.lomeli.mt.core.handler.ItemTickHandler;
@@ -8,7 +9,7 @@ import net.lomeli.mt.core.handler.SoundHandler;
 import net.lomeli.mt.core.handler.VersionCheckTickHandler;
 import net.lomeli.mt.entity.EntityClicker;
 import net.lomeli.mt.lib.BlockInfo;
-import net.lomeli.mt.tile.TileEntityClearTank;
+import net.lomeli.mt.tile.TileClearTank;
 
 import net.minecraftforge.common.MinecraftForge;
 
@@ -40,8 +41,9 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityClicker.class, new RenderClicker());
         RenderingRegistry.registerBlockHandler(new RenderStamaticGlass().setRenderID(BlockInfo.glassRenderID));
+        RenderingRegistry.registerBlockHandler(new RenderDecor());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityClearTank.class, new RenderTank());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileClearTank.class, new RenderTank());
     }
 
     @Override

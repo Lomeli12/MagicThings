@@ -9,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.lomeli.mt.addon.GraviSuiteAddon;
 import net.lomeli.mt.addon.MorphAddon;
 import net.lomeli.mt.item.ModItems;
-import net.lomeli.mt.item.special.ItemRunningShoes;
 import net.lomeli.mt.lib.Strings;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -43,9 +42,6 @@ public class ItemTickHandler implements ITickHandler {
                         }
                     }
                 }
-                boolean flag = (player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem().getUnlocalizedName()
-                        .equals(ModItems.runningShoes.getUnlocalizedName()));
-                ItemRunningShoes.applyModifier(player, flag);
             }
         }
     }

@@ -26,12 +26,12 @@ import net.minecraftforge.fluids.IFluidHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityMagmaFurnace extends TileEntity implements ITanks, ISidedInventory, IFluidHandler {
+public class TileMagmaFurnace extends TileEntity implements ITanks, ISidedInventory, IFluidHandler {
     public int furnaceBurnTime, currentBurnTime, cookTime;
     private FluidTank lavaTank;
     private ItemStack[] inventory;
 
-    public TileEntityMagmaFurnace() {
+    public TileMagmaFurnace() {
         inventory = new ItemStack[2];
         lavaTank = new FluidTank(new FluidStack(FluidRegistry.LAVA, 0), 16000);
     }

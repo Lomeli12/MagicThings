@@ -1,4 +1,5 @@
 # Item Localization
+
 # Metadata Items
 item.magicthings:Items.0.name=Iron Stick
 item.magicthings:Items.1.name=Iron Band
@@ -26,6 +27,9 @@ item.magicthings:Dusts.7.name=Aquatic Dust
 item.magicthings:Dusts.8.name=Ignious Dust
 item.magicthings:Wrench.0.name=Stamatic Wrench
 item.magicthings:Wrench.1.name=Screwdriver
+item.magicthings:CondenseBag.0.name=Condense Bag
+item.magicthings:CondenseBag.1.name=Expanded Bag
+
 # The rest
 item.magicthings:FlyingRing.name=Flying Ring
 item.magicthings:MedKits.name=Med Kit
@@ -34,14 +38,13 @@ item.magicthings:Error.name=Error
 item.magicthings:PeaceTreaty.name=Peace Treaty
 item.magicthings:PortaCraft.name=PortaCraft
 item.magicthings:FluidReader.name=Fluid Scanner
-item.magicthings:CondenseBag.0.name=Condense Bag
-item.magicthings:CondenseBag.1.name=Expanded Bag
 item.magicthings:CavernDisc.name=Music Disc
 item.magicthings:TankUpgrade.name=Tank Upgrade
 item.magicthings:runningShoes.name=Running Shoes
 item.magicthings:tileCapsule.name=Tile Capsule
 
 # Block Localizations
+
 # Metadata Blocks
 tile.magicthings:ingotBlocks.0=Stamatic Ore
 tile.magicthings:ingotBlocks.1=Aquatic Ore
@@ -54,10 +57,41 @@ tile.magicthings:ingotBlocks.7=Ignious Block
 tile.magicthings:ingotBlocks.8=Neo Block
 tile.magicthings:machineFrame.0=Basic Machine Frame
 tile.magicthings:machineFrame.1=Adv. Machine Frame
-tile.magicthings:treatedWool.name=Treated Wool
-tile.magicthings:decor.name=Smoked Brick
+tile.magicthings:treatedWool.0=Treated Wool
+tile.magicthings:treatedWool.1=Orange Treated Wool
+tile.magicthings:treatedWool.2=Magenta Treated Wool
+tile.magicthings:treatedWool.3=Light Blue Treated Wool
+tile.magicthings:treatedWool.4=Yellow Treated Wool
+tile.magicthings:treatedWool.5=Lime Green Treated Wool
+tile.magicthings:treatedWool.6=Pink Treated Wool
+tile.magicthings:treatedWool.7=Dark Gray Treated Wool
+tile.magicthings:treatedWool.8=Light Gray Treated Wool
+tile.magicthings:treatedWool.9=Cyan Treated Wool
+tile.magicthings:treatedWool.10=Purple Treated Wool
+tile.magicthings:treatedWool.11=Blue Treated Wool
+tile.magicthings:treatedWool.12=Brown Treated Wool
+tile.magicthings:treatedWool.13=Green Treated Wool
+tile.magicthings:treatedWool.14=Red Treated Wool
+tile.magicthings:treatedWool.15=Black Treated Wool
+tile.magicthings:decor.0=Smoked Brick
+tile.magicthings:decor.1=Orange Smoked Brick
+tile.magicthings:decor.2=Magenta Smoked Brick
+tile.magicthings:decor.3=Light Blue Smoked Brick
+tile.magicthings:decor.4=Yellow Smoked Brick
+tile.magicthings:decor.5=Lime Green Smoked Brick
+tile.magicthings:decor.6=Pink Smoked Brick
+tile.magicthings:decor.7=Dark Gray Smoked Brick
+tile.magicthings:decor.8=Light Gray Smoked Brick
+tile.magicthings:decor.9=Cyan Smoked Brick
+tile.magicthings:decor.10=Purple Smoked Brick
+tile.magicthings:decor.11=Blue Smoked Brick
+tile.magicthings:decor.12=Brown Smoked Brick
+tile.magicthings:decor.13=Green Smoked Brick
+tile.magicthings:decor.14=Red Smoked Brick
+tile.magicthings:decor.15=Black Smoked Brick
 tile.magicthings:fancyGlass.0=Stamatic Glass
-tile.magicthings:fancyGlass.1=Shimmering Stamatic Glass
+tile.magicthings:fancyGlass.1=Shimmering Glass
+
 # The rest
 tile.magicthings:InfectedBlock.name=Infected Block
 tile.magicthings:CobGen.name=Compact CobbleGen

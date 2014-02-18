@@ -27,7 +27,6 @@ def loadProperties(String sourceFileName) {
 loadProperties 'build.properties'
 
 repositories {
-//Some of these I had to host myself because gradle keep having a hissy fit >.< Sorry for anyone who doesn't want their mod rehosted, so an official deobfuscated jar would be nice for this
     ivy {
         name 'LomLib'
         artifactPattern "http://anthony-lomeli.net/MinecraftMods/LomLib/dev/[module]-dev-[revision].[ext]"

@@ -1,7 +1,5 @@
 package net.lomeli.mt;
 
-import java.util.logging.Level;
-
 import net.lomeli.lomlib.util.LogHelper;
 import net.lomeli.lomlib.util.UpdateHelper;
 
@@ -57,7 +55,7 @@ public class MThings {
         try {
             updater.check(Strings.MOD_NAME, Strings.UPDATE_XML, Ints.MAJOR, Ints.MINOR, Ints.REVISION);
         } catch (Exception e) {
-            logger.log(Level.WARNING, "Could not connect to update server!");
+            logger.logWarning("Could not connect to update server!");
         }
 
         PotionInfection.setUp();
@@ -74,7 +72,7 @@ public class MThings {
     }
 
     @Mod.EventHandler
-    public void Init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event) {
         proxy.registerTileEntites();
         proxy.registerEvents();
 

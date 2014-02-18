@@ -7,7 +7,7 @@ import net.lomeli.lomlib.item.ItemUtil;
 import net.lomeli.mt.MThings;
 import net.lomeli.mt.block.BlockMT;
 import net.lomeli.mt.lib.Strings;
-import net.lomeli.mt.tile.TileEntityCompactCobGen;
+import net.lomeli.mt.tile.TileCompactCobGen;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -68,7 +68,7 @@ public class BlockCobbleGen extends BlockMT implements ITileEntityProvider {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
         if (!world.isRemote) {
-            TileEntityCompactCobGen tile = (TileEntityCompactCobGen) world.getBlockTileEntity(x, y, z);
+            TileCompactCobGen tile = (TileCompactCobGen) world.getBlockTileEntity(x, y, z);
             if (tile != null) {
                 if (player != null) {
                     ItemStack current = player.inventory.getCurrentItem();
@@ -106,7 +106,7 @@ public class BlockCobbleGen extends BlockMT implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityCompactCobGen();
+        return new TileCompactCobGen();
     }
 
     @Override

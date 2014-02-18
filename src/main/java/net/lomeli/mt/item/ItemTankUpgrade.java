@@ -3,7 +3,7 @@ package net.lomeli.mt.item;
 import net.lomeli.lomlib.util.ModLoaded;
 
 import net.lomeli.mt.block.ModBlocks;
-import net.lomeli.mt.tile.TileEntityClearTank;
+import net.lomeli.mt.tile.TileClearTank;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ public class ItemTankUpgrade extends ItemMT {
                     if (Class.forName("buildcraft.factory.TileTank").isInstance(tile)) {
                         FluidStack tank = ((IFluidHandler) tile).getTankInfo(null)[0].fluid;
                         world.setBlock(x, y, z, ModBlocks.clearTank.blockID);
-                        TileEntityClearTank tileTank = (TileEntityClearTank) world.getBlockTileEntity(x, y, z);
+                        TileClearTank tileTank = (TileClearTank) world.getBlockTileEntity(x, y, z);
                         if (tank != null) {
                             if (tank.amount > 16000)
                                 tank.amount = 16000;

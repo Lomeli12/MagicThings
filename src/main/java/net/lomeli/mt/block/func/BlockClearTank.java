@@ -4,7 +4,7 @@ import net.lomeli.lomlib.item.ItemUtil;
 
 import net.lomeli.mt.block.BlockMT;
 import net.lomeli.mt.lib.Strings;
-import net.lomeli.mt.tile.TileEntityClearTank;
+import net.lomeli.mt.tile.TileClearTank;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -32,7 +32,7 @@ public class BlockClearTank extends BlockMT implements ITileEntityProvider {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
-        TileEntityClearTank tile = (TileEntityClearTank) world.getBlockTileEntity(x, y, z);
+        TileClearTank tile = (TileClearTank) world.getBlockTileEntity(x, y, z);
         if (tile != null) {
             if (!player.isSneaking()) {
                 ItemStack item = player.getCurrentEquippedItem();
@@ -112,14 +112,14 @@ public class BlockClearTank extends BlockMT implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityClearTank();
+        return new TileClearTank();
     }
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
         TileEntity tile = world.getBlockTileEntity(x, y, z);
-        if (tile != null && tile instanceof TileEntityClearTank) {
-            FluidTankInfo tank = ((TileEntityClearTank) tile).getTankInfo(null)[0];
+        if (tile != null && tile instanceof TileClearTank) {
+            FluidTankInfo tank = ((TileClearTank) tile).getTankInfo(null)[0];
             if (tank != null && tank.fluid != null && tank.fluid.getFluid() != null)
                 return tank.fluid.getFluid().getLuminosity();
         }

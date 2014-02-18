@@ -25,14 +25,14 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileEntityCompactCobGen extends TileEntity implements IFluidHandler, IInventory, IMTTile {
+public class TileCompactCobGen extends TileEntity implements IFluidHandler, IInventory, IMTTile {
     private FluidTank lava;
     private FluidTank water;
     private ItemStack[] inventory;
     private int updateTicks;
     private boolean active, redstone;
 
-    public TileEntityCompactCobGen() {
+    public TileCompactCobGen() {
         lava = new FluidTank(40000);
         water = new FluidTank(40000);
         inventory = new ItemStack[2];

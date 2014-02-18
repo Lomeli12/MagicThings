@@ -127,10 +127,8 @@ public class BlockTreatedWool extends BlockMT {
         }
 
         @Override
-        public String getItemDisplayName(ItemStack par1ItemStack) {
-            ItemStack wool = new ItemStack(cloth, 1, par1ItemStack.getItemDamage());
-            String name = super.getItemDisplayName(par1ItemStack);
-            return par1ItemStack.getItemDamage() == 0 ? name : wool.getDisplayName().substring(0, wool.getDisplayName().length() - 4) + name;
+        public String getItemDisplayName(ItemStack stack) {
+            return StatCollector.translateToLocal(stack.getUnlocalizedName() + "." + stack.getItemDamage());
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })

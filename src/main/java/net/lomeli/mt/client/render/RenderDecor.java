@@ -1,53 +1,64 @@
 package net.lomeli.mt.client.render;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 
-import net.lomeli.mt.block.ModBlocks;
+import net.lomeli.lomlib.client.render.RenderUtils;
+
+import net.lomeli.mt.block.BlockDecor;
 import net.lomeli.mt.lib.BlockInfo;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
-
-import net.minecraftforge.client.IItemRenderer;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.IconTransformation;
-import codechicken.lib.render.RenderUtils;
-import codechicken.lib.render.TextureUtils;
-import codechicken.lib.vec.Cuboid6;
-import codechicken.lib.vec.Translation;
-
-public class RenderDecor implements ISimpleBlockRenderingHandler, IItemRenderer {
+public class RenderDecor implements ISimpleBlockRenderingHandler {
 
     @Override
-    public int getRenderId() {
-        return BlockInfo.decorRenderID;
-    }
+    public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
+        block.setBlockBounds(0f, 0f, 0f, 1f, 1f, 1f);
+        renderer.setRenderBoundsFromBlock(block);
 
-    @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-        renderInventory(metadata, 0f, -0.05f, 0f, 0.95f);
+        float red = 0, green = 0, blue = 0;
+        Color blockColor = BlockDecor.getBlockColor(meta);
+
+        red = ((float) blockColor.getRed()) / 255f;
+        green = ((float) blockColor.getGreen()) / 255f;
+        blue = ((float) blockColor.getBlue()) / 255f;
+
+        GL11.glColor3f(red, green, blue);
+        RenderUtils.drawBlockFaces(renderer, block, ((BlockDecor) block).effect);
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+
+        RenderUtils.drawBlockFaces(renderer, block, ((BlockDecor) block).brick);
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-        // int meta = world.getBlockMetadata(x, y, z);
-        /*
-         * int glowColour = 8; switch(meta){ case 1: glowColour = 14; case 2:
-         * glowColour = 13; case 3: glowColour = 11; default: glowColour = 8; }
-         */
-
-        Tessellator.instance.setBrightness(0x00F000F0);
+        int meta = world.getBlockMetadata(x, y, z);
+        block.setBlockBounds(0f, 0f, 0f, 1f, 1f, 1f);
+        renderer.setRenderBoundsFromBlock(block);
         renderer.renderStandardBlock(block, x, y, z);
 
-        // RenderUtil.addGlow(x, y, z, glowColour, Cuboid6.full.expand(0.05D));
+        float red = 0, green = 0, blue = 0;
+        Color blockColor = BlockDecor.getBlockColor(meta);
 
+        red = ((float) blockColor.getRed()) / 255f;
+        green = ((float) blockColor.getGreen()) / 255f;
+        blue = ((float) blockColor.getBlue()) / 255f;
+
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.setColorOpaque_I(new Color(red, green, blue).getRGB());
+        tessellator.setBrightness(300);
+        RenderUtils.renderBlock(world, x, y, z, block, renderer, ((BlockDecor) block).effect);
+
+        renderer.clearOverrideBlockTexture();
+        block.setBlockBounds(0f, 0f, 0f, 1f, 1f, 1f);
+        renderer.setRenderBoundsFromBlock(block);
         return true;
     }
 
@@ -57,56 +68,8 @@ public class RenderDecor implements ISimpleBlockRenderingHandler, IItemRenderer 
     }
 
     @Override
-    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return true;
-    }
-
-    @Override
-    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        return true;
-    }
-
-    @Override
-    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-        switch (type) {
-        case ENTITY:
-            renderInventory(item.getItemDamage(), -0.15f, 0f, -0.15f, 1f);
-            return;
-        case EQUIPPED:
-            renderInventory(item.getItemDamage(), 0f, 0f, 0f, 1f);
-            return;
-        case EQUIPPED_FIRST_PERSON:
-            renderInventory(item.getItemDamage(), 0f, 0f, 0f, 1f);
-            return;
-        case INVENTORY:
-            renderInventory(item.getItemDamage(), 0f, -0.05f, 0f, 0.95f);
-            return;
-        default:
-            return;
-        }
-    }
-
-    private void renderInventory(int meta, double x, double y, double z, double scale) {
-        Icon icon = ModBlocks.decor.getIcon(0, meta);
-        GL11.glPushMatrix();
-        GL11.glTranslated(x, y, z);
-        GL11.glScaled(scale, scale, scale);
-        TextureUtils.bindAtlas(0);
-        CCRenderState.reset();
-        CCRenderState.useNormals(true);
-        CCRenderState.pullLightmap();
-        CCRenderState.startDrawing(7);
-        RenderUtils.renderBlock(Cuboid6.full, 0, new Translation(x, y, z), new IconTransformation(icon), null);
-        CCRenderState.draw();
-        /*
-         * RenderUtil.prepareRenderState(); int glowColour = 8; switch(meta){
-         * case 1: glowColour = 14; case 2: glowColour = 13; case 3: glowColour
-         * = 11; default: glowColour = 8; }
-         */
-        // RenderUtil.renderGlow(Tessellator.instance,
-        // Cuboid6.full.expand(0.05D), glowColour, new Translation(x, y, z));
-        // RenderUtil.restoreRenderState();
-        GL11.glPopMatrix();
+    public int getRenderId() {
+        return BlockInfo.decorRenderID;
     }
 
 }

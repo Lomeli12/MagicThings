@@ -34,7 +34,7 @@ public class ModBlocks {
 
     private static void initBlocks() {
         treatedWoolColors = new ItemStack[16];
-        decorBlocks = new ItemStack[4];
+        decorBlocks = new ItemStack[16];
         frames = new ItemStack[2];
         ingotBlocks = new ItemStack[9];
 
@@ -65,7 +65,7 @@ public class ModBlocks {
         registerBlock(magicSand, "Magic Sand");
         registerBlock(aquaticManip, "Aquatic Manipulator");
         registerBlock(clearTank, "Clear Tank");
-        
+
         registerBlock(cobGen, "Compact CobGen");
         registerBlock(magmaFurnace, "Magma Furnace");
 
@@ -78,10 +78,9 @@ public class ModBlocks {
 
         for (int i = 0; i < 16; i++) {
             treatedWoolColors[i] = new ItemStack(treatedWool, 1, i);
+            decorBlocks[i] = new ItemStack(decor, 1, i);
             if (i < 9)
                 ingotBlocks[i] = new ItemStack(ingotBlock, 1, i);
-            if (i < 4)
-                decorBlocks[i] = new ItemStack(decor, 1, i);
             if (i < 2)
                 frames[i] = new ItemStack(machineFrame, 1, i);
         }

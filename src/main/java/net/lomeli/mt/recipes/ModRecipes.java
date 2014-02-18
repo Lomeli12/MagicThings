@@ -44,7 +44,8 @@ public class ModRecipes {
         addRecipe(ModItems.tankUpgrade, true, " I ", "IAI", " I ", 'I', Item.ingotIron, 'A', "ingotAqua");
         addRecipe(ModItems.tileCapsule, true, " S ", "IEI", "IRI", 'S', "ingotStamatic", 'I', Item.ingotIron, 'E', Item.eyeOfEnder, 'R', ModItems.itemArray[1]);
         addRecipe(ModItems.liquidReader, true, " IS", "IBI", "AI ", 'S', ModItems.itemArray[0], 'I', Item.ingotIron, 'B', Block.woodenButton, 'A', "ingotAqua");
-
+        addRecipe(ModItems.runningShoes, true, "  S", "TTT", "WMM", 'S', Item.silk, 'T', new ItemStack(ModBlocks.treatedWool, 0, OreDictionary.WILDCARD_VALUE), 'W', "dyeWhite",
+                'M', ModItems.materialArray[0]);
         furnaceItems();
     }
 
@@ -94,15 +95,35 @@ public class ModRecipes {
     }
 
     private static void smokedBrickRecipes() {
+        String[] dyes = { "dyeWhite", "dyeOrange", "dyeMagenta", "dyeLightBlue", "dyeYellow", "dyeLime", "dyePink", "dyeGray", "dyeLightGray", "dyeCyan", "dyePurple", "dyeBlue",
+                "dyeBrown", "dyeGreen", "dyeRed", "dyeBlack" };
         addShapelessRecipe(ModBlocks.decorBlocks[0], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4]);
-        addShapelessRecipe(ModBlocks.decorBlocks[1], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], "dyeRed");
-        addShapelessRecipe(ModBlocks.decorBlocks[2], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], "dyeGreen");
-        addShapelessRecipe(ModBlocks.decorBlocks[3], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], "dyeBlue");
+        for (int i = 0; i < dyes.length; i++) {
+            addShapelessRecipe(ModBlocks.decorBlocks[i], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], ModItems.ingotArray[4], dyes[i]);
+            addShapelessRecipe(ModBlocks.decorBlocks[i], new ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE), dyes[i]);
 
-        addShapelessRecipe(ModBlocks.decorBlocks[0], new ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE), "dyeBlack");
-        addShapelessRecipe(ModBlocks.decorBlocks[1], new ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE), "dyeRed");
-        addShapelessRecipe(ModBlocks.decorBlocks[2], new ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE), "dyeGreen");
-        addShapelessRecipe(ModBlocks.decorBlocks[3], new ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE), "dyeBlue");
+        }
+        /*
+         * addShapelessRecipe(ModBlocks.decorBlocks[1], ModItems.ingotArray[4],
+         * ModItems.ingotArray[4], ModItems.ingotArray[4],
+         * ModItems.ingotArray[4], "dyeRed");
+         * addShapelessRecipe(ModBlocks.decorBlocks[2], ModItems.ingotArray[4],
+         * ModItems.ingotArray[4], ModItems.ingotArray[4],
+         * ModItems.ingotArray[4], "dyeGreen");
+         * addShapelessRecipe(ModBlocks.decorBlocks[3], ModItems.ingotArray[4],
+         * ModItems.ingotArray[4], ModItems.ingotArray[4],
+         * ModItems.ingotArray[4], "dyeBlue");
+         * 
+         * addShapelessRecipe(ModBlocks.decorBlocks[0], new
+         * ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE),
+         * "dyeBlack"); addShapelessRecipe(ModBlocks.decorBlocks[1], new
+         * ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE),
+         * "dyeRed"); addShapelessRecipe(ModBlocks.decorBlocks[2], new
+         * ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE),
+         * "dyeGreen"); addShapelessRecipe(ModBlocks.decorBlocks[3], new
+         * ItemStack(ModBlocks.decor, 1, OreDictionary.WILDCARD_VALUE),
+         * "dyeBlue");
+         */
     }
 
     public static void addFurnaceRecipe(ItemStack input, ItemStack output, int xp) {

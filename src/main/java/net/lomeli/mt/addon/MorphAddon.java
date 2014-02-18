@@ -1,9 +1,5 @@
 package net.lomeli.mt.addon;
 
-import java.util.logging.Level;
-
-import net.lomeli.lomlib.util.ModLoaded;
-
 import net.lomeli.mt.MThings;
 import net.lomeli.mt.ability.AbilityResistance;
 import net.lomeli.mt.entity.EntityClicker;
@@ -18,16 +14,14 @@ import morph.common.ability.AbilityHostile;
 
 public class MorphAddon {
     public static void registerAbilities() {
-        if (ModLoaded.isModInstalled("Morph")) {
-            MThings.logger.log(Level.INFO, "Morph Found! Registering new Abilities");
-            try {
-                Ability.registerAbility("infectionresistance", AbilityResistance.class);
-                Ability.mapAbilities(EntityClicker.class, new AbilityResistance(), new AbilityHostile());
+        MThings.logger.logInfo("Morph Found! Registering new Abilities");
+        try {
+            Ability.registerAbility("infectionresistance", AbilityResistance.class);
+            Ability.mapAbilities(EntityClicker.class, new AbilityResistance(), new AbilityHostile());
 
-                MThings.logger.log(Level.INFO, "Abilities successfully registered!");
-            } catch (Exception e) {
-                MThings.logger.log(Level.SEVERE, "Could NOT load register Abilities!");
-            }
+            MThings.logger.logInfo("Abilities successfully registered!");
+        } catch (Exception e) {
+            MThings.logger.logError("Could NOT load register Abilities!");
         }
     }
 

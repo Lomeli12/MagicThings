@@ -51,19 +51,20 @@ public class ItemTileCapsule extends ItemMT {
             } else {
                 int newID = stack.getItemDamage();
                 int newMeta = NBTUtil.getInt(stack, "capsuleMeta");
-                world.setBlock(x, y + 1, z, newID, newMeta, 2);
-                world.setBlockMetadataWithNotify(x, y + 1, z, newMeta, 3);
-                world.markBlockForUpdate(x, y + 1, z);
-                TileEntity newTile = world.getBlockTileEntity(x, y + 1, z);
-                if (newTile != null) {
-                    newTile.readFromNBT(stack.stackTagCompound);
-                    world.setBlockTileEntity(x, y + 1, z, newTile);
+                if (world.isAirBlock(x, y + 1, z)) {
+                    world.setBlock(x, y + 1, z, newID, newMeta, 2);
+                    world.setBlockMetadataWithNotify(x, y + 1, z, newMeta, 3);
                     world.markBlockForUpdate(x, y + 1, z);
-                    world.markBlockForRenderUpdate(x, y + 1, z);
-                    stack.stackSize--;
+                    TileEntity newTile = world.getBlockTileEntity(x, y + 1, z);
+                    if (newTile != null) {
+                        newTile.readFromNBT(stack.stackTagCompound);
+                        world.setBlockTileEntity(x, y + 1, z, newTile);
+                        world.markBlockForUpdate(x, y + 1, z);
+                        world.markBlockForRenderUpdate(x, y + 1, z);
+                        stack.stackSize--;
+                    }
                     return true;
                 }
-
             }
         }
 

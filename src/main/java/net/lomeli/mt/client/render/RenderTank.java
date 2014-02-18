@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.lomeli.lomlib.client.render.FluidRender;
 
-import net.lomeli.mt.tile.TileEntityClearTank;
+import net.lomeli.mt.tile.TileClearTank;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -15,7 +15,7 @@ public class RenderTank extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
-        TileEntityClearTank tank = (TileEntityClearTank) tileentity;
+        TileClearTank tank = (TileClearTank) tileentity;
 
         FluidStack liquid = tank.tank.getFluid();
 

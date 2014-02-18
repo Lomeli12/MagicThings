@@ -25,6 +25,8 @@ public class Addons {
             MorphAddon.registerAbilities();
         if (ModLoaded.isModInstalled("EE3"))
             EE3Addon.loadAddon();
+        if (ModLoaded.isModInstalled("ForgeMultipart"))
+            ForgeMultipartAddon.loadAddon();
 
         AddonRecipes.loadAddons();
     }

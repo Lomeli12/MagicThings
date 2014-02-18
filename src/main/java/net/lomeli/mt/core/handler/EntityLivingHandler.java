@@ -8,10 +8,8 @@ import net.lomeli.lomlib.util.ModLoaded;
 import net.lomeli.mt.addon.ThaumCraftAddon;
 import net.lomeli.mt.entity.EntityClicker;
 import net.lomeli.mt.item.ModItems;
-import net.lomeli.mt.item.special.ItemRunningShoes;
 import net.lomeli.mt.potion.PotionInfection;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,14 +39,6 @@ public class EntityLivingHandler {
                 }
             }
         }
-
-        if (event.entityLiving instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.entityLiving;
-            boolean flag = (player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem().getUnlocalizedName()
-                    .equals(ModItems.runningShoes.getUnlocalizedName()));
-            ItemRunningShoes.applyModifier(player, flag);
-        }
-
         if (event.entityLiving.isPotionActive(PotionInfection.infect)) {
             if (event.entityLiving.getActivePotionEffect(PotionInfection.infect).getDuration() <= 0)
                 event.entityLiving.removePotionEffect(PotionInfection.infect.id);
@@ -90,8 +80,6 @@ public class EntityLivingHandler {
     
     @ForgeSubscribe
     public void onEntityJoinWorld(EntityJoinWorldEvent event){
-        if(event.entity instanceof EntityPlayer)
-            ItemRunningShoes.applyModifier((EntityLivingBase) event.entity, false);
     }
 
     public boolean isThaumcraftInstalled(EntityPlayer player) {

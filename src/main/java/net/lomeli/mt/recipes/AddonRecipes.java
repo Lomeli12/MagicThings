@@ -1,8 +1,12 @@
 package net.lomeli.mt.recipes;
 
+import java.lang.reflect.Method;
+import java.util.logging.Level;
+
 import net.lomeli.lomlib.block.BlockUtil;
 import net.lomeli.lomlib.util.ModLoaded;
 
+import net.lomeli.mt.MThings;
 import net.lomeli.mt.block.ModBlocks;
 import net.lomeli.mt.item.ModItems;
 
@@ -18,7 +22,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import forestry.api.core.ItemInterface;
 import forestry.api.recipes.RecipeManagers;
 
 import appeng.api.IGrinderRecipeManager;
@@ -161,8 +164,8 @@ public class AddonRecipes {
                 advRecipes.addRecipe(new ItemStack(ModItems.material, 1, 2), new Object[] { "M M", "MDM", "M M", 'M', matter, 'D', Item.diamond });
             }
             if (useModRecipe[1]) {
-                ItemStack circuitBoard = ItemInterface.getItem("circuitboards").copy();
-                ItemStack sturdyCase = ItemInterface.getItem("sturdyCasing").copy();
+                ItemStack circuitBoard = getForestryItem("circuitboards").copy();
+                ItemStack sturdyCase = getForestryItem("sturdyCasing").copy();
 
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.shaver), true, "BCB", "BSB", "BTB", 'B', "ingotBronze", 'C', circuitBoard, 'S', Item.shears, 'T',
                         sturdyCase));
@@ -181,5 +184,21 @@ public class AddonRecipes {
             GameRegistry.addRecipe(new ItemStack(ModItems.shaver), new Object[] { "IFI", "ISI", "IRI", 'I', Item.ingotIron, 'S', Item.shears, 'R', Block.blockRedstone, 'F',
                     Item.flint });
         }
+    }
+
+    private static ItemStack getForestryItem(String ident) {
+        ItemStack item = null;
+        try {
+            String itemClass = "forestry.core.config.ForestryItem";
+            Object[] enums = Class.forName(itemClass).getEnumConstants();
+            for (Object e : enums)
+                if (e.toString().equals(ident)) {
+                    Method m = e.getClass().getMethod("getItemStack", new Class[0]);
+                    return (ItemStack) m.invoke(e, new Object[0]);
+                }
+        } catch (Exception e) {
+            MThings.logger.log(Level.WARNING, "Could not retrieve Forestry item identified by: " + ident);
+        }
+        return item;
     }
 }
